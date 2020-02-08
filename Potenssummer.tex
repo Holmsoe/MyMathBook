@@ -1,0 +1,508 @@
+\chapter{Potenssummer}
+
+%%New section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduktion}
+Vi vil starte med at vise en simpel metode til at beregne potenssummer såsom
+\[0^2+1^2+2^2+3^2+4^2 \ldots +n^2 \]
+\[0^3+1^3+2^3+3^3+4^3 \ldots +n^3 \]
+\[0^4+1^4+2^4+3^4+4^4 \ldots +n^4 \]
+Generelt kan sådanne summer også skrives med sum symbolet \(\sum\):
+\[\sum_{k=0}^{n}k^p=0^p+1^p+2^p+3^p+4^p \ldots +n^p\]
+Vi ønsker nu at finde en formel til at beregne denne summen \(S_p(n)\):
+\[S_p(n)=\sum_{k=0}^{n}k^p\]
+Med andre ord ønsker vi for en given potens \(p\) at finde en formel udtryk ved antal led \(n\) til beregning af summen \(S_p(n)\). Før vi går igang med en generel metode vil vi varme op med nogle eksempler.
+\section{Eksempler på potenssummer}
+For at øve os i tankegangen og se problematikken fra en lidt anden vinkel beregner vi med intuitive overvejelser \(S_1(n)\),\( S_2(2)\) og \(S_3(n)\).
+
+\subsection{Summen af \(n\) positive heltal}
+Hvordan beregnes summen:
+\[S_1(n)=\sum_{k=0}^{n}k=0+1+2+3+4 \ldots +n\] 
+Der findes en morsom historie om den tyske matematiker Gauss, som løste dette problem på få sekunder i underskolen, da læreren bad dem om at beregne summen af alle hele tal fra \(0\) til \(100\). Han foreslog at omarrangere serien i to rækker:\\
+\begin{equation*}
+\begin{array}{ccccccc}
+0&1&2&3&\ldots&n-1&n\\
+n&n-1&n-2&n-3&\ldots&2&1\\
+\midrule
+n&n&n&n&\ldots&n&n
+\end{array}
+\end{equation*}
+Anden række er blot første række bagfra, så summen af de to rækker må være det dobbelte af summen af første række som er den sum vi søger. Leddene er nu arrangeret således at summen af hver kolonne altid bliver \(n\). Der er ialt \(n+1\) kolonner så den samlede sum af de to rækker bliver \(n(n+1)\). For at få det endelige resultat må vi dividere dette udtryk med 2 og får:
+\begin{equation}
+S_1(n)=\sum_{k=0}^{n}k=\frac{n(n+1)}{2}\label{gauss}
+\end{equation}
+Vi - eller Gauss - har nu fundet en formel til beregning af \(S_p(n)\) for \(p=1\) 
+\subsection{Nicomachus sætning}
+Vi vil nu bevise formlen: \[0^3+1^3+2^3+3^3+ \ldots +n^3=(0+1+2+3+\ldots +n)^2\]
+Denne fascinerende formel kaldes også for Nicomachus sætning. Den kan illustreres med et eksempel:
+\begin{alignat*}{2}
+&&0^3+1^3+2^3+3^3+4^3+5^3&=(0+1+2+3+4+5)^2\\
+&&0+1+8+27+64+125&=15^2\\
+&&225&=225
+\end{alignat*}
+Vi kan også udtrykke sætningen med sumtegn:
+\begin{equation}
+\sum_{k=0}^{n}k^3=\left(\sum_{k=0}^{n}k\right)^2\label{nicomachus}
+\end{equation}
+Ved erstatning af højresiden fra \ref{nicomachus} med udtryk fra \ref{gauss} får vi nu:
+\begin{equation}
+\sum_{k=0}^{n}k^3=\left(\frac{n(n+1)}{2}\right)^2\label{k3}
+\end{equation}
+Ofte er det muligt at løse problemer med summer ved at kigge på differensen af funktionerne for værdierne \((n+1)\) og \(n\). Dette skyldes, at de fleste led elimineres ved differencen. Vi kigger altså på ligningen:
+\[\sum_{k=0}^{n+1}k^3-\sum_{k=0}^{n}k^3=\left(\frac{(n+1)(n+2)}{2}\right)^2-\left(\frac{n(n+1)}{2}\right)^2\]
+Det ses umiddelbart, at venstresiden er \((n+1)^3\) og vi får:
+\begin{alignat*}{2}
+&&(n+1)^3&= \left(\frac{(n+1)(n+2)}{2}\right)^2-\left(\frac{n(n+1)}{2}\right)^2\\
+&&&=\frac{(n+1)^2}{4}\left((n+2)^2-n^2\right)\\
+&&&=\frac{(n+1)^2}{4}\left(n^2+4n+4-n^2\right)\\
+&&&=\frac{(n+1)^2}{4}(4n+4)\\
+&&&=\frac{4(n+1)^2(n+1)}{4}=(n+1)^3
+\end{alignat*}
+Hermed er sætning \ref{nicomachus}, Nicomachus sætning, bevist. Der findes mange beviser for denne sætning - også geometriske. De kan findes på nettet.
+Vi kan nu finde et udtryk for \(S_p(n)\) for p=3. Vi regner videre på \ref{k3} og får:
+\[\sum_{k=0}^{n}k^3=\frac{n^2}{4}(n+1)^2=\frac{n^2}{4}(n^2+2n+1)\]
+som giver
+\begin{equation}
+\sum_{k=0}^{n}k^3=\frac{1}{4}n^4+\frac{1}{2}n^3+\frac{1}{4}n^2
+\label{tredie}
+\end{equation}
+Vi har nu på vejen ved ligning \ref{tredie} fundet summen \(S_p(n)\) for p=3, og det var jo en af de formler vi ønskede at finde.
+\subsection{Kvadrattal som summen af ulige tal}
+Bevis at \[1^2=1 \qquad  2^2=1+3 \qquad 3^2=1+3+5 \qquad \text{osv.}\]
+Eller generelt:
+\begin{equation}
+n^2=\sum_{k=1}^{n}(2k-1)\label{ulige}
+\end{equation}
+Formlen kan formuleres som: 'kvadratet på et positivt heltal \(n\) kan skrives som summen af de første \(n\) positive ulige tal'.
+Når k i summen ganges med 2 fås kun hver andet led, og ved at trække 1 fra fås de ulige med start i 1. Herefter får vi:
+\begin{alignat*}{2}
+&&n^2&=\sum_{k=1}^{n}(2k-1)\\
+&&&=2\sum_{k=1}^{n}k-\sum_{k=1}^{n}1=2\sum_{k=0}^{n}k-n\\
+&&&=2\frac{n(n+1)}{2}-n=n(n+1)-n\\
+&&&=n^2
+\end{alignat*}
+Vi har anvendt at \(\sum_{k=1}^{n}1=n\) da der jo for hvert k tillægges 1. Endvidere er \(\sum_{k=0}^{n}k=\sum_{k=1}^{n}k\), da der kun tillægges et led der er lig med 0.
+Hermed er \ref{ulige} bevist.
+
+\subsection{Kubiktal som summen af ulige tal}
+Bevis at \[1^3=1,\quad 2^3=3+5,\quad 3^3=7+9+11,\quad 4^3=13+15+17+19 \quad \text{osv.}\]
+Det ses, at summen består af lige så mange ulige tal som tallet der opløftes til \(3\). For eksempel består summen for tilfældet \(4^3\) af 4 tal. Denne sum \(13+15+17+19\) kan beregnes som differencen mellem summerne af ulige tal fra hhv. \(1\) til \(19\) og \(1\) til \(11\). Ifølge \ref{ulige} er summen af ulige tal fra \(1\) til \(19\) lig med kvadratet på et tal \(n\) hvor der gælder \(2n-1=19\). Så \(n=\frac{19+1}{2}=10\). Tilsvarende fås \(n=6\) når sidste led er \(11\). Altså er:
+\begin{alignat*}{2}
+&&4^3&=13+15+17+19\\
+&&&=\sum_{k=1}^{10}(2k-1)-\sum_{k=1}^{6}(2k-1)\\
+&&&=10^2-6^2=100-36=64
+\end{alignat*}
+Vi har her benyttet \ref{ulige}. Men hvordan finder man tallene \(11\) og \(19\) ud fra 4? Summen fra 1 til 19 kan skrives som 
+\[1+(3+5)+(7+9+11)+(13+15+17+19)\]
+Summen består altså af \(1+2+3+4=\sum_{k=0}^{4}k=\frac{4(4+1)}{2}=10\) led - eller generelt af \(\frac{n(n+1)}{2}\) led. I tilfældet \(4\) altså \(10\) led. Tilsvarende er antallet af led for \((n-1)\) lig med \(\frac{(n-1)n}{2}\). I tilfældet \(4-1=3\) altså \(\frac{(3-1)3}{2}=6\) led. Vi kan nu formulere vores bevis for kubiktal som:
+\begin{equation}
+n^3=\sum_{k=1}^{a_n}(2k-1)-\sum_{k=1}^{a_{(n-1)}}(2k-1)\label{kubik}
+\end{equation}
+Hvor 
+\[a_n=\frac{n(n+1)}{2} \quad \text{og} \quad a_{(n-1)}=\frac{(n-1)n}{2}\]
+Ved indsættelse af \ref{ulige} får vi nu:
+\begin{alignat*}{2}
+&&n^3&=a_n^2-a_{n-1}^2\\
+&&&=\left(\frac{n(n+1}{2}\right)^2-\left(\frac{n(n+1)}{2}\right)^2\\
+&&&=\frac{n^2}{4}\left((n+1)^2-(n-1)^2\right)\\
+&&&=\frac{n^2}{4}(n^2+2n+1-n^2+2n-1)\\
+&&&=\frac{n^2}{4}(4n)=n^3
+\end{alignat*}
+Herved er \ref{kubik} bevist. Formlen kan også udledes af Nicomachus sætning. Af  venstresiden i \ref{nicomachus} ses at forskellen mellem leddene for hhv \(n-1\) og \(n\) er \(n^3\). Sammenholdes dette med forskellen på højresiden fås:
+\[n^3=\left(\sum_{k=1}^{n}k\right)^{2}-\left(\sum_{k=1}^{n-1}k\right)^{2}\]
+Eller
+\begin{equation}
+n^3=\left(\frac{n(n+1}{2}\right)^2-\left(\frac{n(n-1)}{2}\right)^2 \label{kubika}
+\end{equation}
+
+Af udledningen ovenfor ses, at dette udtryk reducerer til \(n^3\). Ved division med \(n^2\) på begge sider i \ref{kubika} fås:
+\begin{equation}
+n=\left(\frac{n+1}{2}\right)^2-\left(\frac{n-1}{2}\right)^2\label{talsomkvadrattal}
+\end{equation}
+Altså, at ethvert tal kan skrives som forskellen mellem to kvadrattal. Vi kan illustrere denne sætning med et par eksempler:
+\begin{alignat*}{2}
+&&11&=\left(\frac{11+1}{2}\right)-\left(\frac{11-1}{2}\right)^2\\
+&&&=6^2-5^2=36-25=11\\
+&&12&=\left(\frac{12+1}{2}\right)-\left(\frac{12-1}{2}\right)^2\\
+&&&=\frac{1}{4}(13^2-11^2)=\frac{1}{4}(169-121)\\
+&&&=\frac{48}{4}=12
+\end{alignat*}
+Bemærk at for lige tal er de to kvadrattal brøker og ikke hele tal.For ulige tal er \ref{talsomkvadrattal} i princippet den omvendte af \ref{ulige}, hvoraf fremgår ved sammenligning for \(n\) og \(n-1\), at forskellen mellem to følgende kvadrattal er et ulige tal. I eksemplet \(11\) har vi:
+\[6^2-5^2=(1+3+5+7+9+11)-(1+3+5+7+9)=11\]
+
+%%New section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Summen af kvadrattal}
+Vi vil nu finde en formel for summen af de første n kvadrattal, \(S_2(n)\).
+\[S_2(n)=\sum_{k=0}^{n}k^2\]
+Fra \ref{ulige} har vi:
+\begin{alignat*}{2}
+&&1^2&=1\\
+&&2^2&=1+3\\
+&&3^2&=1+3+5\\
+&&4^2&=1+3+5+7\\
+&&n^2&=1+3+5+7+\ldots+(2n-1)
+\end{alignat*}
+Summen af venstresiderne er netop den sum vi ønsker at finde. Summerer vi ligeledes højresiderne får vi:
+\begin{alignat*}{2}
+&&\sum_{k=1}^{n}k^2&=1 \times n+3(n-1)+5(n-2)+ \ldots + (2n-1)\cdot 1\\
+&&&=\sum_{k=1}^n(n+1-k)(2k-1)=\sum_{k=1}^{n}(2kn-n+3k-1-2k^2)\\
+&&&=\sum_{k=1}^{n}(-2k^2)+\sum_{k=1}^{n}(2kn+3k)+\sum_{k=1}^{n}(-n-1)\\
+&&&=-2\sum_{k=1}^{n}k^2+(2n+3)\sum_{k=1}^{n}k-(n+1)\sum_{k=1}^{n}1\\
+&&&=-2\sum_{k=1}^{n}k^2+\frac{(2n+3)n(n+1)}{2}-n(n+1)
+\end{alignat*}
+Ved at flytte \(-2\sum_{k=1}^{n}k^2\) over på venstre side og sætte højresiden på fælles brøkstreg fås:
+\[3\sum_{k=1}^{n}k^2=\frac{n(n+1)(2n+3-2)}{2}=\frac{n(n+1)(2n+1)}{2}\]
+Ved divison med 3 fås herefter:
+\begin{equation}
+\sum_{k=1}^{n}k^2=\frac{n(n+1)(2n+1)}{6}=\frac{1}{3}n^3+\frac{1}{2}n^2+\frac{1}{6}n
+\end{equation}
+Hvorved formlen er fundet. Der findes mange måder at vise denne formel på. Her er formålet blot at anvende de tidligere udledte formler for at illustrere metodikken.
+
+%%New section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Potenssum som et polynomium}
+Vi har du med forskellige ideer vist at:
+\begin{alignat}{2}
+&&&S_1(n)=\sum_{k=0}^{n}k=\frac{n(n-1)}{2}=\frac{1}{2}n^2+\frac{1}{2}\\
+&&&S_2(n)=\sum_{k=0}^{n}k^2=\frac{n(n+1)(2n+1)}{6}=\frac{1}{3}n^3+\frac{1}{2}n^2+\frac{1}{6}n\\
+&&&S_3(n)=\sum_{k=0}^{n}k^3=\frac{n^2(n+1)^2}{4}=\frac{1}{4}n^4+\frac{1}{2}n^3+\frac{1}{4}n^2
+\end{alignat}
+Nu er vi bedre forberedt til at finde en generel formel for potenssummen:
+\[S_p(n)=\sum_{k=0}^{n}k^p\]
+Vi har set, at for \(p=1,2,3\) er \(S_p\) et polynomium af grad \(p+1\). Inden vi går videre vil vi vise at \(S_p(n)\) altid er et polynomium af grad \(p+1\).
+Binomialkoefficienten \(\binom{i}{n}\) kan opfattes som et polynomium afhængig af i. For eksempel har vi, at:
+\[\binom{i}{3}=\frac{i(i-1)(i-2)}{6}=\frac{i^3-3i^2+2i}{6}\]
+er et trediegradspolynomium. Tilsvarende er \(\binom{i}{2}\) et andengradspolynomium.\\
+En potens \(i^3\) kan skrives som en linearkombination af 3 polynomier:
+\[i^3=C_{3,3}\binom{i}{3}+C_{3,2}\binom{i}{2}+C_{3,1}\binom{i}{1}\]
+Koefficienterne fastlægges således, at leddene \(i^2\) og \(i\) elimineres.\\
+På den anden side ved vi fra Pascals trekant (Hockey Stick teorem), at:
+\[\sum_{i=0}^{n}\binom{i}{j}=\binom{n+1}{j+1}\]
+Derfor er for eksempel:
+\[\sum_{i=0}^{n}C_{3,3}\binom{i}{3}=C_{3,3}\binom{n+1}{3+1}=C_{3,3}\binom{n+1}{4}\]
+Vi får herefter:
+\[\sum_{i=0}^{n}i^3=C_{3,3}\binom{n+1}{4}+C_{3,2}\binom{n+1}{3}+C_{3,1}\binom{n+1}{2}\]
+Det ses umiddelbart, at dette er et polynomium i \(n\) af \(4=3+1\) grad
+Vi ved nu, at summen \(S_p(n)\) er et polynomium af grad \(p+1\) og får:
+\[S_p(n)=\sum_{k=0}^{n}k^p=\sum_{k=0}^{p+1}C_{k}n^k\]
+hvor \(C_{k}\) er koefficienter til \(n^k\) i polynomiet. For eksempel gælder for \(p=3\):
+\begin{gather}
+\begin{split}
+\sum_{k=0}^{n}k^3&=C_{4}n^4+C_{3}n^3+C_{2}n^2+C_{1}n^1+C_{0}n^0\\
+&=C_{4}n^4+C_{3}n^3+C_{2}n^2+C_{1}n+C_{0}\label{k3forn}
+\end{split}
+\end{gather}
+
+%%New section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Sum af kubiktal}
+Vi øger \(n\)  med \(1\) til \(n+1\) og bergner den tilsvarende sum:
+\begin{equation}
+\sum_{k=0}^{n+1}k^3=C_4(n+1)^4+C_3(n+1)^3+C_2(n+1)^2+C_1(n+1)+C_0\label{k3fornplus1}
+\end{equation}
+Ved nu at trække \ref{k3forn} fra \ref{k3fornplus1} får vi:
+\begin{align}
+\begin{split}
+\sum_{k=0}^{n+1}k^3&-\sum_{k=0}^{n}k^3\\
+&=C_4(n+1)^4+C_3(n+1)^3+C_2(n+1)^2+C_1(n+1)^{1}+C_0(n+1)^{0}\\
+&\quad-(C_{4}n^4+C_{3}n^3+C_{2}n^2+C_{1}n+C_{0})
+\end{split}
+\end{align}
+Ved beregning af hhv venstre og højreside, sammentrækning og anvendelse af binomialsætningen fås:
+\begin{align}
+\begin{split}
+(n+1)^3&=C_4\left(\binom{4}{4}n^4+\binom{4}{3}n^3+\binom{4}{2}n^2+\binom{4}{1}n^1+\binom{4}{0}n^0\right)\\
+&\quad+C_3\left(\binom{3}{3}n^3+\binom{3}{2}n^2+\binom{3}{1}n^1+\binom{3}{0}n^0\right)\\
+&\quad+C_2\left(\binom{2}{2}n^2+\binom{2}{1}n^1+\binom{2}{0}n^0\right)\\
+&\quad+C_1\left(\binom{1}{1}n^1+\binom{1}{0}n^0\right)\\
+&\quad+C_0\\
+&\quad-(C_{4}n^4+C_{3}n^3+C_{2}n^2+C_{1}n+C_{0})
+\end{split}
+\end{align}
+Ved at omorganisere og samle alle potenser af \(n\) får vi nu:
+\begin{align}
+\begin{split}
+(n+1)^3&=n^4\left(C_4\binom{4}{4}-C_4\right)\\
+&\quad+n^3\left(C_4\binom{4}{3}+C_3\binom{3}{3}-C_3\right)\\
+&\quad+n^2\left(C_4\binom{4}{2}+C_3\binom{3}{2}+C_2\binom{2}{2}-C_2\right)\\
+&\quad+n^1\left(C_4\binom{4}{1}+C_3\binom{3}{1}+C_2\binom{2}{1}+C_2\binom{1}{1}-C_1\right)\\
+&\quad+n^0\left(C_4\binom{4}{0}+C_3\binom{3}{0}+C_2\binom{2}{0}+C_1\binom{1}{0}+C_0\binom{0}{0}-C_0\right)\label{genligning}
+\end{split}
+\end{align}
+Vi ser nu, at mange led går ud:
+\[n^4 \quad \text{går ud da} \quad \binom{4}{4}=1 \quad \text{og} \quad C_4\binom{4}{4}-C_4=0\]
+De sidste 2 led for hver potens går ud. F.eks.or for hhv. \(n^3\) og \(n^2\):
+\[C_3\binom{3}{3}-C_3=0 \quad \text{og} \quad C_2\binom{2}{2}-C_2=0\] 
+Vi har nu reduceret \ref{genligning} udtrykket til:
+\begin{align}
+\begin{split}
+(n+1)^3&=n^3\left(C_4\binom{4}{3}\right)\\
+&\quad+n^2\left(C_4\binom{4}{2}+C_3\binom{3}{2}\right)\\
+&\quad+n^1\left(C_4\binom{4}{1}+C_3\binom{3}{1}+C_2\binom{2}{1}\right)\\
+&\quad+n^0\left(C_4\binom{4}{0}+C_3\binom{3}{0}+C_2\binom{2}{0}+C_1\binom{1}{0}\right)\\
+\end{split}
+\end{align}
+Vi ved samtidigt fra binomialsætningen, at:
+\[(n+1)^3=n^3\binom{3}{3}+n^2\binom{3}{2}+n^1\binom{3}{1}+n^0\binom{3}{0}\]
+Ved sammenligning af koefficienter får vi nu:
+\begin{align*}
+\binom{3}{3}&=C_4\binom{4}{3}\tag{Koeff:\;\(n^3\)}\\
+\binom{3}{2}&=C_4\binom{4}{2}+C_3\binom{3}{2}\tag{Koeff:\;\(n^2\)}\\
+\binom{3}{1}&=C_4\binom{4}{1}+C_3\binom{3}{1}+C_2\binom{2}{1}\tag{Koeff:\;\(n^1\)}\\
+\binom{3}{0}&=C_4\binom{4}{0}+C_3\binom{3}{0}+C_2\binom{2}{0}+C_1\binom{1}{0}\tag{Koeff:\;\(n^0\)}\\
+\end{align*}
+Disse ligninger kan løses succesivt og vi får:
+\begin{align*}
+C_4&=\frac{\binom{3}{3}}{\binom{4}{3}}=\frac{1}{4}\\
+C_3&=\frac{\binom{3}{2}-C_4\binom{4}{2}}{\binom{3}{2}}=\frac{3-6 \times \frac{1}{4}}{3}=\frac{1}{2}\\
+C_2&=\frac{\binom{3}{1}-C_4\binom{4}{1}-C_3\binom{3}{1}}{\binom{2}{1}}=\frac{3-4 \times \frac{1}{4}-3 \times \frac{1}{2}}{2}=\frac{1}{4}\\
+C_1&=\frac{\binom{3}{0}-C_4\binom{4}{0}-C_3\binom{3}{0}-C_2\binom{2}{0}}{\binom{1}{0}}=\frac{1-C_4-C_3-C_2}{1}=\frac{1-\frac{1}{4}-\frac{1}{2}-\frac{1}{4}}{1}=0\\
+\end{align*}
+Vi behøver ikke at bekymre os om \(C_0\) som altid går ud.Vi har derfor:
+\[S_3(n)=\frac{1}{4}n^4+\frac{1}{2}n^3+\frac{1}{4}n^2\]
+Dette er samme formel som vi fandt tidligere.
+
+%%New section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Generel udledning ved binomialkoefficienter}
+Vi vil nu anvende samme metode til at udlede en generel formel. Udledning foregår som før i flere trin:\\
+{\bf Trin 1:} Antag, at \(S_p(n)\) kan udtrykkes som et polynomium af \(p+1\) grad:
+\begin{equation}
+S_p(n)=\sum_{k=0}^nk^p=\sum_{k=0}^{p+1}C_{k}n^k\label{basislign}
+\end{equation}
+{\bf Trin 2:} Beregn differencen mellem venstresiderne for \(n+1\) og \(n\):
+\begin{align*}
+S_p(n+1)-S_p(n)&= \sum_{k=0}^{n+1}k^p-\sum_{k=0}^{n}k^p\\
+&=(n+1)^p=\sum_{k=0}^{p}\binom{p}{k}n^k
+\end{align*}
+Ved sidste udregning har vi anvendt binomialsætningen.\\
+{\bf Trin 3:} Beregn differencen mellem højresiden for \(n\) og \(n+1\) i \ref{basislign} som:
+\begin{align}
+\begin{split}
+S_p(n+1)-S_p(n)&=\sum_{k=0}^{p+1}C_{k}(n+1)^k-\sum_{k=0}^{p+1}C_{k}n^k\\
+&=\sum_{k=0}^{p+1}C_k\sum_{i=0}^{k}\binom{k}{i}n^i-\sum_{k=0}^{p+1}C_{k}n^k
+\end{split}
+\end{align}\label{hoejreside}
+Her er \(\sum_{i=0}^{k}\binom{k}{i}n^i\) binomialudviklingen af \((n+1)^k\).
+Fra \ref{hoejreside} kan vi nu uddrage koefficienter for hver potens af \(n\). Bemærk, at første udtryk blot er summen:
+\[C_{0}(n+1)^{0}+C_{1}(n+1)^{1}+ \dotsm +C_{p}(n+1)^{p}+C_{p+1}(n+1)^{p+1}\]
+Til en given potens \(q\) bidrager hvert udtryk med potens \( \geq q\) med netop et led. Og vi får bidragene til \(q\) som:
+\[C_{q}\binom{q}{q}+C_{q+1}\binom{q+1}{q}+ \dotsm +C_{p}\binom{p}{q}+C_{p+1}\binom{p+1}{q}\]
+Bemærk, at første led i denne sum \(C_{q}\binom{q}{q}=C_{q}\). Men dette led går ud, da det er lig med det højre led som vi fratrækker. Vi får nu bidragene til \(q\)'te potens:
+\[\sum_{k=q}^{p+1}C_{k}\binom{k}{q}-C_{q}=\sum_{k=q+1}^{p+1}C_{k}\binom{k}{q}\]
+Første led i første sum gårt ud med sidste led. Sammenlign denne formel med eksemplet for \(p=3\) i \ref{genligning}
+Vi har nu højresiden af \ref{basislign}:
+\begin{equation}
+S_p(n+1)-S_p(n)=\sum_{q=1}^{p}\left(n^q\sum_{k=q+1}^{p+1}C_{k}\binom{k}{q}\right)\label{slutligning}
+\end{equation}
+{\bf Trin 4:} Sammenholde led med samme potens i \ref{slutligning}.
+Venstresiden i  \ref{basislign} er beregnet i trin \(2\) til:
+\[S_p(n+1)-S_p(n)=\sum_{j=1}^{p}\binom{p}{j}n^j\]
+Lad os starte med at sammenligne potenser af \(n^p\), dvs. at \(q=p\). Vi beregner her potensen \(C_{p+1}\) til \(n^{p+1}\) i løsningspolynomiet og får:
+\begin{align}
+\begin{split}
+n^p\binom{p}{p}&=n^p\sum_{k=p+1}^{p+1}C_{k}\binom{k}{p}\\
+C_{p+1}&=\frac{\binom{p}{p}}{\binom{p+1}{p}}=\frac{1}{p+1}
+\end{split}
+\end{align}
+Så \(C_{p+1}\) eller koefficienten til \(n^{p+1}\) vil altid være \(\frac{1}{p+1}\), simpelt \!.\\
+Lad os nu tage potenser til \(n^{p-1}\) dvs at \(q=p-1\) i \ref{slutligning}:
+\begin{align}
+\begin{split}
+n^{p-1}\binom{p}{p-1}&=n^{p-1}\sum_{k=p}^{p+1}C_{k}\binom{k}{p-1}\\
+C_{p}&=\frac{\binom{p}{p-1}-C_{p+1}\binom{p+1}{p-1}}{\binom{p}{p-1}}\\
+\end{split}
+\end{align}
+, hvor \(C_{p+1}\) allerede er kendt.
+Generelt får vi:
+\begin{align}
+\begin{split}
+C_{s}&=\frac{\binom{p}{q-1}-\sum_{k=q+1}^{p+1}C_{k}\binom{k}{q-1}}{\binom{q}{q-1}} \qquad \text{eller}\\
+C_{s}\binom{q}{q-1}&=\binom{p}{q-1}-\sum_{k=q+1}^{p+1}C_{k}\binom{k}{q-1}\label{iterligning}
+\end{split}
+\end{align}
+, hvor \(C_{q+1} \dotsb C_{p+1}\) allerede er kendt.
+Koefficienterne til \(S_{p}(n)\) kan derfor beregnes successivt ved anvendelse af binomialkoefficienter - dvs tal fra Pascals trekant.
+\begin{equation*}
+\begin{array}{>{\displaystyle}l>{\displaystyle}l>{\displaystyle}c>{\displaystyle}c>{\displaystyle}c>{\displaystyle}c>{\displaystyle}c}
+\textbf{Sml}	&\textbf{Beregn}&\textbf{Venstre}	&\mathbf{C_{p+1}}	&\mathbf{C_{p}}	&\mathbf{C_{p-1}}&\mathbf{C_{p-1}}\\\\
+n^{p}		&C_{p+1}	& \binom{p}{p} 	&{\binom{p+1}{p}}^*&0&0&0\\\\
+n^{p-1}	&C_{p}	& \binom{p}{p-1} 	&\binom{p+1}{p-1} 	&{\binom{p}{p-1}}^*&0&0\\\\
+n^{p-2}	&C_{p-1}	& \binom{p}{p-2}	&\binom{p+1}{p-2} 	&\binom{p}{p-2}&{\binom{p-1}{p-2}}^*&0\\\\
+n^{p-3}	&C_{p-2}	& \binom{p}{p-3} 	&\binom{p+1}{p-3} 	&\binom{p}{p-3}&\binom{p-1}{p-3}&{\binom{p-2}{p-3}}^*\\\\
+\dotsc 		&\dotsc 	& \dotsc 		&\dotsc 		&\dotsc&\dotsc&\dotsc\\\\
+n^1 		&C_{2}	& \binom{p}{1} 	&\binom{p+1}{1} 	&\binom{p}{1}&\binom{p-1}{1}&\binom{p-2}{1}\\\\
+\end{array}
+\end{equation*}
+Tabellen viser de binomial koefficienter der anvendes. For hver beregning anvendes koefficienter i en række sammen med de allerede fundne koefficenter \(C\). Tabellen skal læses på følgende måde:
+\begin{itemize}
+\item {\bf Første kolonne:} De potenser fra \ref{slutligning} der sammenlignes.
+\item {\bf Anden kolonne:} Den koefficient der beregnes. Alle højere koefficienter er kendte.
+\item {\bf Tredie kolonne:} Venstresidens koefficient. Første led på brøkstregen i \ref{iterligning}.
+\item {\bf Øvrige kolonner:} Binomialkoefficienter til beregning.
+\item {\bf Mærket med stjerne} Udgør nævneren i \ref{iterligning} 
+\end{itemize}
+Her er et lille eksempel for en beregning med \(p=5\). Først opstiller vi tabellen med binomialkoefficienter, hvor kolonnen yderste til venstre er første led på brøkstregen i \ref{iterligning}:
+\begin{equation*}
+\begin{array}{r|rrrrr}
+1&6&0&0&0&0\\
+5&15&5&0&0&0\\
+10&20&10&4&0&0\\
+10&15&10&6&3&0\\
+5&6&5&4&3&2\\
+1&1&1&1&1&1
+\end{array}
+\end{equation*}
+Herefter kan koefficienterne beregnes succesivt. Vi anvender øverste række til \(C_6\), næste række til \(C_5\) osv. og får:
+\[C_6=\frac{1}{6} \quad C_5=\frac{5-15C_6}{5}=\frac{1}{2} \quad C_4=\frac{10-20C_6-10C_5}{4}=\frac{5}{12}\]
+\[C_3=\frac{10-15C_6-10C_5-6C_4}{3}=\frac{10-\frac{15}{6}-\frac{10}{2}-\frac{6 \cdot 5}{12}}{3}=0\]
+\[C_2=\frac{5-6C_6-5C_5-4C_4-3C_3}{2}=\frac{5-\frac{6}{6}-\frac{5}{2}-\frac{4 \cdot 5}{12}-3 \cdot 0}{2}=-\frac{1}{12}\]
+\[C_1=\frac{1-C_6-C_5-C_4-C_3-C_2}{1}=\frac{1-\frac{1}{6}-\frac{1}{2}-\frac{5}{12}-0-(-\frac{1}{12})}{1}=0\]
+%%New section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Koefficienter udtrykt ved \(p\) og \(n\)}
+Vi vil nu finde generelle udtryk for koefficienterne i \(S_p(n)\). I forrige afsnit fandt vi et generelt udtryk for succesiv beregning udtryk, hvor indgik en række binomialkoefficienter. Vi kan nu gå skridtet videre og indsætte binomialkoefficienterne udtrykt ved \(p\) og \(n\). Ved anvender det generelle udtryk og starter som før med at beregne \(C_{p+1}, C_p\) osv.:\\
+%
+%Bemærk brugen af phantom og &\MinLinie til at aligne de enkelte afsnit. Hvis linie er kortere end denne dummy bliver dummy afgørende for placeringen til venstre. Hvis der ikke er alignment %mellem afsnit er en linie for lang og bør forkortes.
+%
+\begin{align*}
+&\text{Koefficienter til \(\mathbf{n^{p+1}}\)}\nylinie
+&\MinLinie
+&\binom{p}{p}=C_{p+1}\binom{p+1}{p}\nylinie
+&C_{p+1}\frac{p+1}{1!}=\frac{1}{0!}=1\nylinie
+&C_{p+1}=\frac{1}{p+1}
+\end{align*}
+\begin{align*}
+&\text{Koefficienter til \(\mathbf{n^{p}}\)}\nylinie
+&\MinLinie
+&\binom{p}{p-1}=C_{p}\binom{p}{p-1}+C_{p+1}\binom{p+1}{p-1}\nylinie
+&C_{p}\binom{p}{p-1}=\binom{p}{p-1}-C_{p+1}\binom{p+1}{p-1}=\frac{p}{1!}-C_{p+1}\frac{(p+1)p}{2!}\nylinie
+& \quad =\binom{p}{p-1}\left(1-C_{p+1}\frac{(p+1)}{2!}\right)=\binom{p}{p-1}\left(1-\frac{1}{2!}\right)=\frac{1}{2}\frac{p}{1!}\nylinie
+&C_{p}=\frac{1}{2}=\frac{1}{2}\frac{1}{1!}\\
+\end{align*}
+Bemærk, at højresiden sættes udenfor parentes og der herefter er en konstant tilbage indenfor parentesen.
+\begin{align*}
+&\text{Koefficienter til \(\mathbf{n^{p-1}}\)}\nylinie
+&\MinLinie
+&\binom{p}{p-2}=C_{p-1}\binom{p-1}{p-2}+C_{p}\binom{p}{p-2}+C_{p+1}\binom{p+1}{p-2}\nylinie
+&C_{p-1}\binom{p-1}{p-2}=\binom{p}{p-2}-C_{p+1}\binom{p+1}{p-2}-C_{p}\binom{p}{p-2}\nylinie
+&\quad =\frac{p(p-1)}{2!}-C_{p+1}\frac{(p+1)p(p-1)}{3!}-C_{p}\frac{p(p-1)}{2!}\nylinie
+&\quad =\binom{p}{p-2}\left(1-C_{p+1}\frac{p+1}{3}-C_{p} \cdot 1\right)\nylinie
+&\quad =\binom{p}{p-2}\left(1-\frac{1}{3}-\frac{1}{2}\right)=\frac{1}{6}\binom{p}{p-2}\nylinie
+&C_{p-1}\frac{(p-1)}{1!}=\frac{1}{6}\frac{p(p-1)}{2!}\nylinie
+&C_{p-1}=\frac{p}{12}=\frac{1}{6}\frac{p}{2!}
+\end{align*}
+\begin{align*}
+&\text{Koefficienter til \(\mathbf{n^{p-2}}\)}\nylinie
+&\MinLinie
+&\binom{p}{p-3}=C_{p-2}\binom{p-2}{p-3}+C_{p-1}\binom{p-1}{p-3}+C_{p}\binom{p}{p-3}+C_{p+1}\binom{p+1}{p-3}\nylinie
+&C_{p-2}\binom{p-2}{p-3}=\binom{p}{p-3}-C_{p+1}\binom{p+1}{p-3}-C_{p}\binom{p}{p-3}-C_{p-1}\binom{p-1}{p-3}\nylinie
+&\quad=\frac{p(p-1)(p-2)}{3!}-C_{p+1}\frac{(p+1)p(p-1)(p-2)}{4!}\nylinie
+&\qquad -C_{p}\frac{p(p-1)(p-2)}{3!}-C_{p-1}\frac{(p-1)(p-2)}{2!}\nylinie
+&\quad=\binom{p}{p-3}\left(1-C_{p+1}\frac{p+1}{4}-C_{p}-C_{p-1}\frac{3}{p}\right)\nylinie
+&\quad=\frac{p(p-1)(p-2)}{3!}\left(1-\frac{1}{4}-\frac{1}{2}-\frac{1}{4}\right)=0\cdot \frac{p(p-1)(p-2)}{3!}\nylinie
+\end{align*}
+\begin{align*}
+&\text{Koefficienter til \(\mathbf{n^{p-2}}\) fortsat}\nylinie
+&\MinLinie
+&C_{p-2}\binom{p-2}{p-3}=0\cdot \frac{p(p-1)(p-2)}{3!}\nylinie
+&C_{p-2}=0\cdot \frac{p(p-1)}{3!}
+\end{align*}
+\begin{align*}
+&\text{Koefficienter til \(\mathbf{n^{p-3}}\)}\nylinie
+&\MinLinie
+&\binom{p}{p-4}=C_{p-3}\binom{p-3}{p-4}+C_{p-2}\binom{p-2}{p-4}+C_{p-1}\binom{p-1}{p-4}\nylinie
+&\qquad +C_{p}\binom{p}{p-4}+C_{p+1}\binom{p+1}{p-4}\nylinie
+&C_{p-3}\binom{p-3}{p-4}=\binom{p}{p-4}-C_{p+1}\binom{p+1}{p-4}\nylinie
+&\qquad -C_{p}\binom{p}{p-4}-C_{p-1}\binom{p-1}{p-4}-C_{p-2}\binom{p-2}{p-4}\nylinie
+&C_{p-3}\binom{p-3}{p-4}=\frac{p(p-1)(p-2)(p-3)}{4!} \nylinie
+& \qquad -C_{p+1}\frac{(p+1)p(p-1)(p-2)(p-3)}{5!}-C_{p}\frac{p(p-1)(p-2)(p-3)}{4!} \nylinie
+& \qquad -C_{p-1}\frac{(p-1)(p-2)(p-3)}{3!}-C_{p-2}\frac{(p-2)(p-3)}{2!} \nylinie
+& \quad =\binom{p}{p-4}(1-C_{p+1}\frac{(p+1)}{5}-C_{p}-C_{p-1}\frac{4}{p}-C_{p-2}\frac{3 \cdot 4}{p(p-1)})\nylinie
+& \quad =\binom{p}{p-4}(1-\frac{1}{5}-\frac{1}{2}-\frac{1}{3}-0)=\binom{p}{p-4}(\frac{30-6-15-10}{30})\nylinie
+&\quad =\frac{-1}{30}\binom{p}{p-4}=\frac{-1}{30}\frac{p(p-1)(p-2)(p-3)}{4!}\nylinie
+&C_{p-3}=\frac{-1}{30}\frac{p(p-1)(p-2)}{4!}
+\end{align*}
+
+Vi ønsker nu at finde en generel formel til beregning af koefficienterne. I eksemplerne startede vi ovenfra med \(p+1\). Vi har det generelle udtryk:
+\[
+C_{s}\binom{s}{s-1}=\binom{p}{s-1}-\sum_{k=s+1}^{p+1}C_{k}\binom{k}{s-1}
+\]
+Vi ønsker i stedet at nummerere koefficienterne ovenfra i forhold til startpunktet \(s=p+1\). Sætter vi \(t=0\) når \(s=p+1\) får vi:
+\begin{equation}
+C_{p+1-t}\binom{p+1-t}{p-t}=\binom{p}{p-t}-\sum_{k=p+2-t}^{p+1}C_{k}\binom{k}{p-t}
+\end{equation}
+Ændrer vi grænserne for summationen og summerer i omvendt rækkefølge med start i \(k=0\) får vi:
+\begin{equation}
+C_{p+1-t}\binom{p+1-t}{p-t}=\binom{p}{p-t}-\sum_{k=0}^{t-1}C_{p+1-k}\binom{p+1-k}{p-t}
+\end{equation}
+Sætter vi nu \(\binom{p}{p-t}\) udenfor parentes som i taleksemplerne får vi:
+\[C_{p+1-t}\binom{p+1-t}{p-t}=\binom{p}{p-t}(1-\sum_{k=0}^{t-1}C_{p+1-k}\frac{\binom{p+1-k}{p-t}}{\binom{p}{p-t}}\]
+Ved udregning af sumleddet fås:
+\[C_{p+1-t}\binom{p+1-t}{p-t}=\binom{p}{p-t}(1-\sum_{k=0}^{t-1}C_{p+1-k}\frac{(p+1-k)!t!}{p!(t+1-k)!})\]
+
+%%New section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Koefficienter udtryk ved Bernoullital}
+Vi antager ud fra eksemplerne:
+\[C_{p+1-k}\binom{p+1-k}{p-k}=\binom{p}{p-k}B_{k}\]
+\[C_{p+1-k}=\frac{\binom{p}{p-k}}{\binom{p+1-k}{p-k}}B_{k}=\frac{p!}{(p+1-k)!k!}B_{k}\]
+Indsætter vi dette i xx får vi:
+\[C_{p+1-t}\binom{p+1-t}{p-t}=\binom{p}{p-t}(1-\sum_{k=0}^{t-1}\frac{t!}{k!(t+1-k)!}B_{k})\]
+\[C_{p+1-t}\binom{p+1-t}{p-t}=\binom{p}{p-t}(1-\sum_{k=0}^{t-1}\binom{t}{k}\frac{1}{t+1-k}B_{k})\]
+Vi har antaget at:
+\[C_{p+1-t}\binom{p+1-t}{p-t}=\binom{p}{p-t}B_{t}\]
+Altså, at den næste koefficient \(C_{p+1-t}\) kan udtrykkes ved to binomialkoefficienter og en tilhørende konstant \(B_{t}\). Konstanten kan beregnes udfra konstanterne for de forrige koefficienter og er uafhængig af \(p\). Ved ovenstående beregninger ser vi, at hvis de forrige koefficinter kan udtrykkes på denne måde gælder det også den næste. Vi har derfor vist vores antagelse ved rekursion, hvis antagelsen gælder for \(t=0\) svarende til 
+\(C_{p+1}\binom{p+1}{p}=\binom{p}{p} \cdot 1\)
+, som er sandt da \(B_{0}=1\).
+Indsætter vi nu xx i venstresiden på yy får vi:
+\[B_{t}=1-\sum_{k=0}^{t-1}B_{k}\binom{t}{k}\frac{1}{t+1-k}\]
+Hvor \(B_{0}=1\). Dette er en rekusionsformel til beregning af \(B_{t}\). Vi beregner de første værdier:
+\begin{align*}
+&B_{0}=1\\
+&B_{1}=1-B_{0} \cdot 1 \cdot \frac{1}{2}=\frac{1}{2}\\
+&B_{2}=1-B_{0} \cdot 1 \cdot \frac{1}{3}-B_{1} \cdot 2 \cdot \frac{1}{2}=1-\frac{1}{3}-\frac{1}{2}=\frac{1}{6}\\
+&B_{3}=1-B_{0} \cdot 1 \cdot \frac{1}{4}-B_{1} \cdot 3 \cdot \frac{1}{3}-B_{2} \cdot 3 \cdot \frac{1}{2}=1-\frac{1}{4}-\frac{1}{2}-\frac{1}{4}=0\\
+&B_{4}=1-B_{0} \cdot 1 \cdot \frac{1}{5}-B_{1} \cdot 4 \cdot \frac{1}{4}-B_{2} \cdot 6 \cdot \frac{1}{3}-B_{3} \cdot 4 \cdot \frac{1}{2}=1-\frac{1}{5}-\frac{1}{2}-\frac{1}{3}-0=\frac{-1}{30}\\
+\end{align*}
+Af formlen:
+\[C_{p+1-t}\binom{p+1-t}{p-t}=\binom{p}{p-t}B_{t}\]
+får vi:
+\begin{align*}
+C_{p+1-t}&=B_{t}\frac{\binom{p}{p-t}}{\binom{p+1-t}{p-t}}=B_{t}\frac{p!(p-t)!}{(p-t)!t!(p+1-t)!}\nylinie
+&=B_{t}\frac{p!}{t!(p+1-t)!}=B_{t}\frac{p!}{t!(p-t)!(p+1-t)}\nylinie
+&=B_{t}\binom{p}{t}\frac{1}{p+1-t}
+\end{align*}
+Herefter kan vi beregne koefficienterne, når vi en gang for alle har beregnet \(B_{t}\). 
+\begin{align*}
+&C_{p+1}=B_{0}\frac{\binom{p}{p}}{\binom{p+1}{p}}=1 \cdot \frac{1}{1+p}=\frac{B_{0}}{p+1}\nylinie
+&C_{p\phantom{+1}}=B_{1}\frac{\binom{p}{p-1}}{\binom{p}{p-1}}=B_{1}\nylinie
+&C_{p-1}=B_{2}\frac{\binom{p}{p-2}}{\binom{p-1}{p-2}}=B_{2}\frac{p}{2!}\nylinie
+&C_{p-2}=B_{3}\frac{\binom{p}{p-3}}{\binom{p-2}{p-3}}=B_{3}\frac{p(p-1)}{3!}\nylinie
+&C_{p-3}=B_{4}\frac{\binom{p}{p-4}}{\binom{p-3}{p-4}}=B_{4}\frac{p(p-1)(p-2)}{4!}\nylinie
+\end{align*}
+Eller generelt:
+\begin{align*}
+&C_{p+1-t}=B_{t}\frac{\binom{p}{p-t}}{\binom{p+1-t}{p-t}}=B_{t}\frac{p(p-1)(p-2)(p-3) \dotsm (p+2-t)}{t!}\nylinie
+&C_{p+1-t}=B_{t}\binom{p+1}{t}\frac{1}{1+p}
+\end{align*}
+Ved indsættelse i formlen:
+\[S_p(n)=\sum_{k=0}^{n}k^p=\sum_{k=0}^{p+1}C_{k}n^k\]
+får vi nu:
+\[S_p(n)=\sum_{k=0}^{n}k^p=\frac{1}{p+1}\sum_{k=0}^{p}B_{k}\binom{p+1}{k}n^{(p+1-k)}\]
+Sætter vi nu \(n=1\) får vi endnu en rekursionsformel til beregning af \(B_{t}\):
+\[1=\frac{1}{p+1}\sum_{k=0}^{p}B_{k}\binom{p+1}{k}\]
+Eksempel: Beregn \(B_{4}\).
+\begin{align*}
+&1=\frac{1}{5}(B_{0}\binom{5}{0}+B_{1}\binom{5}{1}+B_{2}\binom{5}{2}+B_{3}\binom{5}{3}+B_{4}\binom{5}{4})\\
+&1=\frac{1}{5}(1 \cdot 1 + \frac{1}{2} \cdot 5 + \frac{1}{6} \cdot 10 + 0 \cdot  10 + 5B_{4})\\
+&B_{4}=1-\frac{1}{5}(\frac{6+15+10}{6})=-\frac{1}{30}\\
+\end{align*}
+
+
+
+
+
+
+
