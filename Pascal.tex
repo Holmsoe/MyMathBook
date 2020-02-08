@@ -1,0 +1,286 @@
+
+%%New section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Pascals trekant}
+Pascal behandlede tidligere resultater mere teoretisk. Matematikere som Wallis, Newton, Leibniz, Montmort, Demoivre og Mersenne havde alle undersøgt lignende problemstillinger.
+Tallene i Pascals trekant kan fremkomme ud fra forskellige betragtninger:\\\\
+Geometrisk:\\
+Det \(n\)'te tal i \(k\)'te række fremkommer ved at summere de \(n\) første tal i \(n-1\)'te række.\\\\
+Kombinatorisk:\\
+Antal måder at udtage \(k\) elementer fra en samling af n elementer.\\\\
+Binomialkoefficienter:\\
+Koefficienter \(k,n\) til leddet \(a^{k}b^{n-k}\) i beregningen af \((a+b)^{n}\).
+Der er i princippet tale om serier og ikke trekanter. Opstilling i en trekant vil dog ofte lette forståelsen.
+Her ser vi den klassiske Pascals trekant:
+\begin{equation*}
+\begin{array}{lllllllllllllllllll}
+&&&&&&&&1&&&&&&&&&\\
+&&&&&&&1&&1&&&&&&&&\\
+&&&&&&1&&2&&1&&&&&&&\\
+&&&&&1&&3&&3&&1&&&&&&\\
+&&&&1&&4&&6&&4&&1&&&&&\\
+&&&1&&5&&10&&10&&5&&1&&&&\\
+&&1&&6&&15&&20&&15&&6&&1&&&\\
+&1&&7&&21&&35&&35&&21&&7&&1&&\\
+1&&8&&28&&56&&70&&56&&28&&8&&1\\
+\end{array}
+\end{equation*}
+%%New section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Geometrisk betragningsmåde}
+Allerede Pythagoras betragtede specielle talfølger der relaterer sig til geometriske figurer.
+\subsection{Trekantstal}
+Trekantstallene var allerede kendt. Først lægges en kugle. Herefter formes større og større trekanter ved at tilføje nye rækker med en kugle mere end foregående række. Antallet af kugler i trekanten bliver derfor:
+\begin{equation*}
+\begin{array}{lllll}
+&1 &\text{række} &1 &\text{kugle}\\
+&2 &\text{rækker} &3 &\text{kugler}\\
+&3 &\text{rækker} &6 &\text{kugler}\\
+&4 &\text{række} &10 &\text{kugler}\\
+\end{array}
+\end{equation*}
+En trekant med \(n\) rækker består således af \(1+2+3+ \dotsm +n\) kugler. Antallet af kugler i en trekant med n rækker fås ved at lægge \(n\) kugler til antallet af kugler i trekanten med \(n-1\) rækker. Kalder vi antallet af kugler i en trekant med n rækker for \(T_{n}\) har vi altså en rekursionsformel til beregning af trekantstallene:
+\begin{equation}
+ T_{n}=T_{n-1}+n\label{trekantstal}
+\end{equation}
+\subsection{Kvadrattal}
+Kvadrattal er antallet af kugler i et kvadrat:
+\begin{equation*}
+\begin{array}{lllll}
+&\text{Sidelængde:} &1 &1 &\text{kugle}\\
+&\text{Sidelængde:} &2 &4 &\text{kugler}\\
+&\text{Sidelængde:} &3 &9 &\text{kugler}\\
+&\text{Sidelængde:} &4 &16 &\text{kugler}\\
+\end{array}
+\end{equation*}
+Det næste kvadrattal kan fremkomme fra det foregående ved at lægge \(n\) kugler til på hver side af kvadratet og derefter lægge en kugle i hjørnet for at fylde det næste kvadrat. Så vi får en rekursionsformel til beregning af kvadrattallene:
+\begin{equation}
+Q_{n+1}=Q_{n}+2n+1\label{kvadrattal}
+\end{equation}
+Vi skal altså lægge \(2n+1\) til for at får det næste kvadrattal.
+Da \(Q_{n}=n^{2}\) er dette ensbetydende med at \(Q_{n+1}=(n+1)^{2}=n^{2}+2n+1\) hvoraf det også fremgår, at det følgende kvadrattal er lig med det foregående plus \(2n+\) som igen for \(n=1,2,3 \dotsm ,n\) er lig med rækken af ulige tal. Da \(2n+1\) er fortløbende får man altså rækken af kvadrattal som summen af ulige tal. Eksempel: Hvis \(n=12\) er \(n^{2}=144\) og vi finder \(13^{2}=144+2 \cdot 12 + 1=144+25 =169\). 
+To succesive trekantstal danner et kvadrat. Den største trekant indeholder en ekstra række svarende til diagonalen. Vi har derfor:
+\begin{equation}
+Q_{n}=T_{n}+T_{n-1}=n^{2}\label{trekantkvadrat}
+\end{equation}
+Indsættes nu \(T_{n-1}=T_{n}-n\) fra \ref{trekantstal} fås:
+\[n^{2}=2T_{n}-n \Rightarrow T_{n}=\frac{1}{2}(n^{2}+n)=\frac{n}{2}(n+1)\]
+Dette kan geometrisk tolkes som halvdelen af arealet at et rektangel med sidelængderne \(n\) og \(n+1\) er lig med det \(n\)'te trekantstal. Eksempel: Det \(7.\) trekantstal er lig med \(\frac {7 \cdot 8}{2}=28\).
+Bemærk, at \(n\)'te trekantstal er summen af alle heltal til og med \(n\). Dette betyder, at summen af de første \(n\) heltal er \(T_{n}=\frac{1}{2}(n+1)n=\frac{1}{2}(n+1)\frac{1}{1}(n+0)\).
+\subsection{Pyramidetal}
+Fra trekantstal og deres sammenhæng med kvadrattal kan vi gå videre til pyramidetal. Vi kan betragte sammenhængen således: 
+\begin{itemize}
+\item Talrækken er en succesiv addition af et-taller (kugler). 
+\item Trekantstal er en succesiv addition af hele tal. (rækker i kuglepyramiden)
+\item Pyramidetal er en succesiv addition af trekantstal. (stablede trekanter)
+\end{itemize}
+Vi får nu følgende pyramidetal:
+\begin{align*}
+&\text{Højde: } 1 &1 &\text{ kugle }\\
+&\text{Højde: } 2 &1+3=4 &\text{ kugler}\\
+&\text{Højde: } 3 &1+3+6=10 &\text{ kugler}\\
+&\text{Højde: } 4 &1+3+6+10=20 &\text{ kugler}\\
+\end{align*}
+For at bygge en pyraminde \(P_{n}\) med højden \(n\) lægger vi altså en trekant \(T_{n}\) af højden \(n\) til den forrige pyramide \(P_{n-1}\). VI får herefter formlen:
+\begin{equation}
+P_{n}=P_{n-1}+T_{n}
+\end{equation}
+Trekantstal og pyramidetal har været kendt i forskellige sammenhænge siden det gamle Egypten. Både Nicomachus og Theon har beskrevet dem, men har ikke sat dem i tabel. I et papyrus fra 300 fvt. angives summen af de første \(n\) tal korrekt til \(\frac{1}{2}(n^{2}+n)\) og summen af de første trekantstal gives til \(\frac{1}{3}(n+2)\frac{1}{2}(n^{2}+n)\). De fortsætter dog ikke med at angive en systematik og indikerede ikke summen af de \(n\) første pyramidetal til \(\frac{1}{4}(n+3)\frac{1}{3}(n+2)\frac{1}{2}(n+1)\frac{1}{1}(n+0)\) selvom det er nærliggende. Først 1300 år senere findes en tabelform. Angivelse af summer udover pyramidetal kom først med Tartaglia i 1500 tallet. Tartaglia lavede en tabel der ikke var forskudt. 
+\begin{equation}
+\begin{array}{rrrrrr}
+1&1&1&1&1&1\\
+1&2&3&4&5&6\\
+1&3&6&10&15&21\\
+1&4&10&20&35&56\\
+\end{array}
+\end{equation}
+Stiefel var den første til at angive tabellen i forskudt form. Hans interesse var udregning af den \(n\)'tr rod. Hertil anvendte han binomialudvedelsen af \((a+b)^{n}\). Han kendte ikke den endelige formel, men havde observeret sammenhængen trekantstal, pyramidetal og deres fortsættelse i 'flere dimensioner'. Metoden for kvadratrod tager udganspunkt i formlen \((a+b)^{2}=a^{2}+b^{2}+2ab\). I Stiefels trekant angives ettallerne ikke. Han skriver:
+\begin{equation}
+\begin{array}{rrr}
+1\\
+2\\
+3&3\\
+4&6\\
+5&10&10\\
+6&15&20
+\end{array}
+\end{equation}
+I forhold til Pascals trekant angiver han udelukkende den ene side uden ettaller. Ved symmetri (\(n\) ulige) angiver han begge symmetrital.Da han skrev næste søjle op på denne måde har han vidst, at koefficienterne for et givent \(n\) er symmetriske. Dette er en af egneskaberne i Pascals trekant, som også kan formuleres som:
+\begin{equation}
+\binom{n}{k}=\binom{n}{n-k}
+\end{equation}
+Yderligere ser det ud til, at Stifel har kendt den fortløbende konstruktion af tallene i tabellen som i Pascals trekant udtrykkes ved:
+\begin{equation}
+\binom{n}{k}=\binom{n-1}{k-1}+\binom{n-1}{k}
+\end{equation}
+Altså at det \(k\)'te tal i en række kan findes som tallet ovenfor plus tallet ovenfor til venstre. SOm nævnt anvendte Stifel disse koefficienter til at beregne rødder af forskellig orden. Det ser ud til, at han har løst op til 7 ordens rødder. Vieta anvender omkring år 1600 koefficenterne til af beregne relationer indenfor \(\cos\) og \(\sin\) som senere blev generaliseret af Moivre i formlen:
+\[(\cos{x}+i\sin{x})^{n}=\cos{nx}+i\sin{nx}\]
+Vieta udtrykker sammenhængen i søjlerne som: 'Tallene i næste kolonne fremkommer ved at lade forrige søjle være differens mellem to naboelementer'.Trappetrinene i trekantstal udgøres af de hele tal 
+\(1,3,6,10,15 \cdot\) og differencen er \(1,2,3,4,5 \cdot \). Tilsvarende er differencen i pyramidetallene \(1,4,10,20,35 \cdot\) netop trekantstallene \(1,3,6,10, \cdot\). Omkring 1630 tog Briggs endnu et skridt i forståelsen af sammenhængen i Pascals trekant. Han anvendte denne tabel.
+\begin{equation*}
+\begin{array}{r|rrrrrrr} 
+k\backslash n&1&2&3&4&5&6\\ \hline 
+\\[-8pt]
+0&1&1&1&1&1&1\\
+1&1&2&3&\mathbf{4}&5&6\\
+2&1&3&\mathbf{6}&10&15&20\\
+3&1&4&10&20&35&56\\
+4&1&5&15&35\\
+\end{array}
+\end{equation*}
+Og formulerede:'Den næste i diagonalen forholder sig til den forrige i diagonalen som søjlens nummer forholder sig til rækkens nummer. Eksempel: Vi tager tallet \(6\) i række \(2\) kolonne \(3\). Den omtalte diagonal er tallene \((1,4,6,4,1)\)fra \((4,1)\) til \((0,5\) og Briigs formulering giver:\(\frac{6}{4}=\frac{3}{2}\). Dette svarer til den kendte Pascal relation, der tillader beregning af næste led i en række ud fra leddene i samme række:
+\begin{equation}
+\binom{n}{k}=\frac{n-k+1}{k}\binom{n}{r-1}
+\end{equation}
+hvor \(n\) refererer til rækker og \(k\) refererer til søjler i Pascals trekant(anden nummerering end Briggs). I Briggs nummerering anvender vi nu denne relation succesivt (alle startkoefficienter for \(k=0\) er \(1\)). Eksempel: \(k=0, n=6 \text{ og } f_{0}^{6}=1\).
+\begin{align*}
+&f_{1}^{5}=f_{0}^{6}\cdot \frac{5}{1}=1 \cdot 5 =5\\
+&f_{2}^{4}=f_{1}^{5}\cdot \frac{4}{2}=5 \cdot 2 =10=f_{0}^{6} \cdot \frac{5}{1}\frac{4}{2} \\
+&f_{3}^{3}=f_{2}^{4}\cdot \frac{3}{3}=10 \cdot 1 =10=f_{0}^{6} \cdot \frac{5 \cdot 4 \cdot 3}{1 \cdot 2 \cdot 3}\\
+&f_{4}^{2}=f_{3}^{3}\cdot \frac{2}{4}=\frac{10}{2} =5=f_{0}^{6} \cdot \frac{5 \cdot 4 \cdot 3 \cdot 2}{1 \cdot 2 \cdot 3 \cdot 4}\\
+&f_{5}^{1}=f_{4}^{2}\cdot 5 \cdot \frac{1}{5}=1=f_{0}^{6} \cdot \frac{5 \cdot 4 \cdot 3 \cdot 2 \cdot 1}{1 \cdot 2 \cdot 3 \cdot 4 \cdot 5}\\
+\text{Eller generelt:}\\
+&f_{k}^{n}=\frac{(n+k-1)(n+k-2) \dotsm (n+1)n}{k!}\\
+\end{align*}
+Briggs var altså bekendt med binomialtheoremet. Dette er jo den kendte formel: \(\binom{n}{k}=\frac{n!}{k!(n-k)!}\). Briggs har måske kendt Cardano og Tartaglia som formulerede denne relation i ord, men i kombinatorisk sammenhæng.
+%%New section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Kombinatorisk i historien}
+%%New section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Binomial i historien}
+%%New section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Kombinatorik og Pascals trekant}
+Pascals trekant er nok i dag mest kendt i forbindelse med kombinatorik. Mange forhold og identiteter i Pascals trekant kan da også vises ved kombinatoriske overvejelser. Først beskriver vi dog grundlæggende kombinatoriske forhold. 
+\subsection{Permutationer}
+Hvormange måder kan n forskellige bolde placered i rækkefølge. Vi forestiller os \(n\) kasser hvori boldene kan placeres. I første kasse kan enhver af boldene vælges. Der er \(n\) muligheder. I næste kasse kan \(n-1\) bolde placeres, o.s.v. Ialt bliver der: \(n(n-1)(n-2) \dotsm 2 \cdot 1=n!\) kombinationer.
+\subsection{Udvælge \(k\) elementer ud af \(n\) elementer} 
+Første element kan udvælges på \(n\) måder, andet på \(n-1\) måder. Det \(k\)'te element kan udvælges på \((n-k+1)\) måder. Ialt bliver der \(n(n-1)(n-2) \dotsm (n-k+1)\) kombinationer. Dette er identisk med: \(\frac{n!}{(n-k)!}\) kombinationer. Bemærk denne beregning tager hensyn til rækkefølgen. Hvis de samme \(k\) elementer udtrækkes i forskellig rækkefølge tælles disse som to forskellige kombinationer. En anden måde at komme til dette resultat er at betragte en permutation  af \(n\) elementer. De første \(k\) elementer i denne permutation udgør et udvalg af \(k\) elementer med rækkefølge. De resterende \((n-k)\) elementer kan kombineres på \((n-k)!\) måder. For hver udvalg af k elementer optræder altså \((n-k)!\) gange. Derfor skal antallet af permutationer divideres med \((n-k)!\) og resultatet bliver: \(\frac{n!}{n-k}!\) som før.
+\subsection{Udvælge uden hensyn til rækkefølge}
+På hvormange måder kan \(k\) elementer udvælges blandt \(n\) elementer når rækkefølgen er ligegylidig. Vi ved, at k elementer kan udvælges på \(\frac{n!}{(n-k)!}\) måder når der tages hensyn til rækkefølgen. Hver af disse kombinationer af k elementer kan kombineres på \(k!\) måder og optræder derfor \(k!\) gange hvis der ikke tages hensyn til rækkefølgen. Resultatet bliver derfor:
+\[\binom{n}{k}=\frac{n!}{(n-k)!k!}\]
+Skrivemåden \(\binom{n}{k}\) anvendes for dette udtryk og kaldes binomialkoefficienten.
+\subsection{Binomialudvidelse}
+Vi har \(n\) kasser med hver en sort og en hvid bold.Vi tager nu en bold fra hver kasse. Hvor mange muligheder er der for at udtage netop \(k\) sorte bolde og dermed \(n-k\) hvide bolde? Vi opskriver produktet bestående af \(n\) led: \((x+y)(x+y)(x+y)(x+y) \dotsm (x+y)\). Hvis vi opfatter hver parentes som en kasse og x er en sort bold og y en hvid bold ser vi, at udregningen af dette udtryk \((x+y)^{n}\) svarer til at plukke et led fra hver parentes. Hvis vi f.eks. plukker \(k\) sorte bolde eller plukker \(x\) netop \(k\) gange svarer det til antallet af led i \((x+y)^{n}\) hvor \(x\) indgår \(k\) gange og det kan jo netop gøres  \(\binom{n}{k}\) gange svarende til leddet \(\binom{n}{k}x^{k}y^{n-k}\). Vi summerer nu op over \(k\) som er antallet af \(x\) eller sorte bolde og får:
+\begin{equation}
+(x+y)^{n}=\sum_{k=0}^{n}\binom{n}{k}x^{k}y^{n-k}\label{BinomUdvid}
+\end{equation}
+En række specialtilfælde af denne formel giver interessante resultater.
+Af \ref{BinomUdvid} fås nu ved indsættelse af \(x=y=1\):
+\[(1+1)^{n}=2^{n}=\sum_{k=0}^{n}\binom{n}{k}1^{k}1^{n-k}=\sum_{k=0}^{n}\binom{n}{k}\]
+Herved har vi den interssante formel for summen af binomialkoefficienter:
+\begin{equation}
+2^{n}=\sum_{k=0}^{n}\binom{n}{k}
+\end{equation}
+Af \ref{BinomUdvid} fås ved indsættelse af \(y=1\):
+\begin{equation}
+(x+1)^{n}=\sum_{k=0}^{n}\binom{n}{k}x^{k}1^{n-k}=\sum_{k=0}^{n}\binom{n}{k}x^{k}
+\end{equation}
+Det vil sige, at koefficienterne til \(x^{k}\) i udregningen af \((x+1)^{n}\) er netop binomialkoefficienterne \(\binom{n}{k}\).Eksempel:
+\[(x+1)^5=x^{5}+5x^{4}+10x^{3}+10x^{2}+5x+1\]
+For eksempel udregnes koefficienten til \(x^{3}\) som \(\binom{5}{3}=\frac{5!}{(5-3)!3!}=\frac{5 \cdot 4}{2}=10\).\\\\
+Her er yderligere et par eksempler for beregninger med binomialformlen:
+\begin{align*}
+(x+2)^{6}&=x^{0}2^{6}\binom{6}{0}+x^{1}2^{5}\binom{6}{1}+x^{2}2^{4}\binom{6}{2}+x^{3}2^{3}\binom{6}{3}\\
+&\quad +x^{4}2^{2}\binom{6}{4}+x^{5}2^{1}\binom{6}{5}+x^{6}2^{0}\binom{6}{6}\\
+(x+2)^{6}&=64+192x+240x^{2}+160x^{3}+60x^{4}+12x^{5}+x^{6}
+\end{align*}
+Og
+\begin{align*}
+(3+\sqrt{2})^{5}&=3^{0}\sqrt{2}^{5}\binom{5}{0}+3^{1}\sqrt{2}^{4}\binom{5}{1}+3^{2}\sqrt{2}^{3}\binom{5}{2}\\
+&\quad +3^{3}\sqrt{2}^{2}\binom{5}{3}+3^{4}\sqrt{2}^{1}\binom{5}{4}+3^{5}\sqrt{2}^{0}\binom{5}{5}\\
+&=4\sqrt{2}+3 \cdot 4 \cdot 5+9 \cdot 2 \sqrt{2} \cdot 10+27 \cdot 2 \cdot 10+81\sqrt{2} \cdot 5+243 \cdot 1 \cdot 1\\
+&=4\sqrt{2}+180\sqrt{2}+405\sqrt{2}+60+540+243\\
+&=843+589\sqrt{2}
+\end{align*}
+\subsection{Stirling tal}
+Et polynomium skrives på formen:
+\[P(t)=a_{n}t^{n}+a_{n-1}t^{n-1}+ \dotsm +a_{1}t+a_{0}=\sum_{k=0}^{n}a_{k}t^{k}\]
+Binomialkoefficienten kan udvikles på følgende måde:
+\[\binom{t}{k}=t(t-1)(t-2) \dotsm (t-k+1)\frac{1}{k!}\]
+Produktet i denne formel kan i princippet beregnes og vil resultere i en koefficient til hvert led for det resulterende polynomium af \(k\)'te grad:
+\[\binom{t}{k}=\sum_{i=0}^{k}\frac{S_{k,i}}{k!}t^{i}\]
+Her er \(\frac{S_{k,i}}{k!}\) den \(i\)'te koefficient til udvikling af polynomium fra binomialformlen og kaldes Stirling tal af første grad.
+Eksempel: 
+\[\binom{t}{3}=\frac{t!}{(t-3)!3!}=\frac{t(t-1)(t-2)}{6}=\frac{x^{3}}{6}-\frac{x^{2}}{2}+\frac{3}{3}\]
+Her er \(k=3\). Faktoren til \(x^{3}\) er \(\frac{1}{3!}\) så \(S_{3,3}=1\). Tilsvarende fås for \(x^{2}\) faktoren \(-\frac{1}{2}=-\frac{3}{3!}\) så \(S_{3,2}=-3\). Faktoren for \(x\) er \(\frac{1}{3}=\frac{2}{3!}\) og vi har \(S_{3,1}=2\). Konstanten som er faktoren til \(x^{0}\) er \(0\) så \(S_{3,0}=0\)
+%%New section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Pascals regler}
+Der findes mange interessante sammenhænge mellem tallene i Pascals trekant. Nogle af dem er beskrevet af Pascal selv.
+\subsection{Pascals \(1.\) regel}
+Pascals første regel danner baggrund for Pascals trekant. Reglen kan vises kombinatorisk ved at 'tælle på to måder'.
+\begin{equation}
+\binom{n}{k}=\binom{n-1}{k}+\binom{n-1}{k-1}\label{Pascal1}
+\end{equation}
+Vi ved allerede, at \(k\) elementer kan udvælges blandt \(n\) elementer på \(\binom{n}{k}\) måder.\\ Vi kan alternativt dele kombinationerne op i to dele. \(1)\) Alle muligheder hvor første element er med. Dette bliver \(\binom{n-1}{k-1}\), da de resterende \(k-1\) elementer skal vælges blandt de resterende \(n-1\) elementer. \(2)\) Alle muligheder hvor første element ikke er med. Dette bliver \(\binom{n-1}{k}\) da alle \{k\} elementer skal vælges blandt de resterende \(n-1\) elementer. Herved har vi vist \ref{Pascal1}. Denne formel danner grundlag for konstruktionen af Pascals trekant. Det er åbenlyst, at man kan vælge \(0\) elementer af \(1\) element på netop \(1\) måde. Nemlig det valg der består i ikke at vælge nogle elementer. På samme måde er det klart, at man kan vælge et element blandt et element på netop en måde. Derfor har vi: \(\binom{1}{0}=\binom{1}{1}=1\). Anvendes \ref{Pascal1} får vi at \(\binom{2}{1}=\binom{1}{0}+\binom{1}{1}=1+1=2\). Generelt er det indelysende, at \(\binom{n}{0}=\binom{n}{n}=1\). Vi kan vælge \(0\) eller \(1\) element på netop \(1\) måde. Hvis \(k>0\) er \(\binom{n}{k}=0\) da det ikke er muligt, at vælge flere elementer end vi har. Det samme gælder for \(k<0\). Man kan ikke vælge et negativt antal elementer. Så vi har:
+\[\binom{n}{k}=0, \text{ hvis } k>n \vee k<0\]
+Derfor bliver \(\binom{1}{-1}=0\) og \(\binom{1}{2}=0\) hvorved vi får \(\binom{2}{0}=\binom{1}{-1}+\binom{1}{1}=0+1=1\) hvilket stemmer med den allerede fundne relation:\(\binom{n}{0}=1\). Vi får videre \(\binom{2}{2}=\binom{1}{2}+\binom{1}{0}=0+1=1\). De øvrige elementer i Pascals trekant kan nu beregnes induktivt.
+\subsection{Symmetrirelationen}
+Hvis man kan vælge \(k\) elementer af \(n\) på \(\binom{n}{k}\) måder, kan de resterende \(n-k\) elementer vælges på samme antal måder men også på \(\binom{n}{n-k}\) måder. Heref får vi symmetrirelationen:
+\begin{equation}
+\binom{n}{k}=\binom{n}{n-k}
+\end{equation}
+Man kan sige, at mulighederne for at vælge \(n-k\) udgør komplementærkombinationerne til at vælge \(k\). Denne symmetrirelation ses umiddelbart i Pascals trekant som en symmetri omkring midten. Hvis \(n\) er ulige er der et symmetrielement og hvis \(n\) er lige er der to symmetrielementer. Hvsi vi tænker på valgprocessen som måder at placere hhv. nuller og ettaller blandt \(n\) elementer er symmetrien også klar. Hvis vi f.eks. ser på kombinationen: \(011001010\)
+ses det også at \(\binom{9}{4}=\binom{9}{5}\). Det at placere \(4\) ettaller er det samme som at placere de resterende \(5\) nuller.
+\subsection{Pascals \(5.\) regel}
+Denne regel siger, at summen af række \(n\) i Pascals trekant er \(2^{n}\):
+\begin{equation}
+\sum_{k=0}^{n}\binom{n}{k}=2^{n}
+\end{equation}
+Det kan umiddelbart indses af binomialsætningen: \((x+1)^{n}=\sum_{k=0}^{n}\binom{n}{k}x^{k}\) ved at sætte \(x=1\). Kombinatorisk kan det indses ved at betragte en række med \(n\) elementer der enten er \(1\) eller \(0\). Der findes ialt \(2^{n}\) kombinationer da der er to muligheder for hvert element i rækken. Men de samlede kombinationer er jo netop summen af kombinationer med hhv. \(0\) ettaller, \(1\) ettal, \(2\) ettaller osv. som er
+ \(\sum_{k=0}^{n}\binom{n}{k}\). En variant af Pascals \(5.\) regel er:
+\begin{equation}
+\sum_{k=0}^{n}\binom{n}{k}=2\sum_{k=0}^{n}\binom{n-1}{k}
+\end{equation}
+Denne regel siger, at summen af en række i Pasacals trekant er dobbelt så stor som summen af den forrige række. Med den kombinatoriske tolkning kan man sige, at hver gang der tillægges et element mere i rækken af ettaller og nuller bliver der dobbelt så mange kombinationer.
+\subsection{Bevæge sig i et gitter}
+Hvis vi i Pascals trekant tegner en linie mellem hvert tal og de to tal umiddelbart overover fremkommer der et gitter, hvor tallene er hjørnepunkter(vertices). Hvis vi nu går fra \(\binom{0}{0}\) til \(\binom{n}{k}\) over stregerne fremgår det, at der netop er \(\binom{n}{k}\) mulige veje fra \(\binom{0}{0}\) til \(\binom{n}{k}\). Dette indses på følgende måde: \(\binom{n}{k}\) kan nåes enten gennem \(\binom{n-1}{k-1}\) eller \(\binom{n-1}{k}\). Antallet af muligheder for at nå \(\binom{n}{k}\) er summen af veje til \(\binom{n-1}{k-1}\) og \(\binom{n-1}{k}\). Det vil sige, at: \(\binom{n}{k}=\binom{n-1}{k-1}+\binom{n-1}{k}\). Dette er netop den sammenhæng vil brugte til at konstruere Pascals trekant. Derved er det ønskede bevist.Alternativ betragtning: En vej til \(\binom{n}{k}\) består i \(n\) beslutninger om enten at dreje til venstre eller til højre. Så når vi vælger en vej er det ensbetydende med at vælge \(k\) højresving og \(n-k\) venstresving og det kan gøres på \(\binom{n}{k}\) måder. På hvor mange måder kan man gå fra et gadehjørne til et andet gadehjørne der ligger \(x\) veje mod Øst og \(y\) veje mod Nord? Dette er essentielt det samme som at starte i \(\binom{0}{0}\) i Pascals trekant og gå \(x\) veje til venstre og \(y\) veje til højre. Ialt træffes et valg \(x+y\) gange og dette kan gøres på \(\binom{x+y}{x}=\binom{x+y}{y}\) måder. Bemærk, at det pga. denne symmetri er ligegyldigt om vi sætter \(x\) lig med antal sving til venstre eller højre.
+\subsection{Pascals \(2.\) regel - Hockey stick theorem}
+Denne identitet har fået sig navn fra den geometriske form af symmetrien. Kaldes også på engelsk 'Christmas stocking Theorem'. 
+\begin{equation}
+\binom{n+1}{k+1}=\sum_{j=0}^{n}\binom{j}{k}\label{HockeyStick}
+\end{equation}
+Inden vi går videre, betragter vi en anden illustrativ måde at se Pascals trekant på. Skriv først en søjle med lutter \(1\)-taller. Skriv herefter en søjle med tallene \(1,2,3,4 \dotsm \). En anden måde at betragte søjle et på, er som en partiel sum af foregående rækker fra søjle \(0\). Eksempelvis fremkommer \(4\) som summen af tallene i søjle \(0\) fra række \(0\) til og med række \(3\). Tilsvarende konstrueres søjle \(2\) som \(1=1+0, 3=2+1, 6=3+2+1, 10=4+3+2+1\). Søjle 3 bliver: \(1=1+0, 4=3+1=(2+1)+1, 10=6+3+1=(3+2+1)+(2+1)+1\). I denne opstilling bliver tallene i søjle \(0\) lig med \(\binom{n}{0}\), hvor n er rækkenummeret. Tilsvarende fås tallene i søjle 1: \(\binom{n}{1}\), i søjle 2 :\(\binom{n}{2}\), i søjle 3:\(\binom{n}{30}\), osv. At de to betragtningsmåder er ens ses ved at dekomponere \(\binom{n}{k}\) iht. Pascals første identitet: Vi dekomponerer \(\binom{n}{k}\) til elementer fra forrige søjle, dvs. elementer med \(k-1\):
+\begin{align*}
+\binom{n}{k}&=\binom{n-1}{k}+\binom{n-1}{k-1}=\binom{n-2}{k}+\binom{n-2}{k-1}+\binom{n-1}{k-1}\\
+&=\binom{n-3}{k}+\binom{n-3}{k-1}+\binom{n-2}{k-1}+\binom{n-1}{k-1}
+\end{align*}
+Denne proces kan fortsættes indtil leddet med \(k\) bliver \(0\) når \(n-j<k\). Dette kan skrives som:
+\[\binom{n}{k}=\sum_{j=1}^{n-k+1}\binom{n-j}{k-1}\]
+Eksempel:
+\begin{align*}
+\binom{6}{2}&=\sum_{j=1}^{5}\binom{6-j}{1}\\
+&=\binom{5}{1}+\binom{4}{1}+\binom{3}{1}+\binom{2}{1}+\binom{1}{1}\\
+&=5+4+3+2+1=15
+\end{align*}
+I princippet kan \(j\) gå til \(n\), da større \(j\) jo bare vil medføre, at leddet blivet \(0\). I eksemplet vil der komme et ekstra led \(\binom{0}{1}\) som jo er \(0\). Så vi kan omskrive til:
+\[\binom{n}{k}=\sum_{j=1}^{n}\binom{n-j}{k-1}\]
+Dette kan omskrives yderligere: Hvis \(j\) går fra \(0\) skal \(n\) erstattes med \(n+1\). Samtidigt substituerer vi \(k\) med \(k+1\) og får:
+\[\binom{n+1}{k+1}=\sum_{j=0}^{n}\binom{n+1-j}{k}\]
+Vi kan også 'tælle baglæns' så at \(j=0\) svarer til det laveste led i summen. Herved fås:
+\[\binom{n+1}{k+1}=\sum_{j=0}^{n}\binom{j}{k}\]
+Leddet i summen gennemløber jo under alle omstændigheder tallene fra \(0\) til \(n\). Om det er den ene eller anden vej er ligegyldigt. 
+Herved har vi vist Pascals \(2\). indentitet (Hockey stick Theorem).
+Denne identitet dekomponerer \(\binom{n}{k}\) til at bestå af en partiel sum fra forrige søjle\( (k-1)\). I princippet kan denne proces fortsættes indtil \(k=1\) og \(\binom{n}{k}\) kan så skrives på formen:
+\[\binom{n}{k}=a_{1}(1)+a_{2}(1+2)+a_{3}(1+2+3)+a_{4}(1+2+3+4) \dotsm\]
+Dette er netop måden vi konstruerede søjlerne tidligere og det viser,at der er tale om overensstemmelse med Pascals trekant.
+Her er den alternative opstilling:
+\begin{equation*}
+\begin{array}{lllllllllllllllllll}
+&0&1&0&0&0&0&0&0&0&0&0&0\\
+&1&1&1&0&0&0&0&0&0&0&0&0\\
+&2&1&2&1&0&0&0&0&0&0&0&0&\\
+&3&1&3&3&1&0&0&0&0&0&0&0&\\
+&4&1&4&6&4&1&0&0&0&0&0&0\\
+&5&1&5&10&10&5&1&0&0&0&0&0&\\
+&6&1&6&15&20&15&6&1&0&0&0&0&\\
+&7&1&7&21&35&35&21&7&1&0&0&0\\
+&8&1&8&28&56&70&56&28&8&1&0&0\\
+&9&1&9&36&84&126&126&84&36&9&1&0&&&\\
+&10&1&10&45&120&210&252&210&120&45&10&1
+\end{array}
+\end{equation*}
+
+
