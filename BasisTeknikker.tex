@@ -1,0 +1,416 @@
+%%New section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Geometriske serier}
+Forståelsen af geometriske serier er grundlaget for Taylor serier og videre for Generating Functions. 
+\subsection{Indledning}
+Vi starter med et par definitioner:
+\begin{align*}
+&\text{En geometrisk følge: } \quad a, ar, ar^{2}, ar^{3}, ar^{4}, \dotsm\\
+&\text{En geometrisk serie: } \quad a+ar+ar^{2}+ar^{3}+ar^{4}+ \dotsm
+\end{align*}
+I begge tilfælde har vi:
+\[n\text{'te led: } \quad a_{n}=ar^{n-1}\]
+Det \(n\)'te led kan også skrives som en rekursiv relation, altså som en funktion af forrige led:
+\[\text{Rekursiv relation: } \quad a_{n}=ra_{n-1}, \quad n \geq 1\]
+For geometriske følger og serier har vi altså samme faktor (\(r\)) mellem hvert naboled.
+Der gælder følgende afhængighed af \(r\):
+\begin{align*}
+r>0&: \quad \text{Alle led har samme fortegn som første led}\\
+r<0&: \quad \text{Skiftevis positive og negative led}\\
+r>1&: \quad \text{Eksponentiel vækst mod } \infty\\
+r=1&: \quad \text{Konstant sekvens}\\
+-1<r<1&: \quad \text{Eksponentiel aftagende mod } 0\\
+r<-1&: \quad \text{Eksponentiel aftagende mod } -\infty
+\end{align*}
+\subsection{Endelige rækker}
+Vi ønsker nu at finde summen af den endelige række:
+\begin{equation}
+S_{n}=\sum_{k=0}^{n}ar^{k}=ar^{0}+ar^{1}+ar^{2}+ar^{3}+\dotsm +ar^{n}\label{geomet}
+\end{equation}
+Vi ganger \ref{geomet} med \((1-r)\) og får:
+\begin{align*}
+(1-r)\sum_{k=0}^{n}ar^{k}&=(1-r)(ar^{0}+ar^{1}+ar^{2}+ar^{3}+\dotsm +ar^{n})\\
+(1-r)\sum_{k=0}^{n}ar^{k}&=ar^{0}+ar^{1}-ar^{1}+ar^{2}-ar^{2}+\dotsm +ar^{n}-ar^{n}-ar^{n+1}\\
+\end{align*}
+Dette er en såkaldt teleskopsum, hvor alle led undtagen det første og sidste går ud. Vi får herefter:
+\[(1-r)\sum_{k=0}^{n}ar^{k}=ar^{0}-ar^{n+1}\]
+\[S_{n}=\sum_{k=0}^{n}ar^{k}=\frac{ar^{0}-ar^{n+1}}{1-r}\]
+\begin{equation}
+S_{n}=\sum_{k=0}^{n}ar^{k}=\frac{a(1-r^{n+1})}{1-r}\label{geometbase}
+\end{equation}
+For \(a=1\) gælder specielt:
+\begin{equation}
+\sum_{k=0}^{n}r^{k}=\frac{1-r^{n+1}}{1-r}\label{aligmed1}
+\end{equation}
+Ved at beregne summerne \(\sum_{k=0}^{n}ar^{k} \text{ og } \sum_{k=0}^{m}ar^{k}\) og herefter trække dem fra hinanden har vi formlen for en delsum:
+\begin{equation}
+\sum_{k=m}^{n}r^{k}=\frac{a(r^{n+1}-r^{m})}{r-1}\label{geometdelsum}
+\end{equation}
+Summer af geometriske serier kan nogle gange findes ved at differentiere kendte serier.
+For eksempel finder vi summen \(\sum_{k=0}^{n}kr^{k}\) ved at differentiere \ref{aligmed1} mht \(r\) på begge sider. Vi får:
+\begin{align*}
+\frac{d}{dr}\sum_{k=0}^{n}r^{k}&=\sum_{k=0}^{n}kr^{k-1}\\
+\frac{d}{dx}\frac{1-r^{n+1}}{1-r}&=\frac{1-r^{n+1}}{(1-r)^{2}}-\frac{(n+1)r^{n}}{1-r}
+\end{align*}
+Så vi har:
+\begin{equation}
+\sum_{k=0}^{n}kr^{k}=\frac{1-r^{n+1}}{(1-r)^{2}}-\frac{(n+1)r^{n}}{1-r}
+\end{equation}
+På tilsvarende måde kan man ved fortsat differentiering finde udtryk for \(\sum_{k=0}^{n}k^{s}r^{k}\). Vi kan finde udtryk for summer med hhv. lige og ulige eksponenter. Vi multiplicerer \ref{geomet} med \((1-r^{2})\) og udregne differencen til \ref{geomet}. Der er igen tale om teleskopsummer og vi får:
+\begin{align}
+&\sum_{k=0}^{n}ar^{2k}=\frac{a(1-r^{2n+2})}{1-r^{2}}\label{geometlige}\\
+&\sum_{k=0}^{n}ar^{2k+1}=\frac{ar(1-r^{2n+2})}{1-r^{2}}\label{geometulige}
+\end{align}
+\subsection{Uendelige rækker}
+Under nogle omstændigheder er der tale om konvergente serier og summerne går mod en endelig værdi for \(n \rightarrow \infty\).\\
+Ved at lade \(n \rightarrow \infty\) og antage at |r|<1 fås:
+\begin{align}
+&\text{Fra } \ref{geometbase}: \quad \sum_{k=0}^{\infty}ar^{k}=\frac{a}{1-r} \quad ,|r|<1\label{geometbasisuendelig}\\
+&\text{Fra } \ref{geometlige}:\quad \sum_{k=0}^{\infty}ar^{2k}=\frac{a}{1-r^{2}} \quad ,|r|<1\\
+&\text{Fra } \ref{geometulige}:\quad \sum_{k=0}^{\infty}ar^{2k+1}=\frac{ar}{1-r^{2}} \quad ,|r|<1\\
+&\text{Fra } \ref{geometdelsum}:\quad \sum_{k=m}^{\infty}ar^{k}=\frac{ar^{m}}{1-r} \quad ,|r|<1
+\end{align}
+Ved at differentiere fås:
+\[\frac{d}{dr}\sum_ {k=0}^{\infty}r^ {k}=\sum_{k=0}^{\infty}kr^{k-1}=\frac{1}{(1-r)^{2}}\]
+Vi ganger herefter med \(r\) på begge sider og får:
+\begin{equation}
+\sum_{k=0}^{\infty}kr^{k}=\frac{r}{(1-r)^{2}}
+\end{equation}
+Ved fortsat differentiering og multiplikation med \(r\) fås:
+\begin{equation}
+\sum_{k=0}^{\infty}k^{2}r^{k}=\frac{r(1+r)}{(1-r)^{3}}
+\end{equation}
+\begin{equation}
+\sum_{k=0}^{\infty}k^{3}r^{k}=\frac{r(1+4r+r^{2})}{(1-r)^{4}}
+\end{equation}
+Her er et par eksempler for anvendelse af \ref{geometbasisuendelig} med hhv. \(r=\frac{1}{2}\) og \(r=-\frac{1}{2}\):
+\begin{align*}
+\sum_{k=0}^{\infty}\frac{1}{2}(\frac{1}{2})^{k}&=\frac{1}{2}+\frac{1}{4}+\frac{1}{8}+\frac{1}{16}+\dotsm=\frac{\frac{1}{2}}{1-\frac{1}{2}}=1\\
+\sum_{k=0}^{\infty}\frac{1}{2}(-\frac{1}{2})^{k}&=\frac{1}{2}-\frac{1}{4}+\frac{1}{8}-\frac{1}{16}+\dotsm=\frac{\frac{1}{2}}{1-(-\frac{1}{2})}=\frac{1}{3}
+\end{align*}
+%%New section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Taylor serier}
+Hvis vi betragter formlerne \ref{aligmed1} og \ref{geometbasisuendelig} fra højre mod venstre kan vi sige, at funktionerne \(\frac{a}{1-r}\) og \(\frac{1-r^{n-1}}{1-r}\) kan udtrykkes som hhv. en uendelig og endelig sum (polynomium) i \(r\) og vi får f.eks.:
+\begin{align*}
+\frac{1}{1-x}&=\sum_{k=0}^{\infty}x^{k} \quad \text{når } |x|<1\\
+\frac{(1-x)^{n}}{1-r}&=\sum_{k=0}^{n+1}x^{k}
+\end{align*}
+Denne ide om at udvikle enhver funktion til et polynomium udnyttes ved Taylorudvikling. 
+\subsection{Taylor udvikling}
+Vi antager, at \(f(x)\) kan skrives som en konvergent serie på formen:
+\[f(x)=a_{0}+a_{1}x+a_{2}x^{2}+a_{3}x^{3}+\dotsm=\sum_{n=0}^{\infty}a_{k}x^{n}\]
+Vi kan finde koefficienterne succesivt. Ved indsættelse af \(x=0\) ser vi at:
+\[a_{0}=f(0)\]
+Ved at differentiere får vi:
+\[f'(x)=a_{1}+2a_{2}x+3a_{3}x^{2}+\dotsm=\sum_{n=0}^{\infty}a_{n+1}x^{n}(n+1)\]
+Dette kan omskrives til:
+\[f'(x)=\sum_{n=1}^{\infty}a_{n}x^{n-1} \cdot n\]
+Indsætter vi her \(x=0\) får vi:
+\[a_{1}=f'(0)\]
+Tilsvarende får vi:
+\[f''(x)=2a_{2}+3 \cdot 2a_{3}x+4 \cdot 3x^{2}+ \dotsm=\sum_{n=0}^{\infty}a_{n+2} \cdot (n+2) \cdot x^{n}\]
+Dette kan omskrives til:
+\[f''(x)=\sum_{n=2}^{\infty}a_{n}\frac{n!}{(n-2)!}x^{n-2}\]
+Indsætter vi \(x=0\) får vi:
+\[a_{2}=\frac{f''(0)}{2}\]
+Generelt får vi for den \(k\)'te afledede:
+\[f^{k}(x)=\sum_{n=k}^{\infty}a_{n}\frac{n!}{(n-k)!}x^{n-k}\]
+For eksempel er den \(5\)'te afledede:
+\[f^{5}(x)=a_{5} \cdot 5!+a_{6} \cdot 6! \cdot x+a_{7} \cdot \frac{7!}{2} \cdot x^{2}\]
+Koefficienter kan derfor generelt skrives som:
+\[a_{n}=\frac{f^{n}(0)}{n!}\]
+Herved kan \(f(x)\) skrives som:
+\[f(x)=f(0)+f'(0)x+\frac{f''(x)}{2!}x^{2}+\frac{f'''(x)}{3!}x^{3}+ \dotsm\]
+Eller på kort form:
+\begin{equation}
+f(x)=f(0)+\sum_{n=1}^{\infty}\frac{f^{n}(0)}{n!}x^{n}\label{taylor}
+\end{equation}
+Dette er Taylorudviklingen. Vi siger, at vi har udviklet funktionen \(f(x)\) omkring punktet \(x=0\).
+For at illustrere processen giver vi et par eksempler:
+\[f(x)=e^{x} \Rightarrow f'(x)=f^{n}(x)=e^{x} \Rightarrow f'(0)=f^{n}(0)=1\]
+Herefter får vi let af \ref{taylor}:
+\[f(x)=e^{x}=1+x+\frac{x^{2}}{2!}+\frac{x^{3}}{3!}+\dotsm=\sum_{n=0}^{\infty}\frac{x^n}{n!}\]
+\[f(x)=\frac{1}{1-x} \Rightarrow f'(x)=\frac{1}{(1-x)^{2}}=(1-x)^{-2}, f''(x)=2(1-x)^{-3}\]
+Generelt bliver den \(n\)'te afledede af \(f(x)=\frac{1}{1-x}\):
+\[f^{n}(x)=\frac{n!}{(1-x)^{n+1}} \Rightarrow f^{n}(0)=n!\]
+Ved anvendelse af \ref{taylor} bliver alle koefficienter \(a_{n}=1\) og vi får let:
+\[f(x)=\frac{1}{1-x}=1+\sum_{n=1}^{\infty}x^{n}=\sum_{n=0}^{\infty}x^{n}\]
+Dette er netop formel \ref{geometbasisuendelig} med \(a=1\) som vi viste for geometriske serier.
+Ved forskydning af koordinatsystemet med substuitutionen \(x_{ny}=x+x_{0}\) får vi formelen for Taylorudvikling omkring \(x=x_{0}\) istedet for \(x=0\):
+\begin{equation}
+f(x)=f(x_{0})+\sum_{n=1}^{\infty}\frac{f^{n}(x_{0})}{n!}(x-x_{0})^{n}\label{taylorx0}
+\end{equation}
+Vi viser et eksempel med udvikling i \(x_{0}\):
+\[f(x)=e^{x} \Rightarrow f'(x)=f^{n}(x)=e^{x} \Rightarrow f'(x_{0})=f^{n}(x_{0})=e^{x_{0}}\]
+Herefter får vi taylorudviklingen:
+\[f(x)=e^{x_{0}}+\frac{e^{x_{0}}}{1}(x-x_{0})+\frac{e^{x_{0}}}{2!}(x-x_{0})^{2}+\frac{e^{x_{0}}}{3!}(x-x_{0})^{3}+\dotsm\]
+Vi indser let, at med \(x_{0}=0\) reducerer denne formel til udviklingen af \(e^{x}\) omkring \(0\) som vi udledte ovenfor:
+\[f(x)=e^{x}=\sum_{n=0}^{\infty}\frac{x^n}{n!}\]
+Når vi beregner en funktion med Taylorudvikling er det interessant at vide hvor stor fejlen maximalt kan være når vi stopper efter led \(n\). Dette kan beregnes med med Lagrages restled:
+\begin{equation}
+\text{Lagrages restled=maximal fejl}=\frac{1}{(n+1)!}f^{n+1}(\epsilon)(x-x_{0})^{n+1}
+\end{equation}
+Vi viser igen eksemplet med \(f(x)=e^{x}, x_{0}=0 \text{ og } n=5\) og ønsker maximal fejl i approximationsområdet \(-0.1<\epsilon<0.1\). Alle afledede er voksende og vi får den største værdi af Lagrages restled for \(\epsilon=0.1\). Da \(f^{6}(\epsilon)=f^{6}(0.1)=e^{0.1}\) har vi:
+\[\text{Maximal fejl}=\frac{1}{(6)!}f^{6}(\epsilon)(x)^{6}=\frac{1}{(6)!}e^{0.1}(0.1)^{6}\]
+Vi slutter med endnu et eksempel med \(\ln(x)\) med udvikling i \(x_{0}=1\). Dette svarer til at udvikle \(f(x)=\ln(x+1)\) i \(x_{0}=0\). Vi har:
+\[f'(x)=\frac{1}{x+1}, f''(x)=\frac{-1}{(x+1)^{2}}, f'''(x)=\frac{1}{(x+1)^{3}}\]
+Eller generelt:
+\[f^{n}(x)=\frac{(-1)^{n+1}(n-1)!}{(x+1)^{n}}\]
+Vi får nu de afledede i udviklingspunktet \(x_{0}=0\):
+\[f'(x_{0})=1, f''(x_{0})=-1,f'''(x_{0})=2!,f''''(x_{0})=-3!\]
+Og generelt:
+\[f^{n}(x_{0})=(-1)^{n-1}(n-1)!\]
+Ved indsættelse i Taylorformlen \ref{taylorx0} får vi nu:
+\[f(x)=\ln(x)=x-\frac{x^{2}}{2}+\frac{x^{3}}{3}-\frac{x^{4}}{4} \dotsm = \sum_{n=1}^{\infty}\frac{x^{n}}{n}(-1)^{n+1}\]
+Vi ønsker nu at vurdere fejlen med \(n\) led i intervallet \(-0.5<x<0.5\). Vi anvender Lagrages restled:
+\[\text{Maximal fejl}=\frac{1}{(n+1)!}f^{n+1}(\epsilon)(x-x_{0})^{n+1}\]
+Dette udtryk bliver størst for \(x=-0.5\) og vi får:
+\[\text{Maximal fejl}=\frac{1}{(n+1)!}\frac{(-1)^{n+1}(n-1)!}{(0.5)^{n}}(-0.5)^{n+1}=\frac{0.5}{(n+1)n}\]
+Vi anvender nu dette til at beregne en approximation for \(\ln(x+1)\) i punktet \(x=0.5\) med \(5\) led:
+\[\ln(0.5+1) \simeq 0.5-\frac{0.5^{2}}{2}+\frac{0.5^{3}}{3}-\frac{0.5^{4}}{4}+\frac{0.5^{5}}{5}=0.417\]
+Den maximale fejl beregnes til \(\frac{0.5}{5 \cdot 6}=0.017\). Den korrekte værdi er \(\ln(1.5)=0.4054\), hvilket bekræfter vores overvejelser.
+%%New section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Partial fraction decomposition}
+Vi får i det følgende behov for et redskab til at opløse komplicerede brøker i en sum af flere mere simple udtryk. Her præsenteres metodikken.\\
+{\bf Metode 1:} Nævneren kan faktoriseres i forskellige faktorer. \\Vi tager et eksempel:
+\[\frac{3x+2}{x^{2}+x} \text{ faktoriseres som: } \frac{3x+2}{x(x+1)}\]
+Vi antager nu konstanter \(A\) og \(B\) således:
+\[\frac{3x+2}{x(x+1)}=\frac{A}{x}+\frac{B}{x+1} \Rightarrow\]
+\[3x+2=A(x+1)+Bx \Rightarrow 3x+2=(A+B)x+A \Rightarrow A=2, B=1\]
+Vi har derfor:
+\[\frac{3x+2}{x^{2}+x}=\frac{2}{x}+\frac{1}{x+1}\]
+{\bf Metode 2:} Der er multiple rødder og faktorer i nævneren.
+Vi ønsker at faktorisere:
+\[\frac{x^{2}+1}{x(x-1)^{3}}\]
+Her skal alle potenser af multibel faktor indgå, da vi ikke kan vide hvilke der er relevante:
+\begin{align*}
+&\frac{x^{2}+1}{x(x-1)^{3}}=\frac{A}{x-1}+\frac{B}{(x-1)^{2}}+\frac{C}{(x-1)^{3}}+\frac{D}{x} \Rightarrow \\
+&x^{2}+1=x(x-1)^{2}A+x(x-1)B+x \cdot C+(x-1)^{3}D \Rightarrow\\
+&x^{2}+1=(x^{3}+x-2x^{2})A+(x^{2}-x)B+xC+(x^{3}-3x^{2}+3x-1)D \Rightarrow\\
+&x^{2}+1=x^{3}(A+D)+x^{2}(-2A+B-3D)+x(A-B+C+3D)-D \Rightarrow \\
+&D=-1, A=1, -2+B+3=1 \Rightarrow B=0, 1+C-3=0 \Rightarrow C=2
+\end{align*}
+Så vi har:
+\[\frac{x^{2}+1}{x(x-1)^{3}}=\frac{1}{x-1}+\frac{0}{(x-1)^{2}}+\frac{2}{(x-1)^{3}}+\frac{-1}{x}\]
+{\bf Metode 3:} Der et ikke-faktorerbart polynomium i nævner.\\
+Vi tager et eksempel:
+\[\frac{x-3}{x^{3}+3x}=\frac{x-3}{x(x^{2}+3)}\]
+Her skal der for polynomiumsled indgå en tæller med alle mulige potenser (hvis polynomium er 2. grad så op til \(x^{1}\) osv.).
+\[\frac{x-3}{x(x^{2}+3)}=\frac{A}{x}+\frac{Bx+C}{x^{2}+3} \Rightarrow\]
+\[x-3=A(x^{2}+3)+Bx^{2}+Cx=(A+B)x^{2}+Cx+3A \Rightarrow\]
+\[ A=-1, C=1, B=1 \]
+Dermed har vi:
+\[\frac{x-3}{x^{3}+3x}=\frac{-1}{x}+\frac{x+1}{x^{2}+3}\]
+{\bf Metode 4:} Tæller har højere potens end nævner.
+Vi ser på følgende eksempel:
+\[\frac{x^{5}-2x^{4}+x^{3}+x+5}{x^{3}-2x^{2}+x-2}\]
+Ved polynomiers division ser vi, at nævner går en \(x^{2}\) gang op i tæller og resten bliver \(2x^{2}+x+5\). Herved har vi:
+\begin{align*}
+&\frac{x^{5}-2x^{4}+x^{3}+x+5}{x^{3}-2x^{2}+x-2}=x^{2}+\frac{2x^{2}+x+5}{x^{3}-2x^{2}+x-2}\\
+&\quad=x^{2}+\frac{2x^{2}+x+5}{(x^{2}+1)(x-2)}=x^{2}+\frac{A}{x-2}+\frac{Bx+C}{x^{2}+1} \Rightarrow\\
+&2x^{2}+x+5=A(x^{2}+1)+B(x^{2}-2x)+C(x-2)\\
+&\quad=(A+B)x^{2}+(C-2B)x+(A-2C) \Rightarrow\\
+&C=1+2B \Rightarrow A-2-4B=5 \Rightarrow A-4B=7\\
+&\text{Og da } A+B=2 \text{ fås } B=-1, A=3, C=-1
+\end{align*}
+Så resultatet er:
+\[\frac{x^{5}-2x^{4}+x^{3}+x+5}{x^{3}-2x^{2}+x-2}=x^{2}+\frac{3}{x-2}-\frac{x+1}{x^{2}+1}\]
+{\bf Kombinerede metoder:} Her er et eksempel hvor de forskellige metoder blandes. Vi viser kun hvorledes modelles stilles op, da beregningerne er trivielle.
+\[\frac{x^{4}+3x-2}{(x^{2}+1)^{3}(x-4)^{2}}\]
+\[=\frac{Ax+B}{x^{2}+1}+\frac{Cx+D}{(x^{2}+1)^{2}}+\frac{Ex+F}{(x^{2}+1)^{3}}+\frac{G}{x-4}+\frac{H}{(x-4)^{2}}\]
+Vi viser her to generaliseringer der ofte anvendes:
+\begin{align*}
+&\frac{1}{(1-px)(1-qx)}=\frac{A}{1-px}+\frac{B}{1-qx} \Rightarrow\\
+&1=A(1-qx)+B(1-px)=(-Aq-Bp)x+(A+B) \Rightarrow\\
+&A+B=1, -Aq-Bp=0 \Rightarrow -(1-B)q-Bp=0 \Rightarrow\
+&B(q-p)=q \Rightarrow B= \frac{q}{q-p}, A=1-B=\frac{-p}{q-p}
+\end{align*}
+Og vi har faktoriseringen:
+\[\frac{1}{(1-px)(1-qx)}=\frac{1}{q-p}(-\frac{p}{1-px}+\frac{q}{(1-qx)})\]
+På samme måde løses den generelle faktorisering:
+\[\frac{1}{(1-px)(1-qx)(1-rx)}=\frac{A}{1-px}+\frac{B}{1-qx}+\frac{C}{1-rx}\]
+Der skal løses tre ligninger med tre ubekendte. Determinanterne bliver:
+\[d=r^{2}(q-p)+p^{2}(r-q)+q^{2}(p-r)\]
+\[d_{A}=pr(p+q)-pq(r+p)\]
+\[d_{B}=pq(r+q)-rq(p+q)\]
+\[d_{C}=rq(r+p)-pr(r+p)\]
+Herefter bliver løsningen:
+\[\frac{1}{(1-px)(1-qx)(1-rx)}=\frac{1}{d}(\frac{d_{A}}{1-px}+\frac{d_{B}}{1-qx}+\frac{d_{C}}{1-rx})\]
+For eksempel giver:
+\[\frac{1}{(1-2x)(1-3x)(1-4x)}\]
+\begin{align*}
+&d=4^{2}(3-2)+2^{2}(4-3)+3^{2}(2-4)=16+4-18=2\\
+&d_ {A}=2 \cdot 4(2+3)-2 \cdot 3(4+2)=40-36=4\\
+&d_ {B}=2 \cdot 3(4+3)-4 \cdot 3(2+3)=42-60=-18\\
+&d_ {C}=4 \cdot 3(4+2)-2 \cdot 4(4+3)=72-56=16
+\end{align*}
+Hvorefter vi får:
+\begin{align*}
+\frac{1}{(1-2x)(1-3x)(1-4x)}&=\frac{1}{2}(\frac{4}{1-2x}+\frac{-18}{1-3x}+\frac{16}{1-4x})\\
+&=\frac{2}{1-2x}-\frac{9}{1-2x}+\frac{8}{1-2x}
+\end{align*}
+%%New section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Differensrækker}
+Som vi har vist under trekantstallene, er differenserne mellem kvadrattallene de ulige tal. Ligeledes er differenserne mellem de ulige tal konstant \(2\) eller 2!, som det senere vil vise sig er mere betegnende. Her vises differneserne mellem kvadrattallenne i skemaform:
+\begin{equation*}
+\begin{array}{rrrrrrrrrrrrrr}
+n&0&&1&&2&&3&&4&&5&&6\\
+\hline \\[-3mm]
+n^{2}&0&&1&&4&&9&&16&&25&&36\\
+\Delta n^{2}&&1&&3&&5&&7&&9&&11&\\
+\Delta^{2}n^{2}&&&2&&2&&2&&2&&2&&\\
+\end{array}
+\end{equation*}
+Tilsvarende ender vi efter med differensrækken for \(n^{3}\) med en slutdifference på \(6=3!\) efter 3 gange anvendelse af differensoperatoren \(\Delta\):
+\begin{equation*}
+\begin{array}{rrrrrrrrrrrrrr}
+n&0&&1&&2&&3&&4&&5&&6\\
+\hline \\[-3mm]
+n^{3}&0&&1&&8&&27&&64&&125&&216\\
+\Delta n^{3}&&1&&7&&19&&37&&61&&91&\\
+\Delta^{2}n^{3}&&&6&&12&&18&&24&&30&&\\
+\Delta^{3} n^{3}&&&&6&&6&&6&&6&&&\\
+\end{array}
+\end{equation*}
+Generelt ender \(n^{k}\) efter \(k\) anvendelser af differensoperatoren \(\Delta\) med en konstant på k!. For \(n^{2}\) kan dette yderligere illustreres ved forskellen mellem to tal i rækken \(n^{2}\). Differensen efter en anvendelse af differensoperatoren bliver \((n+1)^{2}-n^{2}=2n+1\) som er leddene i 2. række. For eksempel er forskellen mellem 3. og 4. led(\(n=3)\): \(2 \cdot 3+1=7\). Tilsvarende bliver differencen mellem 2 led i 3. række efter 2 anvendelser af differensoperatoren: \(2(n+1)+1-(2n+1)=2\).\\
+Denne proces er analog til beregning af differentialkoefficienten som:
+\[\frac{d(f(x))}{dx}=\lim_{h \to 0}\frac{f(x+h)-f(x)}{h}\]
+Ved differensrækker opereres blot med hele tal og udtrykket bliver:
+\[\Delta(f(x))=f(x+1)-f(x)\]
+Ved differentialregninggælder for polynomier:
+\[d(x^{m})=mx^{m-1}\]
+Hvis vi forsøger det samme med \(\Delta\) operatoren for f.eks. \(x^{3}\) fås:
+\[\Delta(x^{3})=(x+1)^{3}-x^{3}=3x^{2}+3x+1\]
+som ikke svarer til udtrykket \(mx^{m-1}=3x^{2}\). Vi kan altså ikke umiddelbart bevare analogien til \(d(x^{m})\). Vi betragter istedet produktet:
+\[x^{\underline{m}}=x(x-1)(x-2)(x-3) \dotsm (x-m+1)=a(x-m+1)\]
+Her betyder notationen \(x^{\underline{m}}\) produktet der starter ved \(x\) og slutter ved \(x-m+1)\) med ialt \(m\) led. Faktoren \(a\) er blot produktet \(x(x-1)(x-2)(x-3) \dotsm (x-m+2)\). Vi har nu også:
+\[(x+1)^{\underline{m}}=(x+1)x(x-1)(x-2) \dotsm (x-m+2)=(x+1)a\]
+Anvender vi nu differensoperatoren \(\Delta\) på dette udtryk får vi:
+\[\Delta (x^{\underline{m}})=(x+1)^{\underline{m}}-x^{\underline{m}}=(x+1)a-a(x-m+1)\]
+\[=ax+a-ax+am-a=am\]
+\[=mx(x-1)(x-2) \dotsm (x-m+2)=mx^{\underline{m-1}}\]
+\(x^{\underline{m-1}}\) starter ved \(x\) og har \(m-1\) led. Så \(\Delta(x^{\underline{m}})\) opfylder altså samme differentialregler som \(d(x^{m})\).
+Et eksempel:
+\[5^{\underline{m}}=5 \cdot 4 \cdot 3 \cdot 2=120 \text{ og } (5+1)^{\underline{m}}=6 \cdot 5 \cdot 4 \cdot 3=360\]
+Heraf fås \[\Delta(5^{\underline{4}})=(5+1)^{\underline{m}}-5^{\underline{m}}=360-120=240\]
+Det samme resultat fås af: 
+\[mx^{\underline{m-1}}=4x^{\underline{3}}=4 \cdot 5 \cdot 4 \cdot 3 =240\]
+Som \(\int dx\) er omvendt funktion til differetiering, er \(\sum\) omvendt funktion til \(\Delta\).
+\[g(x)=\Delta (f(x)) \Leftrightarrow \sum g(x)\delta x = f(x)+C\]
+\(\sum g(x)\delta x\) er den omvendte funktion af \(\Delta\) og må derfor give \(f(x)\). Her er \(\sum g(x)\delta x\) den klasse af funktioner hvis differens er \(g(x)\). Bemærk, at dette er en definition.\\
+Med grænser får vi et udtryk der modsvarer:
+\[\int_{a}^{b}g(x)dx=[f(x)]_{a}^{b}=f(b)-f(a)\]
+nemlig:
+\[\sum_{a}^{b}g(x)\delta x=[f(x)]_{a}^{b}=f(b)-f(a)\]
+Vi husker, at:
+\[g(x)=\Delta f(x)=f(x+1)-f(x)\]
+Og får nu ved indsættelse af \(b=a+1\):
+\[\sum_{a}^{a+1}g(x)\delta x=f(a+1)-f(a)=g(a)\]
+Eller hvis vi lader \(b\) stige med \(1\) og tager differensen:
+\[\sum_{a}^{b+1}g(x)\delta x-\sum_{a}^{b}g(x)\delta x=(f(b+1)-f(a))-(f(b)-f(a))=f(b+1)-f(b)=g(b)\]
+Hver gang \(b\) stiger med \(1\) tillægges altså et led \(g(b)\). Så vi får:
+\[\sum_{a}^{b}g(x)\delta x=\sum_{k=a}^{b-1}g(k)=\sum_{a \leq k<b}g(k)\]
+Vi har nu en sammenhæng mellem den omvendte differensfunktion og den normale summation. Læg mærke til, at sidste led, \(b\), ikke er med.
+Her er et eksempel:
+\[f(x)=x^{3} \Rightarrow \Delta (f(x))=3x^{2}+3x+1=g(x)\]
+\[[f(x)]_{2}^{5}=f(5)-f(2)=125-8=117=f(b)-f(a)\]
+Dette bør være identisk med:
+\[\sum_{k=2}^{5-1}g(x)=3 \cdot 2^{2}+3 \cdot 2+1+3 \cdot 3^{2}+3 \cdot 3+1+3 \cdot 4^{2}+3 \cdot 4+1\]
+\[=19+37+61=12+6+1+27+9+1+48+12+1=117\]
+Bemærk tallene \(19, 37,61\) og sammenlign med tabelopstillingen for \(n^{3}\). Differensen \(125-8\) fremgår at \(n^{2}\) rækken mens tallene \(19,37,61\) fremgår af \(\Delta n^{3}\) rækken. Betragtet i skemaet er ovenstående sammenhæng indelysende.\\
+Dette kan anvendes  til at finde formler for summer der ellers kan være vanskelige. Hvis blot man kan finde den tilsvarende 'stamfunktion' kan summen beregnes ud fra differensen af de to endepunkter og det er ikke nødvendigt at beregne hele summen.Altså:
+\[\sum_{a \leq k< b}g(k)=\sum_{a}^{b}g(x)\delta x=f(b)-f(a)\]
+Vi viste, at 
+\[mx^{\underline{m-1}}=\Delta (x^{\underline{m}})\]
+Substituerer vi \(m\) med \(m+1\) får vi også 
+\[(m+1)x^{\underline{m}}=\Delta (x^{\underline{m+1}}) \Rightarrow x^{\underline{m}}=\tfrac{\Delta (x^{\underline{m+1}})}{m+1}\]
+Hvis \(f(x)\) er 'stamfunktion' til \(g(x)\) får vi nu: 
+\[g(x)=x^{\underline{m}} \Rightarrow f(x)=\tfrac{x^{\underline{m+1}}}{m+1}\].
+Heraf fås yderligere:
+\[\sum_{a \leq k <b}k^{\underline{m}}=\left[f(x)\right]_{a}^{b}=\left[\tfrac{x^{\underline{m+1}}}{m+1}\right]_{a}^{b}=\tfrac{b^{\underline{m+1}}-a^{\underline{m+1}}}{m+1}\]
+Dette kan illustreres med et eksempel:
+\[\sum_{4 \leq k<6}k^{3}=4 \cdot 3 \cdot 2+5 \cdot 4 \cdot 3 =24+60=84\]
+Dette bør være identisk med:
+\[\tfrac{1}{3+1}(6^{\underline{3+1}}-4^{\underline{3+1}})=\tfrac{1}{4}(6^{\underline{4}}-4^{\underline{4}})=\]
+\[\tfrac{1}{4}(6 \cdot 5 \cdot 4 \cdot 3 -4 \cdot 3 \cdot 2 \cdot 1)=\tfrac{1}{4}(360-24)=\tfrac{1}{4} \cdot 336=84\]
+Potensudtryk kan ofte omskrives til en linearkombination af led på formen \(x^{\underline{m}}\) og formlen kan anvendes.\\
+Eksempel 1: 
+\[\sum_{0 \leq k < n}k=\sum_{0 \leq k < n}k^{\underline{1}}=\tfrac{n^{\underline{2}}-0^{\underline{2}}}{1+1}=\tfrac{n^{\underline{2}}}{2}=\tfrac{n(n-1)}{2}\]
+Eksempel 2. Da \(k^{\underline{2}}+k^{\underline{1}}=k(k-1)+k=k^{2}-k+k=k^{2}\) har vi:
+\begin{align*}
+\sum_{0 \leq k <n}k^{2}&=\sum_{0 \leq k < n}(k^{\underline{2}}+k^{\underline{1}})=\sum_{0 \leq k <n}k^{\underline{2}}+\sum_{0 \leq k <n}k^{\underline{1}}\\
+&=\tfrac{n^{\underline{3}}}{3}+\tfrac{n^{\underline{2}}}{2}=\tfrac{1}{3}n(n-1)(n-2)+\tfrac{1}{2}n(n-1)\\
+&=n(n-1)(\tfrac{1}{3}(n-2)+\tfrac{1}{2})=n(n-1)(\tfrac{n}{3}-\tfrac{2}{3}+\tfrac{1}{2}\\
+&=n(n-1)(\tfrac{n}{3}-\tfrac{1}{6})=\tfrac{1}{3}n(n-1)(n-\tfrac{1}{2})
+\end{align*}
+Vi har i denne udledning  udnyttet, at der i lighed med integraler gælder:
+\[\sum_{a}^{b}(g_{1}(x)+g_{2}(x))\delta x=\sum_{a}^{b}g_{1}(x)\delta x+\sum_{a}^{b}g_{2}(x)\delta x\]
+Og:
+\[\sum_{a}^{b}g(x)\delta x+\sum_{b}^{c}g(x)\delta x=\sum_{a}^{b}g(x)\delta x\]
+Endvidere gælder i lighed med binomialformlen:
+\[(x+y)^{\underline{n}}=\sum_{i=1}^{n}B_{n}x^{i}y^{\underline{n-i}}\]
+Eksempel 3. Vi ser at \(k^{3}=k^{\underline{3}}+3k^{\underline{k}}+k^{\underline{1}}\). Herefter beregnes \(\sum_{a \leq k < b}k^{3}\) umiddelbart. Vi vil senere vise, at koefficienterne i omskrivningen fra  traditionelle potenser til 'faktorielle potenser'er Stirling tal. Vi har altså generelt:
+\[k^{k}=ak^{\underline{n}}+bk^{\underline{n-1}}+ck^{\underline{n-2}}+\dotsm\]
+hvor tallene \(a,b,c \dotsm\) er Stirling tal.
+Vi ønsker nu en definition af \(x^{\underline{m}}\) når \(m<0\). Vi ser for \(m \leq 0\):
+\[x^{\underline{3}}=x(x-1)(x-2), \quad x^{\underline{2}}=x(x-1), \quad x^{\underline{1}}=x, \quad x^{\underline{0}}=1\]
+Hver gang \(m\) reduceres med \(1\) dividerer vi altså med \( (x-m+1)\). Hvis denne analogi skal fortsætte må vi fra \(x^{\underline{0}}\) til \(x^{\underline{-1}}\) dividere med \( (x-0+1)=(x+1)\). Fortsættes dette princip fås:
+\[x^{\underline{-1}}=\frac{1}{1+x}, \quad x^{\underline{-2}}=\frac{1}{(1+x)(2+x)}\]
+Eller generelt:
+\[x^{\underline{-m}}=\frac{1}{(x+1)(x+2) \dotsm (x+m)}\]
+Vi ser nu på den velkendte potensregel \(x^{a}x^{b}=x^{a+b}\) for faktorielle potenser:
+\[x^{\underline{m+n}}=x^{\underline{m}} \cdot (x-m)^{\underline{n}}\]
+Det sidste led i \(x^{\underline{m}}\) er \( (x-m+1)\). Så først går vi \(m\) led ned fra \(x\) og så går vi \( (x-m)\) led ned fra \( (x-m)\). Vi tester nu denne formel for \(m \leq 0\):
+\[x^{\underline{2-3}}=x^{2}(x-2)^{\underline{-3}}=x(x-1) \cdot \frac{1}{(x-1)x(x+1)}=\frac{1}{x+1}=x^{\underline{-1}}\]
+Gælder \(\Delta x^{\underline{m}}=mx^{\underline{m-1}}\) også for \(m<0\)? Vi tager et eksempel:
+\[\Delta x^{\underline{-2}}= (x-1)^{\underline{-2}}- x^{\underline{-2}}=\frac{1}{(x+2)(x+3)}-\frac{1}{(x+1)(x+2)}=\]
+\[\frac{(x+1)-(x+3)}{(x+1)(x+2)(x+3)}=\frac{-2}{(x+1)(x+2)(x+3)}=-2x^{\underline{-3}}\]
+Så der gælder også for negativ \(m\):
+\[\sum_{a}^{b}x^{\underline{m}} \delta x=\left[\frac{x^{\underline{m+1}}}{m+1}\right]_{a}^{b}\]
+Men hvad sker der med denne formel når \(m=-1\)? Den kontinuerte variant er \(\int_{a}^{b}x^{-1}dx = [ \ln(x) ]_{a}^{b}\). Lad os prøve:
+\[x^{\underline{-1}}=\frac{1}{x+1}=\Delta f(x) =f(x+1)-f(x)\]
+hvor \(f(x)\) er den søgte 'stamfunktion'. Vi prøver med \(f(x)=\frac{1}{x}\) og får:
+\[\Delta f(x)=\frac{1}{x+1}-\frac{1}{x}=\frac{x-(x+1)}{x+1}=\frac{1}{x(x+1)} \neq \frac{1}{x+1}\]
+Hvis istedet \(f(x+1)\) indeholder \(f(x)\) og skrives som \(f(x+1)=f(x)+\frac{1}{x+1}\). Heraf ses ved iteration, at:
+\[f(x)=\frac{1}{1}+\frac{1}{2}+\frac{1}{3}+ \dotsm +\frac{1}{x}=H_{x}\]
+Hvor \(H_{x}\) er de harmoniske tal. Så generelt gælder:
+\begin{equation*}
+\sum_{a}^{b}x^{\underline{m}}\delta x=
+\begin{dcases}
+\left[\frac{x^{\underline{m+1}}}{x+1}\right]_{a}^{b} &m \neq -1\\
+\left[H_{x}\right]_{a}^{b} &m=-1
+\end{dcases}
+\end{equation*}
+For den kontinuerte \(\exp\) funktion \(e^{x}\) gælder \(f'(x)=f(x)\). For tilsvarende diskrete funktion må gælde:
+\[\Delta f(x)=f(x) \Rightarrow f(x+1)-f(x)=f(x) \Rightarrow f(x+1)=2f(x)\]
+Vi ganger altså med \(2\) for hver stigning i \(x\) med \(1\). Ved rekursion fås derfor:
+\[\Delta f(x) =f(x) \Rightarrow f(x)=2^{x}\]
+Dette er den diskrete funktion der svarer til \(e^{x}\) for kontinuerte funktioner. I lighed hermed fås:
+\[\Delta C^{x}=C^{x+1}-C^{x}=C^{x}(C-1)\] 
+Da vi også har:
+\[\Delta(\frac{C^{x}}{C-1})=\frac{1}{C-1}(C^{x+1}-C^{x})=\frac{C-1}{C-1}C^{x}=C^{x}\]
+får vi 'stamfunktionen'='antidifferensen' til \(C^{x}\) er altså \(\tfrac{C^{x}}{C-1}, C \neq 1\). Vi får så:
+\[\sum_{a \leq k < b}C^{k}=\sum_{a}^{b}C^{x} \delta x= [\tfrac{C^{x}}{C-1}]_{a}^{b}=\tfrac{C^{b}-C^{a}}{C-1}, C \neq 1\]
+Dette er den kendte formel for geometrisk serie.
+For partiel integration af kontinuerte funktioner gælder:
+\[\int u dv=uv-\int v du\]
+Vi har en tilsvarende formel for diskrete funktioner:
+\begin{align*}
+\Delta (u(x)v(x))&=u(x+1)v(x+1)-u(x)v(x)\\
+&=u(x+1)v(x+1)-u(x)v(x+1)+u(x)v(x+1)-u(x)v(x)\\
+&=u(x)\Delta v(x)+v(x+1)\Delta u(x)
+\end{align*}
+Sætter vi shiftoperatoren \(E\) til \(Ef(x)=f(x+1)\) fås:
+\[\Delta(u(x)v(x))=u(x)\Delta v(x)+Ev(x) \cdot \Delta u(x)\]
+Den regel anvendes når udtrykkene på højre side er simplere end udtrykkene på venstre side. Vi kan også summere på begge sider og får:
+\[\sum u \Delta v =\sum \Delta (uv) -\sum Ev \Delta u=uv-\sum Ev\Delta u\]
+Vi viser teknikken med et eksempel. Vi har:
+\[\sum x2^{x} \delta x=x2^{x}-\sum 2^{x+1} \delta x=x2^{x}-2^{x+1}+C\]
+Og får derfor:
+\begin{align*}
+\sum_{k=0}^{n}k2^{k}&=\sum_{0}^{n+1}x2^{x}\delta x =[x2^{x}-2^{x+1}]_{0}^{n+1}\\
+&=((n+1)2^{n+1}-2^{n+2})-(0 \cdot 2^{0}-2^{1})=(n-1)2^{n+1}+2
+\end{align*}
