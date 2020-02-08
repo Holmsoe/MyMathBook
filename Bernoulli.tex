@@ -1,0 +1,511 @@
+\chapter{Bernoulli}
+%%New section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Bernoulli og potenssummer}
+Bernoulli ønskede at finde et generelt udtryk for summen af en potensrække af formen:
+\[S_{p}(n)=\sum_{k=1}^{n}k^p\]
+Hvor potensen er fast og lig med \(p\) mens \(k\) går fra \(1\) til \(n\). Han kendte allerede resultatet for de første værdier af p fra Johan Faulhaber. Men lad os alligevel prøve at slutte os til resultatet som de gamle matematikere.
+\(P=0:\) Dette er simpelt, da summen bliver  \(1^0+2^0+3^0+ \dotsm + n^0=1+1+1+\dotsm+1=n\), da der er n led i alt. Så
+\[S_{0}(n)=n\]
+\(P=1:\)Dette svarer til summen \(1+2+3+4+\dotsm+n \)
+Denne sum kan relativt nemt findes ved almindelig snilde. 
+For eksempel kan vi indse at \((n-1)+1 = (n-2)+2 = (n-3)+ 3 = n\). Disse led opstår ved at tage en tal forfra og et bagfra, når vi ser bort fra n. Der er \((n-1)/2\) sådanne led hver med summen n. Og så mangler vi bare at addere sidste led. Summen bliver altså
+\[\frac{n(n-1)}{2}+n=\frac{n(n-1)}{2}=\frac{1}{2}n^2+\frac{1}{2}\]
+\[S_{1}(n)= \frac{1}{2}n^2+\frac{1}{2}\]
+En anden illustration af metoden er at skrive rækken forfra og bagfra og addere:
+\[1        +   2     +   3    +   4    + \dotsm+(n-2) + (n-1) + n  \]
+\[n        + (n-1) +(n-2)+(n-3)+\dotsm+   3     +    2    + 1\]
+\[(n+1)+ (n+1)+(n+1)+(n+1)+\dotsm+(n+1)+(n+1)+(n+1)\]
+Vi får altså \(n\) led med hver summen \((n+1)\) hvilket giver i alt \(n(n+1)\). Men vi har jo adderet to identiske serier så summen for en serie bliver derfor halvdelen af \(n(n+1)\) eller \(\frac{n(n+1)}{2}\) som er identisk med formlen ovenfor.
+\(p=2\) Løsningen for \(p=0\) og \(p=1\) er altså et polynomium af hhv. 1. og 2.grad. 
+%%New section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Kvadratsum som et polynomium}
+Det er derfor rimeligt at gætte på at løsningen for \(p=2\) vil være et polynomium af 3. grad. Det var netop hvad Bernoulli og Faulhaber gjorde.
+Vi antager altså
+\[S_{2}(n)=An^3+Bn^2+Cn^1+D=\sum_{k=1}{n}k^2\]
+Vi skal kende summen for 4 værdier af n for at finde de \(4\) ubekendte. 
+\begin{alignat*}{3}
+&n=1: \quad &S_{2}(1)=1^2=1 \quad \sum_{k=1}^{1}k^2&&=1\\
+&n=2: \quad &S_{2}(2)=2^2=4 \quad \sum_{k=1}^{2}k^2=1+4&&=5\\
+&n=3: \quad &S_{2}(3)=3^2=9 \quad \sum_{k=1}^{3}k^2=1+4+9&&=14\\
+&n=4: \quad &S_{2}(4)=4^2=16 \quad \sum_{k=1}^{4}k^2=1+4+9+16&&=30
+\end{alignat*}
+Dette giver ligningssystemet:
+\begin{alignat*}{2}
+&A1^3+B1^2+C1^1+D=A+B+C+D&&=\sum_{k=1}^{1}k^2=1\\
+&A2^3+B2^2+C2^1+D=8A+4B+2C+D&&=\sum_{k=1}^{2}k^2=5\\
+&A3^3+B3^2+C3^1+D=27A+9B+3C+D&&=\sum_{k=1}^{3}k^2=14\\
+&A4^3+B4^2+C4^1+D=64A+16B+4C+D&&=\sum_{k=1}^{4}k^2=30\\
+\end{alignat*}
+Kan løses ved elimination eller denne matrixligning:
+\begin{equation}
+\begin{pmatrix}
+1&1&1&1\\
+8&4&2&1\\
+27&9&3&1\\
+64&16&4&1
+\end{pmatrix}
+\begin{pmatrix} A\\B\\C\\D \end{pmatrix} =\begin{pmatrix} 1\\5\\14\\30 \end{pmatrix}
+\end{equation}
+For \(\sum_{k=1}^{n}k^p\)\\
+Løsningen er \(A=\frac{1}{3}, B=\frac{1}{2}, C=\frac{1}{6}, D=0\)
+Som kontrol undersøger vi om ligningen også gælder for \(n=5:\)
+\[\frac{1}{3} 5^3+\frac{1}{2}5^2+\frac{1}{6}5^1+0 \cdot 5^0\\
+=\frac{2 \cdot 125+3 \cdot 25+5}{6}=\frac{330}{6}=55=\sum_{k=1}^{5}k^2=1+4+9+16+25\]
+OK. 
+Vi har altså:
+\[S_{2}(n)=\frac{1}{3}n^3+\frac{1}{2}n^2+\frac{1}{6}n^1+0=\sum_{k=1}^{n}k^2\]	
+I mange artikler anvendes i stedet summen \(\sum_{k=0}^{n-1}k^p\) som grundlag for beregningerne. Dette giver andre løsningspolynomier. Bernoulli anvender selv denne form og derfor anvendes denne i resten af denne artikel. For eksempel er:
+\[S_{2}(n)=\frac{1}{3}n^3-\frac{1}{2}n^2+\frac{1}{6}n^1+0\]
+Hvis summen \(\sum_{k=0}^{n-1}k^p\) anvendes i stedet for \(\sum_{k=1}^{n}k^p\).
+Da summen i denne form er forskubbet med 1 vil ligningssystemet for \(S_{2}(n)\) have matrixformen:
+\begin{equation} 
+\begin{pmatrix}
+1&1&1&1\\
+8&4&2&1\\
+27&9&3&1\\
+64&16&4&1
+\end{pmatrix}
+\begin{pmatrix} A\\ B \\C \\ D \end{pmatrix}=\begin{pmatrix} 0\\1\\15\\14 \end{pmatrix}
+\end{equation}
+For \(\sum_{k=0}^{n-1}k^p\)
+Man kan også relativt simpelt slutte sig til resultatet. Summen af \(\sum_{k=0}^{n-1}k^p\) er \(n^p\) mindre end \(\sum_{k=1}^{n}k^p\) da \(0^p=0\) for \(p>0\). Men \(n^p\)  er jo netop andet led i \(S-{p}(n)\) så vi skal blot trække \(n^p\) fra andet led. 
+I stedet for \(\frac{1}{2}n^2\) bliver andet led i \(S_{2}(n)\) således \(-\frac{1}{2}n^2\).
+%%New section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{De første potenssummer}
+Faulhaber havde allerede gjort et stort arbejde for Bernoulli. Han havde beregnet polynomierne op til \(p=17\) med håndkraft!
+Vi springer de hårde beregninger over og giver blot de 6 første polynomier for at følge Bernoullis videre overvejelser:
+\begin{align*}
+&p=1 \qquad  \sum_{k=0}^{n-1}k^1=S_{1}(n)=\frac{1}{2}n^2-\frac{1}{2}n\\
+&p=2 \qquad  \sum_{k=0}^{n-1}k^2=S_{2}(n)=\frac{1}{3}n^3-\frac{1}{2}n^2+\frac{1}{6}n\\
+&p=3 \qquad  \sum_{k=0}^{n-1}k^3=S_{3}(n)=\frac{1}{4}n^4-\frac{1}{2}n^3+\frac{1}{4}n^2\\
+&p=4 \qquad  \sum_{k=0}^{n-1}k^4=S_{4}(n)=\frac{1}{5}n^5-\frac{1}{2}n^4+\frac{1}{3}n^3-\frac{1}{30}n\\
+&p=5 \qquad  \sum_{k=0}^{n-1}k^5=S_{5}(n)=\frac{1}{6}n^6-\frac{1}{2}n^5+\frac{5}{12}n^4-\frac{1}{12}n^2\\
+&p=6 \qquad  \sum_{k=0}^{n-1}k^6=S_{6}(n)=\frac{1}{7}n^7-\frac{1}{2}n^6+\frac{1}{2}n^5-\frac{1}{6}n^3+\frac{1}{42}n\
+\end{align*}
+%%New section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Bernoullital og binomialformlen}
+Bernoulli har kigget på disse udtryk. Han var på jagt efter et generelt udtryk for \(\sum_{k=1}^{n}k^p\) og prøvede at finde et system for koefficienternes afhængighed af p i disse ligninger.
+Han noterer følgende:
+1) Koefficienten til \(n^{p+1}\) er \(\frac{1}{p+1}\)\\
+2) Koefficienten til \(n^p\) er \(-\frac{1}{2}\)\\
+3) Koefficienten til \(n^{p-1}\) er lidt sværere, men Bernoulli så hurtigt at den var \(\frac{p}{12}\)\\
+4) Koefficienten til \(n^{p-2}\) er altid \(0\).\\
+For at komme videre forsøgte Bernoulli at sammenligne med binomialformlen som var en kendt formel til 
+beregning af et potensudtryk af formen  \[(x+a)^n=\sum_{k=0}^{n}\binom{n}{k}x^ka^{n-k}\]
+For dem som har glemt binomialformlen skal nævnes at den fremkommer ved rent kombinatoriske argumenter. Vi har n kasser med hver en sort (\(x\) i formlen) og en hvid(\(a\) i formlen) kugle. Vi ønsker nu at trække en kugle fra hver kasse altså i alt \(n\) kugler. Hvor mange muligheder er der for at trække netop k sorte kugler? Dette beregnes fra kombinatorikken til \(\binom{n}{k}\). Dette er netop antal led med \(x\) i k’te potens i udtrykket \((x+a)^n\).
+Hvis man sætter \(a=1\), \(x=n\) og \(n=p+1\) som er graden af polynomiet fås: \[(n+1)^p=\sum_{k=0}^{p}\binom{p}{k}n^k\]
+Bernoulli forsøgte nu empirisk at matche denne form med udtrykkene for  . 
+Først udskriver han udtrykket bagfra og indsætte \(p+1\) i stedet for \(p\) idet han benytter at 
+\[\binom{p+1}{k}=\frac{(p+1)!}{(p-k+1)! \cdot k!}\]
+Og får:
+\begin{align*}
+(n+1)^{p+1}&=\sum_{k=0}^{p+1}\binom{p+1}{k}n^k\\
+&=1 \cdot n^{p+1}+(p+1)n^p+\frac{(p+1)p}{2!}n^{p-1}\\
+& \quad +\frac{(p+1)p(p-1)}{3!}n^{p-2}+\frac{(p+1)p(p-1)(p-2)}{4!}n^{p-3}+ \dotsm
+\end{align*}
+Dette sammenholdes med udtrykkene for
+\[S_{p}(n)=\frac{1}{p+1}n^{p+1}-\frac{1}{2}n^{p}+\frac{p}{12}n^{p-1}+0 \cdot n^{n-2}\]
+ Divideres nu udtrykket  for \((n+1)^{p+1}\) med \((p+1)\) fås:
+\begin{align*}
+\frac{(n+1)^{p+1}}{p+1}&=\frac{1}{1+p}n^{p+1}+n^{p}+\frac{p}{2!}n^{p-1}\\
+&\quad +\frac{p(p-1)}{3!}n^{p-2}+\frac{p(p-1)(p-2)}{4!}n{p-3}
+\end{align*}
+Det ser ud til at \(S_{p}(n)\) i hvert led har samme afhængighed af \(p\) som denne formel. Vi prøver nu om leddet med \(n^{p-3}\) kan skrives på formen \(\frac{p(p-1)(p-2)}{C}n^{p-3}\). 
+Vi tager \(S_{5}(n)\) hvor \(n^{p-3}\) leddet er 
+\begin{align*}
+\frac{1}{12}n^{p-3}&=-\frac{5 \cdot 4 \cdot 3}{C}n^{p-3}=- \frac{60}{C}n^{p-3}\\
+&=-\frac{60}{720}n^{p-3}=\frac{-p(p-1)(p-2)}{720}n^{p-3}
+\end{align*}
+Vi har derfor endnu et led på \(S_{p}(n)\):
+\[S_{p}(n)=\frac{1}{1+p}n^{p+1}-\frac{1}{2}n^{p}+\frac{p}{12}n^{p-1}+0 \cdot n^{p-2}-\frac{p(p-1)(p-2)}{720}n^{p-3}\] 
+Det ser altså ud til at der led for led er samme afhængighed af p i de to udtryk. Det er derfor rimeligt at antage at udtrykkene for  \(S_{p}(n)\) og  \(\frac{(n+1)^{p+1}}{p+1}\) kan gøres identiske ved at tilføje en korrektionsfaktor for hvert led der er uafhængig af \(p\). Vi skriver derfor
+\begin{align*}
+S_{p}(n)&=B_{0}\frac{1}{1+p}n^{p+1}+B_{1}n^{p}+B_{2}\frac{p}{2!}n^{p-1}\\
+&\quad +B_{3}\frac{p(p-1)}{3!}n^{p-2}+B_{4}\frac{p(p-1)(p-2)}{4!}n^{p-3}
+\end{align*}
+ Ved sammenligning med udtrykkene for \(S_{p}(n)\) ser vi nu, at 
+\[B_{0}=1, B_{1}=-\frac{1}{2}, B_{2}=\frac{2!}{12}=\frac{1}{6}, B_{3}=0, B_{4}=-\frac{4!}{720}=-\frac{24}{720}=-\frac{1}{30}\]
+Disse tal ses at være uafhængige af \(p\) og kaldes bernoullitallene. Bernoullitallene er altså den ledvise korrektion på potensudtrykket \(\frac{(n+1)^{p+1}}{p+1}\) for at få dette til at være identisk med polynomiet for udtrykket \(\sum_{k=0}^{n-1}k^{p}\).
+\[S_{p}(n)=\sum_{k=0}^{n-1}k^{p}=\frac{1}{1+p}\sum_{k=1}^{p+1}\binom{p+1}{k}n^{k}B_{p+1-k}\]
+Eller vi kan skrive summen op startende med \(B_{0}\):
+\[S_{p}(n)=\sum_{k=0}^{n-1}k^{p}=\frac{1}{1+p}\sum_{k=0}^{p}\binom{p+1}{k}n^{p+1-k}B_{k}\]
+%%New section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Rekursiv beregning af Bernoullital}
+Sætter vi  \(n=1\) fås
+\[S_{p}(1)=\sum_{k=0}^{1-1}k^{p}=0=\frac{1}{1+p}\sum_{k=1}^{p+1}\binom{p+1}{k}n^{k}B_{p+1-k}\]
+, som er en rekursiv formel til beregning af bernoullitalene \(B_{k}\).
+Eller simplere ved at gange med  \(\frac{1}{1+p}\),
+\[\sum_{k=1}^{p+1}\binom{p+1}{k}B_{p+1-k}=0\]	 
+Dette er væsentlig lettere end beregningen vha. polynomiet \(S_{p}(n)\) som skitseret ovenfor.
+Vi beregner de \(10\) første bernoullital.
+\(B_{0} = 1\) er kendt fra ovenstående betragtninger.\\
+\begin{align*}
+&\MinLinie
+&\binom{2}{1}B_{1}+\binom{2}{2}B_{0}=0\nylinie
+&2B_{1}+B_{0}=0\\
+&B_{1}=-\frac{1}{2}B_{0}=-\frac{1}{2}\\
+\end{align*}
+\begin{align*}
+&\MinLinie
+&\binom{3}{1}B_{2}+\binom{3}{2}B_{1}+\binom{3}{3}B_{0}=0\nylinie
+&3B_{2}+3B_{1}+B_{0}=0\\
+&B_{2}=\frac{1}{3}(3 \cdot \frac{1}{2}-1 \cdot 1)=\frac{1}{6}\\
+\end{align*}
+\begin{align*}
+&\MinLinie
+&\binom{4}{1}B_{3}+\binom{4}{2}B_{2}+\binom{4}{3}B_{1}+\binom{4}{4}B_{0}=0\nylinie
+&4B_{3}+6B_{2}+4B_{1}+1 \cdot B_{0}=0\\
+&B_{3}=-\frac{1}{4}(6 \cdot \frac{1}{6}+4 \cdot \frac{1}{2}+1)=0\\
+\end{align*}
+\begin{align*}
+&\MinLinie
+&\binom{5}{1}B_{4}+\binom{5}{2}B_{3}+\binom{5}{3}B_{2}+\binom{5}{4}B_{1}+\binom{5}{5}B_{0}=0\nylinie
+&5B_{4}+10B_{3}+10B_{2}+5B_{1}+1 \cdot B_{0}=0\\
+&B_{4}=-\frac{1}{5}(0+10 \cdot \frac{1}{6}+4 \cdot -\frac{1}{2}+1)=-\frac{1}{30}\\
+\end{align*}
+\begin{align*}
+&\MinLinie
+&\binom{6}{1}B_{5}+\binom{6}{2}B_{4}+\binom{6}{3}B_{3}+\binom{6}{4}B_{2}+\binom{6}{5}B_{1}+\binom{6}{6}B_{0}=0\nylinie
+&6B_{5}+15B_{3}+20B_{2}+15B_{1}+6B_{1}+1 \cdot B_{0}=0\\
+&B_{5}=-\frac{1}{6}(15 \cdot -\frac{1}{30}+0+15 \cdot \frac{1}{6}+6 \cdot -\frac{1}{2}+1)=0\\
+\end{align*}
+\begin{align*}
+&\MinLinie
+&\binom{7}{1}B_{6}+\binom{7}{2}B_{5}+\binom{7}{3}B_{4}+\binom{7}{4}B_{3}+\binom{7}{5}B_{2}+\binom{7}{6}B_{1}+\binom{7}{7}B_{0}=0\nylinie
+&7B_{6}+21B_{5}+35B_{4}+35B_{3}+21B_{2}+7B_{1}+1 \cdot B_{0}=0\\
+&B_{6}=-\frac{1}{7}(0+35 \cdot -\frac{1}{30}+0+21 \cdot \frac{1}{6}+7 \cdot -\frac{1}{2}+1)\\
+&B_{6}=-\frac{1}{7}(\frac{-7+21-21+6}{6})=\frac{1}{42}\\\\
+&B_{7}=0 \quad \text{Check selv hvis du ikke tror det!}\\
+\end{align*}
+\begin{align*}
+&\MinLinie
+&\binom{9}{1}B_{8}+\binom{9}{2} \cdot 0+\binom{9}{3}B_{6}+\binom{9}{4} \cdot 0+\binom{9}{5}B_{4}\nylinie
+&\quad +\binom{9}{6} \cdot 0+\binom{9}{7}B_{2}+\binom{9}{8}B_{1}+\binom{9}{9}B_{0}=0\nylinie
+&B_{8}=-\frac{1}{9}(0+84 \cdot \frac{1}{42}+0+126 \cdot -\frac{1}{30}+0+36 \cdot \frac{1}{6}+9 \cdot -\frac{1}{2}+1)\nylinie
+&B_{8}=-\frac{1}{9}(\frac{20-42+6+-45+10}{10})=-\frac{1}{30}\\
+&B_{9}=0\\
+\end{align*}
+\begin{align*}
+&\MinLinie
+&\binom{11}{1}B_{8}+\binom{11}{2} \cdot 0+\binom{11}{3}B_{6}+\binom{11}{4} \cdot 0+\binom{11}{5}B_{4}+\binom{11}{6} \cdot 0\nylinie
+&+\binom{11}{7}B_{4}+\binom{11}{8} \cdot 0+\binom{11}{9}B_{2}+\binom{11}{10}B_{1}+\binom{11}{11}B_{0}=0\\
+&B_{10}=-\frac{1}{11}(0+165 \cdot -\frac{1}{30}+0+462 \cdot \frac{1}{42}+0+330 \cdot -\frac{1}{30}\nylinie
+&\quad +0+55 \cdot \frac{1}{6}+11 \cdot -\frac{1}{2}+1)\nylinie
+&B_{10}=-\frac{1}{11}(\frac{-165+275-165+30}{30}+11-11)=\frac{5}{66}
+\end{align*}
+%%New section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Bernoullipolynomier}
+Bemærk, at koefficienterne \(\binom{p+1}{k}\) i den rekursive formel til beregning af \(B_{p}\) netop er tallene fra Pascals trekant.Bernoulli havde løst den oprindelige opgave med at finde et udtryk til beregning af \(S_{p}(n)=\sum _{k=1}^{n}k^{p}\), men han stoppede ikke her. 
+\[S_{p}(n)=\sum_{k=0}^{n-1}k^{p}=\frac{1}{p+1}\sum_{k=0}^{p}\binom{p+1}{k}n^{p+1-k}B_{k}\]
+Vi substituerer \(p+1\) med \(m\) og får:
+\[S_{m-1}(n)=\sum_{k=0}^{n-1}k^{m-1}=\frac{1}{m}\sum_{k=0}^{m-1}\binom{m}{k}n^{m-k}B_{k}\]
+\[mS_{m-1}(n)=m\sum_{k=0}^{n-1}k^{m-1}=\sum_{k=0}^{m-1}\binom{m}{k}n^{m-k}B_{k}\]
+Vi udnytter nu en enkel egenskab ved en potenssum. Trækker man to potenssummer fra hinanden hvor den ene har et led mere bliver der kun det højeste led tilbage da alle andre går ud mod hinanden. 
+\[mS_{m-1}(n)- mS_{m-1}(n-1)=m\sum_{k=0}^{n-1}k^{m-1}- m\sum_{k=0}^{n-2}k^{m-1}=m(n-1)^{m-1}\]
+Bernoulli definerede nu Bernoullipolynomierne ved:
+\begin{definition} Bernoullipolynomium
+\[B_{m}(n+1)-B_{m}(n)=mS_{m-1}(n+1)-mS_{m-1}(n)=mn^{m-1}\]
+\end{definition}
+Bemærk at man heraf kan slutte at \(B_{m}(n)=mS_{m-1}(n)+C_{m}\), da polynomierne defineres ved en differens og konstantleddet forsvinder ved subtraktionen.  
+På nær en konstant er et Bernoullipolynomium af m’te grad altså lig med \(m\) gange \(S_{m-1}(n)\)
+Vi får for eksempel:
+\begin{align*}
+B_{2}(n)=mS_{1}(n)+C_{2}&=2(\frac{1}{2}n^{2}-\frac{1}{2}n)+C_{2}\\
+&=n^{2}-n+C_{2}\\
+B_{3}(n)=mS_{2}(n)+C_{3}&=3(\frac{1}{3}n^{3}-\frac{1}{2}n^{2}+\frac{1}{6}n)+C_{3}\\
+&=n^{3}-\frac{3}{2}n^{2}+\frac{1}{2}n+C_{3}\\
+B_{4}(n)=mS_{3}(n)+C_{4}&=4(\frac{1}{4}n^{4}-\frac{1}{2}n^{3}+\frac{1}{4}n^{2})+C_{4}\\
+&=n^{4}-2n^{3}+n^{2}+C_{4}\\
+B_{5}(n)=mS_{4}(n)+C_{5}&=5(\frac{1}{5}n^{5}-\frac{1}{2}n^{4}+\frac{1}{3}n^{3}-\frac{1}{30}n)+C_{5}\\
+&=n^{5}-\frac{5}{2}n^{4}+\frac{5}{3}n^{3}-\frac{1}{6}n+C_{5}\\
+\end{align*}
+Bernoulli differentierede nu udtrykket med hensyn til \(n\): 
+\begin{align*}
+&B_{m}(n)-B_{m}(n-1)=mn^{m-1}\\
+&B'_{m}(n)-B'_{m}(n-1)=m(m-1)n^{m-2}\\
+&\frac{B'_{m}(n)-B'_{m}(n-1)}{m}=(m-1)n^{m-2}=B_{m-1}(n+1)-B_{m-1}(n)
+\end{align*}
+Heraf ses at differentialkvotienten til et Bernoullipolynomium af m’te grad divideret med m er et Bernoullipolynomium af (m-1)’te grad.
+Denne egenskab benytter Bernoulli til at fastsætte konstantleddet \(C_{m}\).
+Lad os tage et eksempel: 
+\[\frac{B'_{5}(n)}{5}=n^{4}-2n^{3}+n^{2}-\frac{1}{30}\]
+, hvoraf ses at konstantleddet til \(B_{4}(n)\) må være \(C_{4}=-\frac{1}{30}=B_{4}\)
+Konstantleddet \(C_{m}\) er altså lig med Bernoullitallet \(B_{m}\)
+At dette gælder generelt kan man overbevise sig om ved at se på:
+\[\frac{B’_{m}(n)}{m}=mS’_{m-1}(n)=\frac{d}{dn}\sum_{k=0}^{m-1}\binom{m}{k}n^{m-k}B_{k}\]
+Det sidste led med \(n^{1}\) svarende til \(k=m-1\) bliver ved differentiation til konstanten \(B_{m-1}\) altså netop Bernoullitallet af graden \(m-1\).
+Herefter bliver de første bernoullipolynomier:
+\begin{align*}
+&B_{0}(n)=1\\
+&B_{1}(n)=n-\frac{1}{2}\\
+&B_{2}(n)=n^{2}-n+\frac{1}{6}\\
+&B_{3}(n)=n^{3}-\frac{3}{2}n^{2}+\frac{1}{2}n\\
+&B_{4}(n)=n^{4}-2n^{3}+n^{2}-\frac{1}{30}\\
+&B_{5}(n)=n^{5}-\frac{5}{2}n^{4}+\frac{5}{3}n^{3}-\frac{1}{6}n\\
+&B_{6}(n)=n^{6}-3n^{5}+\frac{5}{2}n^{4}-\frac{1}{2}n^{2}+\frac{1}{42}n\\
+\end{align*}
+Vi har i forbindelse med udledningen af Bernoullipolynomierne anvendt følgende ligninger:
+\begin{align}
+&B_{0}(x)=1\nylinie
+&B_{m}(x)=\sum_{k=0}^{m}\binom{m}{k}x^{k}B_{m-k}=\sum_{k=0}^{m}\binom{m}{k}x^{m-k}B_{k}\label{BernoulliLign}\nylinie
+&B_{m}(x+1)-B_{m}(x)=mx^{m-1}\label{DifferensBernoulli}\nylinie
+&B’_{m}(x)=mB_{m-1}(x)\label{DiffBernoulli}
+\end{align}
+Vi anvender \(x\) i stedet for \(n\) for at understrege at der er tale om en kontinuert funktion.
+Formel \ref{DiffBernoulli} har nogle interssante følger.
+Vi ved, at når \(B’_{m}(x)=0\) har \(B_{m}(x)\) ekstremum i \(x\). 
+Samtidigt gælder ifølge \ref{DiffBernoulli} at:
+\begin{equation}
+B’_{m}(x)=0 \Rightarrow mB_{m-1}(x)=0 \Rightarrow B_{m-1}(x)=0
+\end{equation}
+Ved at sammenholde disse to forhold kan vi konkludere, at når \(B_{m-1}(x)\) har nulpunkt i \(x\) har \(B_{m}(x)\) ekstremum i \(x\). Disse forhold fremgår meget tydeligt af denne afbildning af \(B_{2}(x) \dotsm B_{6}(x)\). 
+Vi ser, at \(B_{6}(x)\) har ekstremum i \(x=0 \text{ ; }x=0,5 \text{ og } x=1\) hvor \(B_{5}(x)\) har nulpunkter.
+Derimod kan man ikke slutte, at \(B_{5}(x)\) har ekstremum hvor \(B_{6}(x)\) har nulpunkter.
+\(B_{5}(x)\) har ekstremum hvor \(B_{4}(x)\) har nulpunkter.
+Vi integrerer nu \ref{DiffBernoulli} i intervallet \([0,1]\):
+\begin{align*}
+m\int_{0}^{1} \! B_{m-1}(x)dx&=\int_{0}^{1}B’_{m}(x)dx\\  
+\int_{0}^{1} \! B_{m-1}(x)dx&=\frac{1}{m}[B_{m}(1)-B_{m}(0)]
+\end{align*}
+Af \ref{DifferensBernoulli} fås:
+\[B_{m}(1)-B_{m}(0)=m \cdot 0^{m-1}=0 \text{  når  } p>1\]
+Vi har derfor:
+\[\int_{0}^{1} \! B_{m-1}(x)dx=0, \, p>1 \text{  eller}\]
+\begin{equation}
+\int_{0}^{1}B_{m}(x)dx=0, p>0
+\end{equation}
+Vi har:
+\[mx^{m-1}=(-1)^{m} \cdot m \cdot (-x)^{m-1}=(-1)^{m}(B_{m}(1+(-x))-B_{m}(+(-x)))\]
+Så \((-1)^{m}B_{m}(-x)\) og dermed \((-1)^{m}B_{m}(1-x)\) opfylder bernoulliligningen \ref{BernoulliLign}.
+Denne ligning er kun opfyldt af bernoullipolynomier på nær en konstant.
+Derfor må der gælde 
+\[(-1)^{m}B_{m}(1-x)=B_{m}(x)+C\]
+For at ”slippe af med konstanten” differentierer vi og får
+\begin{align*}
+-(-1)^{m}B_{m-1}(1-x)&=B_{m-1}(x)\\
+(-1)^{m}B_{m-1}(1-x)&=B_{m-1}(x) 
+\end{align*}
+Ved at ændre indeks.
+\begin{equation}
+(-1)^{m}B_{m}(1-x)=B_{m}(x)
+\end{equation}
+Dette kaldes symmetrireglen for Bernoullipolynomier.
+Hvis vi i \ref{BernoulliLign} sætter \(x=1\) eller \(x=0\) får vi \((-1)^{m}B_{m}(0)=B_{m}(1)\)  
+Dette medfører:
+\begin{align}
+&\text{m\phantom{u}lige : } B_{m}(0)=B_{m}(1)=B_{m}\\
+&\text{m ulige: } B_{m}(0)=B_{m}(1)=0
+\end{align}	 
+For \(x=0\) og \(x=1\) har bernoullipolynomier af lige grad har derfor værdien \(B_{m}\) og polynomier af ulige grad har værdien \(0\). 
+Det vil sige at  bernoullipolynomier af ulige grad har rod i \(x=0\) og \(x=1\). 
+Dette bekræftes af grafen ovenfor.
+Hvis vi i \ref{BernoulliLign} sætter \(x=\frac{1}{2}\)   får vi 
+\[(-1)^{m}B_{m}(\frac{1}{2})=B_{m}(\frac{1}{2})\]  
+Dette medfører at \(\text{m lige:} B_{m}(\frac{1}{2})=B_{m}(\frac{1}{2})\), hvilket ikke giver ekstra information. Når \(n\) er ulige får vi:
+\[\text{m ulige: } B_{m}(\frac{1}{2})=-B_{m}(\frac{1}{2}) \Rightarrow B_{m}(\frac{1}{2})=0\]
+For \(x=\frac{1}{2}\) har bernoullipolynomier af ulige grad  værdien \(0\). 
+Det vil sige at  bernoullipolynomier af ulige grad har rod i \(x =\frac{1}{2}\)
+\[\text{m lige: } (-1)^{m}B_{m}(x)=B_{m}(1-x) \Rightarrow\]
+\begin{equation}
+\text{m lige: }B_{m}(x)=B_{m}(1-x)
+\end{equation}	
+Heraf ses at bernoullipolynomier af lige grad er symmetriske om linien \(x=\frac{1}{2}\)
+\[\text{m ulige: } (-1)^{m}B_{m}(x)=B_{m}(1-x) \Rightarrow\]
+\begin{equation}
+\text{m ulige: } B_{m}(x)=-B_{m}(1-x)
+\end{equation}
+For eksempel er \(B_{m}(0.2)=-B_{m}(0.8)\), \(m\) ulige.
+Heraf ses at bernoullipolynomier af ulige grad er symmetriske om punktet\((0,\frac{1}{2})\).
+Vi har nu nogle værktøjer til funktionsanalyse af Bernoullipolynomier.
+%%New section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Funktionsanalyse af bernoullipolynomier fra \(B_{1}(x)\) til \(B_{7}(x)\) }
+\[\mathbf{B_{1}(x)=x-\tfrac{1}{2}} \MinLinie\]
+\begin{equation*}
+\begin{array}{ll}
+			&B_{1}(x) \rightarrow -\infty \text{ for } x \rightarrow -\infty\nylinie
+			&B_{1}(x) \rightarrow \phantom{-}\infty \text{ for } x \rightarrow \phantom{-} \infty\nylinie
+\textbf{Monotoni:} 	&B_{1}(x) \text{ er i hele  intervallet } [-\infty,\infty] \text{ voksende}\nylinie
+\textbf{Ekstremum: }  &\text{Ingen}\nylinie
+\textbf{Rødder:} 	&x=\tfrac{1}{2}
+\end{array}
+\end{equation*}
+
+\[\mathbf{B_{2}(x)=x^2-x+\tfrac{1}{6}} \MinLinie\]
+\begin{equation*}
+\begin{array}{ll}
+			&B_{2}(x) \rightarrow \infty \text{ for } x \rightarrow -\infty\nylinie
+			&B_{2}(x) \rightarrow \infty \text{ for } x \rightarrow \phantom{-}\infty\nylinie
+\textbf{Monotoni:}	&B_{2}(x) \text{ er i intervallet } \left[-\infty,\tfrac{1}{2}\right] \text{ aftagende.}\nylinie
+			&B_{2}(x) \text{ er i intervallet } \left[\tfrac{1}{2},-\infty\right] \text{ voksende.}\nylinie
+\textbf{Ekstremum: } 	&x=\tfrac{1}{2} \text{ og } B_{2}(\tfrac{1}{2})=\tfrac{1}{12}\nylinie
+\textbf{Rødder: }	&x=\tfrac{1 \pm \sqrt{\tfrac{1}{3}}}{2}=\tfrac{3 \pm \sqrt{3}}{6}
+\end{array}
+\end{equation*}
+\[\mathbf{B_{3}(x)=x^{3}-\tfrac{3}{2}x^{2}+\tfrac{1}{6}x} \MinLinie\]
+
+\begin{equation*}
+\begin{array}{ll}
+			&B_{3}(x) \rightarrow -\infty \text{ for } x \rightarrow -\infty\nylinie
+			&B_{3}(x) \rightarrow \infty \text{ for } x \rightarrow \infty\nylinie
+\textbf{Monotoni:}	&B_{3}(x) \text{ er i intervallet } \left[-\infty,\left(\tfrac{1}{2}-\tfrac{1}{\sqrt{3}}\right)\right ] \text{ voksende.}\nylinie
+			&B_{3}(x) \text{ er i intervallet } \left[\left(\tfrac{1}{2}-\tfrac{1}{\sqrt{3}}\right),\left(\tfrac{1}{2}+\tfrac{1}{\sqrt{3}}\right)\right] \text{ aftagende.}\nylinie
+			&B_{3}(x) \text{ er i intervallet } \left[\left(\tfrac{1}{2}+\tfrac{1}{\sqrt{3}}\right),\infty\right] \text{ voksende.}\nylinie
+\textbf{Ekstremum: } 	&x=\left(\tfrac{1}{2}-\tfrac{1}{\sqrt{3}}\right)\nylinie
+			& B_{3}\left(\tfrac{1}{2}-\tfrac{1}{\sqrt{3}}\right)=\tfrac{\sqrt{3}}{36} \simeq 0,048113, \text{ lokalt maximum.}\nylinie
+\textbf{Ekstremum: } 	&x=\left(\tfrac{1}{2}+\tfrac{1}{\sqrt{3}}\right)\nylinie
+			& B_{3}\left(\tfrac{1}{2}+\tfrac{1}{\sqrt{3}}\right)=-\tfrac{\sqrt{3}}{36} \simeq -0,048113, \text{ lokalt minimum.}\nylinie
+\textbf{Rødder: }	&x = 0, x = \tfrac{1}{2}, x = 1
+\end{array}
+\end{equation*}
+Bemærk symmetrien om punktet\(\left(0,\frac{1}{2}\right)\).
+\[\mathbf{B_{4}(x)=x^{4}-2x^{3}+x^{2}-\tfrac{1}{30}} \MinLinie\] 
+\begin{equation*}
+\begin{array}{ll}
+			&B_{4}(x) \rightarrow \infty \text{ for } x \rightarrow -\infty \nylinie
+			&B_{4}(x) \rightarrow \infty \text{ for } x \rightarrow \infty \nylinie
+\textbf{Monotoni:} 	&B_{4}(x)\)  \text{ er i intervallet} \([-\infty,0]  \text{ aftagende} \nylinie
+			&B_{4}(x)  \text{ er i intervallet} \left[0,\tfrac{1}{2}\right]  \text{ voksende} \nylinie
+			&B_{4}(x)  \text{ er i intervallet}\left [\tfrac{1}{2},1\right]  \text{ aftagende} \nylinie
+			&B_{4}(x)  \text{ er i intervallet} \left[1,\infty\right]  \text{ voksende} \nylinie
+\textbf{Ekstremum:}	&x =0,  B_{4}(0)=-\tfrac{1}{30} \simeq -0,03333 ,   \text{ lokalt minimum} \nylinie
+			&x =\tfrac{1}{2},  B_{4}(\tfrac{1}{2})=\tfrac{7}{240} \simeq 0,029167,   \text{ lokalt maksimum} \nylinie
+			&x =1,  B_{4}(1)=-\tfrac{1}{30} \simeq -0,03333 ,  \text{  lokalt minimum} 
+\end{array}
+\end{equation*}
+Bemærk symmetrien om \(x=\frac{1}{2}\)\\
+\textbf{Rødder:}\\
+Der er \(3\) lokale ekstrema og disse er skiftevis positive og negative. Sammenholdt med monotoniforholdene kan det derfor sluttes at \(B_{4}(x)=0\) vil have \(4\) rødder. Vi ved at \(B_{m}(x)\) er symmetrisk om \(x=\frac{1}{2}\) når \(m\) er lige. Rødderne til \(B_{m}(x)=0\) er derfor parvis symmetriske om \(x=\frac{1}{2}\). Derfor kan rødderne til \(B_{4}(0)\) skrives som 
+\[(r_{1},r_{2},r_{3},r_{4})=\left(\tfrac{1}{2}+a,\tfrac{1}{2}-a,\tfrac{1}{2}+b,\tfrac{1}{2}-b\right)\]
+\(B_{4}(x)\) kan derfor faktoriseres som 
+\[B_{4}(x)=\left(x-(\tfrac{1}{2}+a)\right)\left(x-(\tfrac{1}{2}-a)\right)\left(x-(\tfrac{1}{2}+b)\right)\left(x-(\tfrac{1}{2}-b)\right)\] og vi får:
+\[B_{4}(x)=\left(x^{2}-x+(\tfrac{1}{4}-a^{2})\right)\left(x^{2}-x+(\tfrac{1}{4}-b^{2})\right)=\left(x^{2}-x+a’\right)\left(x^{2}-x+b’\right)\]
+Hvor \(a’=\tfrac{1}{4}-a^{2} \text{ og } b’=\tfrac{1}{4}-b^{2}\). Ved udregning fås:
+\[B_{4}(x)=x^{4}-2x^{3}+x^{2}-\tfrac{1}{30}=x^{4}-2x^{3}+(a’+b’+1)x^{2}+(-a’-b’)x-a’b’=0\]
+Da faktoren til \(x\) er \(0\) ses at \(a’=-b’\).  Samtidigt ses, at \(a’b’ = -\tfrac{1}{30}\). Heraf fås, at 
+\(a’=\tfrac{1}{\sqrt{30}} \text{ og } b’=-\tfrac{1}{\sqrt{30}}\).
+Af \(a’= \tfrac{1}{4}-a^{2} \text{ og } b’=\tfrac{1}{4}-b^{2}\) fås, at 
+\[a^{2}=\tfrac{1}{4}-\tfrac{1}{\sqrt{30}} \Rightarrow a= \pm \sqrt{\tfrac{1}{4}-\tfrac{1}{\sqrt{30}}}=\pm\tfrac{1}{2}\sqrt{1-\sqrt{\tfrac{8}{15}}}\]
+\[b^{2}=\tfrac{1}{4}+\tfrac{1}{\sqrt{30}} \Rightarrow a= \pm \sqrt{\tfrac{1}{4}+\tfrac{1}{\sqrt{30}}}=\pm\tfrac{1}{2}\sqrt{1+\sqrt{\tfrac{8}{15}}}\]
+Heraf findes rødder direkte som:
+\[r1;r2=\tfrac{1}{2}\pm a=\tfrac{1}{2}\pm\tfrac{1}{2}\sqrt{1-\sqrt{\tfrac{8}{15}}}=\tfrac{15 \pm \sqrt{15(15-2\sqrt{30})}}{30} \eqsim 0,24034; 0,75966\]
+\[r3;r4=\tfrac{1}{2}\pm b=\tfrac{1}{2}\pm\tfrac{1}{2}\sqrt{1+\sqrt{\tfrac{8}{15}}}=\tfrac{15 \pm \sqrt{15(15+2\sqrt{30})}}{30}  \eqsim -0,15770; 1,15770\]
+
+\[\mathbf{B_{5}(x)=x^{5}-\tfrac{5}{2}x^{4}+\tfrac{5}{3}x^{3}-\tfrac{1}{6}x} \MinLinie\]
+\begin{equation*}
+\begin{array}{ll}
+			B_{5}(x) \rightarrow -\infty \text{ for } x \rightarrow -\infty \nylinie
+			B_{5}(x) \rightarrow \phantom{-}\infty \text{ for } x \rightarrow \phantom{-}\infty \nylinie
+\textbf{Monotoni:}	\nylinie 
+			\left[-\infty,\tfrac{15 - \sqrt{15(15+2\sqrt{30})}}{30}\right] 						&\eqsim[-\infty;-0,15770] \text{ voksende } \nylinie
+			\left[\tfrac{15 - \sqrt{15(15+2\sqrt{30})}}{30},\tfrac{15 - \sqrt{15(15-2\sqrt{30})}}{30}\right] 		&\eqsim\left[-0,15770;0,24034\right] \text{ aftagende } \nylinie
+			\left[\tfrac{15 - \sqrt{15(15-2\sqrt{30})}}{30},\tfrac{15 + \sqrt{15(15-2\sqrt{30})}}{30}\right] 		&\eqsim\left[0,24034;0,75966\right] \text{ voksende } \nylinie
+			\left[\tfrac{15 + \sqrt{15(15-2\sqrt{30})}}{30},\tfrac{15 + \sqrt{15(15+2\sqrt{30})}}{30}\right] 	&\eqsim\left[0,75966;1,15770\right] \text{ aftagende } \nylinie
+			\left[\tfrac{15 + \sqrt{15(15+2\sqrt{30})}}{30},\infty\right] 						&\eqsim\left[1,15770;\infty\right] \text{ voksende }
+\end{array}
+\end{equation*}
+\textbf{Rødder:}
+Det vides at \(B_{5}(x)\) har rødderne \(x = 0, x = \tfrac{1}{2} , x = 1\)
+\(B_{5}(x)\) kan derfor skrives  
+\begin{align*}
+B_{5}(x)&=x^{5}-\tfrac{5}{2}x^{4}+\tfrac{5}{3}x^{3}-\tfrac{1}{6}x
+=x\left(x-\tfrac{1}{2}\right)\left(x-1\right)\left(x-r4\right)\left(x-r5\right)\\
+&=\left(x^{3}-\tfrac{1}{2}x^{2}+\tfrac{1}{2}x\right)\left(x-r4\right)\left(x-r5\right)
+\end{align*}
+Ved polynomiers division fås:
+\[\tfrac{x^{5}-\tfrac{5}{2}x^{4}+\tfrac{5}{3}x^{3}-\tfrac{1}{6}x}{ x^{3}-\tfrac{1}{2}x^{2}+\tfrac{1}{2}x }=x^{2}-x-\tfrac{1}{3}=(x-r4)(x-r5)\]
+Hvor ligningen \(x^{2}-x-\tfrac{1}{3}=0\) har løsningerne:
+\[r4;r5=\tfrac{1}{2} \pm \sqrt{\tfrac{7}{12}}= \tfrac{3 \pm \sqrt{21}}{6} \simeq -0,263763;1,26376\]
+Dvs at rødderne er \(\tfrac{3-\sqrt{21}}{6},0,\tfrac{1}{2},1,\tfrac{3+\sqrt{21}}{6}\) og \(B_{5}(x)\) kan derfor faktoreres som:
+\[B_{5}(x)=(x-(\tfrac{3-\sqrt{21}}{6}))x(x-\tfrac{1}{2})(x-1)(x-(\tfrac{3+\sqrt{21}}{6}))\]
+Ved anvendelse af faktoreringen kan ekstrema bedre beregnes. Vi husker, at ekstremumspunkter for \(B_{5}(x)\) findes ved de \(x\)-værdier der er rødder i \(B_{4}(x)\).Vi viser beregningen for første rod i \(B_{4}(x)\):
+\[x=\tfrac{15 - \sqrt{15(15+2\sqrt{30})}}{30}\]
+Vi beregner hvert led i faktoriseringen af \(B_{5}(x)\):
+Første led
+\begin{align*}
+&f1=x- \tfrac{3-\sqrt{21}}{6}=\tfrac{1}{2}-\tfrac{\sqrt{15(15+2\sqrt{30})}}{30}
+-(\tfrac{1}{2}-\tfrac{\sqrt{21}}{6})\\
+&f1=\tfrac{\sqrt{21}}{6}-\tfrac{\sqrt{15(15+2\sqrt{30})}}{30}
+\end{align*}
+På samme måde fås:
+\begin{align*}
+&f2=x=\tfrac{15 - \sqrt{15(15+2\sqrt{30})}}{30}\\
+&f3=x-\tfrac{1}{2}=-\frac{\sqrt{15(15+2\sqrt{30})}}{30}\\
+&f4=x-1=\tfrac{-15 - \sqrt{15(15+2\sqrt{30})}}{30}\\
+&f5=x-\tfrac{3+\sqrt{21}}{6}=-\tfrac{\sqrt{21}}{6}-\tfrac{\sqrt{15(15+2\sqrt{30})}}{30}
+\end{align*}
+Vi får nu:
+\begin{align*}
+&fa=f1 \cdot f5 = -\tfrac{21}{36}+\tfrac{15(15+2\sqrt{30})}{900}=\tfrac{-21 \cdot 25+15 \cdot 15+30\sqrt{30}}{900}=\tfrac{-10+\sqrt{30}}{30}\\
+&fb=f2 \cdot f4 =-\tfrac{1}{4}+\tfrac{15(15+2\sqrt{30})}{900}=\tfrac{-225+15 \cdot 15+30\sqrt{30}}{900}=\tfrac{\sqrt{30}}{30}\\
+&fa \cdot fb=\tfrac{3-\sqrt{30}}{90}\\
+&x-\tfrac{1}{2} \cdot fa \cdot fb =(\tfrac{3-\sqrt{30}}{90})(-\tfrac{\sqrt{15(15+2\sqrt{30})}}{30}) \simeq 0,018103
+\end{align*}
+Vi har nu ekstremum for første rod:
+\begin{align*}
+&x=\tfrac{15 - \sqrt{15(15+2\sqrt{30})}}{30}\\
+&\text{Ekstremum1}=(\tfrac{3-\sqrt{30}}{90})(-\tfrac{\sqrt{15(15+2\sqrt{30})}}{30}) \simeq 0,018103
+\end{align*}
+På samme måde kan et eksakt udtryk for de andre ekstremumsværdier findes:
+\begin{align*}
+&x=\tfrac{15 - \sqrt{15(15-2\sqrt{30})}}{30}\\
+&\text{Ekstremum2}=(\tfrac{3+\sqrt{30}}{90})(-\tfrac{\sqrt{15(15-2\sqrt{30})}}{30}) \simeq -0,024458\\
+&x=\tfrac{15 + \sqrt{15(15-2\sqrt{30})}}{30}\\
+&\text{Ekstremum3}=(\tfrac{3+\sqrt{30}}{90})(\tfrac{\sqrt{15(15-2\sqrt{30})}}{30}) \simeq 0,024458\\
+&x=\tfrac{15 + \sqrt{15(15+2\sqrt{30})}}{30}\\
+&\text{Ekstremum4}=(\tfrac{3-\sqrt{30}}{90})(\tfrac{\sqrt{15(15+2\sqrt{30})}}{30}) \simeq -0,018103
+\end{align*}
+
+\[\mathbf{B_{6}(x)=x^{6}-3x^{5}+\tfrac{5}{2}x^{4}-\tfrac{1}{2x^{2}}+\tfrac{1}{42}} \MinLinie\]\\
+Minimum og maximum for \(B_{6}(x)\) i rødder for \(B_{5}(x)\):
+\begin{equation*}
+\begin{array}{l}
+B_{6}(\tfrac{1}{2}-\tfrac{\sqrt{21}}{6})=\tfrac{1}{189} \nylinie
+B_{6}(0)=\tfrac{1}{42}\nylinie
+B_{6}(\tfrac{1}{2})=-\tfrac{31}{1344}\nylinie
+B_{6}(1)=\tfrac{1}{42}\nylinie
+B_{6}(\tfrac{1}{2}+\tfrac{\sqrt{21}}{6})=\tfrac{1}{189}
+\end{array}
+\end{equation*}
+Heraf ses, at \(B_{6}(x)\) kun har \(2\) reelle rødder. Disse må være symmetriske om \(\tfrac{1}{2}\). Medregnes både komplekse og reelle rødder kan \(B_{6}(x)\) faktoreres som:
+\begin{align*}
+&B_{6}(x)=\\
+&\left(x-(\tfrac{1}{2}-a)\right)\left(x-(\tfrac{1}{2}+a)\right)\left(x-(\tfrac{1}{2}-b)\right)\left(x-(\tfrac{1}{2}+b)\right)\left(x-(\tfrac{1}{2}-c)\right)\left(x-(\tfrac{1}{2}+c)\right)\\
+&=\left(x^{2}-x+(\tfrac{1}{4}-a^{2})\right)\left(x^{2}-x+(\tfrac{1}{4}-b^{2})\right)\left(x^{2}-x+(\tfrac{1}{4}-c^{2})\right)
+\end{align*}
+Vi indsætter nu \(a'=\tfrac{1}{4}-a^{2},b'=\tfrac{1}{4}-b^{2},c'=\tfrac{1}{4}-c^{2}\) og får:
+\[B_{6}(x)=(x^{2}-x+a')(x^{2}-x+b')(x^{2}-x+c')\]
+Ved udregning og sammenligning med koefficienter til \(B_{6}(x)\) fås:
+\begin{align*}
+&a'+b'+c'=-\tfrac{1}{2} \Rightarrow b'+c'=-\tfrac{1}{2}-a'\\
+&a' \cdot b' \cdot c'=\tfrac{1}{42} \Rightarrow b' \cdot c' =\tfrac{1}{42a'}\\
+&a' \cdot b' + a' \cdot c' + b' \cdot c'=0 \Rightarrow a'(b'+c')+b' \cdot c'=0
+\end{align*}
+Ved elimination af \(b'\) og \(c'\) i disse \(3\) ligninger fås:
+\[a'^{3}+\tfrac{1}{2}a'^{2}-\tfrac{1}{42}=0\] 
+Leddet med \(a'^{2}\) elimineres iht. normal procedure for løsning af trediegradsligninger:
+\begin{align*}
+&p=-\tfrac{1}{3}(\tfrac{1}{2})^{2}=-\tfrac{1}{12}\\
+&q=\tfrac{2}{27}(\tfrac{1}{2})^{3}-0-\tfrac{1}{42}=-\tfrac{11}{756}\\
+&u^{3}-pu+q=0, \text{ hvor } a'=u-\tfrac{1}{2 \cdot 3}=u-\tfrac{1}{6}\\
+&d=\tfrac{q^{2}}{4}-\tfrac{p^{3}}{27}=\tfrac{1}{31752}>0 
+\end{align*}
+Da \(d>0\) kan Cardanos formel anvendes. Ellers skulle komplekse tal være anvendt i udregningerne. Cardanos formel:
+\begin{align*}
+&u=\sqrt[3]{\tfrac{11}{756 \cdot 2}+\sqrt{d}}+\sqrt[3]{\tfrac{11}{756 \cdot 2}-\sqrt{d}}\\
+&u=\sqrt[3]{\tfrac{11}{1512}+\sqrt{\tfrac{1}{31752}}}+\sqrt[3]{\tfrac{11}{1512}-\sqrt{\tfrac{1}{31752}}}
+\end{align*}
+Vi har \(a'=u-\tfrac{1}{6}\) og \(a=\sqrt{\tfrac{1}{4}-a'}\) og får følgende rødder til \(B_{6}(x)=0\):
+\[r1;r2 = \tfrac{1}{2} \pm a = \tfrac{1}{2} \pm \sqrt{\tfrac{1}{4}-u-\tfrac{1}{6}}=\tfrac{1}{2} \pm \sqrt{\tfrac{5}{12}-u}\]
+Ved indsættelse af u fås:
+\begin{align*}
+r1;r2 &= \tfrac{1}{2} \pm \sqrt{\tfrac{5}{12}-\sqrt[3]{\tfrac{11}{1512}+\sqrt{\tfrac{1}{31752}}}-\sqrt[3]{\tfrac{11}{1512}-\sqrt{\tfrac{1}{31752}}}}\\
+&=0,247541;0,752459
+\end{align*}
+
