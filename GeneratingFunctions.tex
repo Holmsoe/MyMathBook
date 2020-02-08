@@ -1,0 +1,165 @@
+%%New section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Definition og eksempler}
+Generating functions er en måde at omdanne problemer indenfor diskret matematik og talrækker til funktionsanalyse. Man laver simpelthen en talrække om til et polynomium, hvor koefficienterne \(a_{k}\) til \(x^{k}\) er det \(k'te\) led i talrækken. Talrækken:
+\[\{a_{0},a_{1},a_{2},a_{3},\dotsm a_{n}\}\] repræsenteres ved generating funktionen:
+\[G(x)=a_{0}+a_{1}x+a_{2}x^{2}+a_{3}x^{3} \dotsm +a_{n}x^{n}\]
+Andre eksempler:
+\[\{0,0,0 \dotsm 0\} \leftrightarrow 0+0 \cdot x+0 \cdot x^{2} \dotsm 0 \cdot x^{n}=0\]
+\[\{1,0,0 \dotsm 0\} \leftrightarrow 1+0 \cdot x+0 \cdot x^{2} \dotsm 0 \cdot x^{n}=1\]
+\[\{3,2,1 \dotsm 0\} \leftrightarrow 3+2 \cdot x+1 \cdot x^{2} \dotsm 0 \cdot x^{n}=3+2x+x^{2}\]
+Fra afsnittet om geometriske serier ser vi:
+\[\{1,1,1 \dotsm 1\} \leftrightarrow 1+x+x^{2} \dotsm  x^{n}=\sum_{n=0}^{\infty}x^{n}=\frac{1}{1-x}\]
+\[\{1,-1,1,-1 \dotsm \} \leftrightarrow 0-x+x^{2}-x^{3}\dotsm=\sum_{n=0}^{\infty}(-1)^{n}x^{n}=\frac{1}{1+x}\]
+\[\{1,a,a^{2},a^{3} \dotsm \} \leftrightarrow 0+ax+a^{2}x^{2}+ a^{2}x^{2}\dotsm=\sum_{n=0}^{\infty}(ax)^{n}=\frac{1}{1-ax}\]
+\[\{1,0,1,0,1 \dotsm \} \leftrightarrow 0+x^{2}+ x^{4}+x^{6}\dotsm=\sum_{n=0}^{\infty}x^{2n}=\frac{1}{1-x^{2}}\]
+Den sidste fås ved substitution af \(x_{1}=x^{2}\).
+En alternativ skrivemåde for \(f=\sum_{n}a_{n}x^{n}\) er:
+\[f \leftrightarrow \{a_{n}\}_{0}^{\infty}\]
+hvilket betyder, at \(f\) er generating funktion for rækken \(\{a_{n}\}_{0}^{\infty}\). Herefter kan vi skrive regnereglerne en smule anderledes:\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Regneregler}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Gange med konstant}
+Man ganger koefficienterne med konstanten.
+\[f \leftrightarrow \{a_{n}\}_{0}^{\infty} \Rightarrow c \cdot f \leftrightarrow \{c \cdot a_{n}\}_{0}^{\infty}\]
+Eksempel:
+\[f=\frac{1}{1-x^{2}} \leftrightarrow \{1,0,1,0 \dotsm\}\]
+\[2 \cdot f=\frac{2}{1-x^{2}}=\{2,0,2,0,2 \dotsm\}\]
+Koefficienterne i polynomiet multipliceres simpelthen med \(2\). 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Addition}
+Man adderer koefficienterne:
+\[\sum_{n}a_{n}x^{n} \pm \sum_{n}b_{n}x^{n}=\sum_{n}(a_{n} \pm b_{n})x^{n}\]
+\[f \leftrightarrow \{a_{n}\}_{0}^{\infty} \text{  og  } g \leftrightarrow \{b_{n}\}_{0}^{\infty} \Rightarrow f+g \leftrightarrow \{a_{n}+b_{n}\}_{0}^{\infty}\]
+Eksempel:
+\[f=\frac{1}{1-x} \leftrightarrow \{1,1,1,1 \dotsm \}\]
+\[g=\frac{1}{1+x} \leftrightarrow \{1,-1,1,-1, \dotsm \}\]
+\[f+g=\frac{1}{1-x}+\frac{1}{1+x} \leftrightarrow \{2,0,2,0, \dotsm\}\]
+\[f+g=\frac{1+x+1-x}{(1-x)(1+x)}=\frac{2}{1-x^{2}} \leftrightarrow \{2,0,2,0 \dotsm\}\]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Gange med \(x^{k}\) - højreskift}
+Ved at gange med  \(x^{k}\) flyytes serien \(k\) pladser til højre og der indskydes \(k\) nuller.
+\[f \leftrightarrow \{a_{n}\}_{0}^{\infty} \Rightarrow \{0,0 \dotsm ,0,a_{0},a_{1}, \dotsm\}\]
+Ved multiplikation med \(x^{k}\) skiftes hele serien \(k\) skridt til højre og der optræder \(0\) på de første \(k\) pladser.\\
+Eksempel:
+\[f=\frac{1}{1-x} \leftrightarrow \{1,1,1,1, \dotsm\}\]
+\[x^{k}\cdot f=\frac{x^{k}}{1-x} \leftrightarrow \{0,0 \dotsm,0,1,1,1\dotsm\}\]
+Når man har ganget med \(x^{k}\) findes der selvfølgelig ingen faktorer \(x^{n}\) hvor \(n<k\).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Venstreskift}
+Ved venstreskift med k pladser skal de \(k-1\) første led først fratrækkes og herefter divideres med \(x^k\). Den nye serie begynder med \(a_{k}\)
+\[f \leftrightarrow \{a_{n}\}_{0}^{\infty} \text{ og } g \leftrightarrow \{a_{1},a_{2}, \dotsm\}\]
+Så gælder:
+\[g=\frac{f-a_{0}}{x}\]
+Først fratrækkes det 'ekstra led' fra \(f\) og herefter divideres med \(x\).
+Generelt gælder for venstreskift. Hvis:
+\[f \leftrightarrow \{a_{n}\}_{0}^{\infty} \text{ og } g \leftrightarrow \{a_{k},a_{k+1}, \dotsm\}\]
+så gælder:
+\[g=\frac{f-a_{0}-a_{1}x-\dotsm a_{k-1}x^{k-1}}{x^{k}}=\frac{f-\sum_{j=0}^{k-1}a_{j}x^{j}}{x^{k}}\]
+Eksempel med venstreskift på 3 pladser:
+\[f=\frac{1}{(1-x)^{2}} \leftrightarrow \{0,1,2,3,4, \dotsm \}\]
+\[g \leftrightarrow \{3,4,5,6, \dotsm\}\]
+Ved anvendelse af formlen for venstreskift fås:
+\[g=\frac{f(x)-\sum_{j=0}^{3}a_{j}x^{j}}{x^{3}}=\frac{\frac{1}{(1-x)^{2}}-1-2x-3x^{2}}{x^{3}}=\]
+\[\frac{1}{(1-x)^{2}x^{3}}(1-(1-x)^{2}(1+2x-3x^{2})=\]
+\[\frac{1}{(1-x)^{2}x^{3}}(1-1-2x-3x^{2}-x^{2}-2x^{3}-3x^{4}+2x+4x^{2}+6x^{3})=\]
+\[\frac{4x^{3}-3x^{4}}{(1-x)^{2}x^{3}}=\frac{4-3x}{(1-x)^{2}}\]
+Vi har altså:
+\[g=\frac{4-3x}{(1-x)^{2}} \leftrightarrow \{3,4,5,6 \dotsm \}\] 
+Prøv selv efter ved Taylorudvikling af \(g(x)\)!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Multiplicere med \(\frac{1}{1-x}\)}
+Hvis:
+\[f \leftrightarrow \{a_{n}\}_{0}^{\infty} \text{ og } g=\frac{1}{1-x}  \leftrightarrow \{1,1,1, \dotsm\}\]
+så bliver produktet:
+\[f \cdot g = (a_{0}+a_{1}x+a_{2}x^{2} \dotsm)(1+x+x^{2} \dotsm)=a_{0}+(a_{1}+a_{2})x+(a_{0}+a_{1}+a_{2})x^{2} \dotsm\]
+Eller:
+\[f \cdot g =\frac{f}{1-x} \leftrightarrow \{\sum_{j=0}^{n}a_{j}\}_{n \geq 0}\]
+Så effekten af at gange med \(\frac{1}{1-x}\) er at den nye sekvens består af partielle summer for den oprindelige funktion. Koefficienterne til \(x^{k}\) i den nye sekvens bliver \(\sum_{j=0}^{n}a_{n}\) i sekvensen for \(f\).Dette ligner 'Hockey stick sætningen' for Pascals trekant.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Reciprok}
+Den reciprokke til \(f(x)\) er \(g(x)\), hvis \(f(x) \cdot g(x)=1\). Sætter vi \(f(x)=\sum_{n \geq 0}a_{n}x^{n} \leftrightarrow \{a_{n}\}_{0}^{\infty}\) og \(g(x)=\sum_{n \geq 0}b_{n}x^{n}  \leftrightarrow \{b_{n}\}_{0}^{\infty}\) er \(f(x) \cdot g(x)=1\) kun muligt hvis \(a_{0} \neq 0\). Ellers vil der ikke kunne dannes led med \(x^{0}\) i produktet \(f(x) \cdot g(x)\). Vi ser, at \(n'te\) led i produktet \(f(x) \cdot g(x)\) bliver:
+\[c_{n}=\sum_{n \geq 0}a_{k}b_{n-k}+a_{0} \cdot b_{n}=0\]
+Ved omflytning fås:
+\[b_{n}=-\frac{1}{a_{0}} \cdot \sum_{n \geq}a_{k}b_{n-k}, \quad n \geq 1\]
+Da \(a_{0} \cdot b_{0}=1\) bliver endvidere \(b_{0}=\frac{1}{a_{0}}\) og alle led i den reciprokke er bestemt.\\
+Eksempel:
+\[f=\frac{1}{1-x} \leftrightarrow \{1,1,1,1, \dotsm\} \text{ og } f \cdot g=1 \Rightarrow\]
+\[b_{0}=\frac{1}{a_{0}}=\frac{1}{1}=1\]
+\[b_{1}=-a_{1} \cdot b_{0}=-1 \cdot 1=-1\]
+\[b_{2}=-(a_{1} \cdot b_{1}+a_{2} \cdot b_{0})=-(1 \cdot (-1)+1 \cdot 1=0\]
+\[b_{3}=-(a_{1} \cdot b_{2}+a_{2} \cdot b_{1}+a_{3} \cdot b_{0})=-(0+(-1)+1=0\]
+Vi ser nu, at:
+\[g(x)=1-x \leftrightarrow \{1,-1,0,0,0 \dotsm\}\]
+Dette ses umiddelbart at være korrekt, da \((1-x)\) er den reciprokke af \(\frac{1}{1-x}\).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Multiplikation}
+\[\sum_{n}a_{n}x^{n} \cdot \sum_{n}b_{n}x^{n}=\sum_{n}c_{n}x^{n}\]
+hvor koefficienterne \(c_{n}\) beregnes ved Cauchys regel som:
+\[c_{n}=\sum_{k}a_{k}b_{n-k}\]
+Denne regel siger blot, at koefficienten til \(x^{n}\), \(C_{n}\) er summen af produktet for koefficienter hvor summen af potenserne er \(n\).\\
+Multiplicere to generating funktioner:
+\[f \leftrightarrow \{a_{n}\}_{0}^{\infty} \text{  og  } g \leftrightarrow \{b_{n}\}_{0}^{\infty} \Rightarrow f \cdot g \leftrightarrow \{\sum_{r=0}^{n}a_{r}b_{n-r}\}_{n=0}^{\infty}\]
+Hver ny faktor er simpelthen summen af de produkter hvor summen af pontenserne i \(f\) og \(g\) er \(n\). Hvis f.eks. vi taler om koefficienten til \(x^{6}\) i \(f \cdot g\) er \(n=6\) og vi finder den som \(a_{0}b_{6}+ a_{1}b_{5}+ a_{2}b_{4}+ a_{3}b_{3}+ a_{4}b_{2}+ a_{5}b_{1}+ a_{6}b_{0}\).\\
+Specielt gælder for potenser af \(f\) at hvis \(f \leftrightarrow \{a_{n}\}_{0}^{\infty}\) og \(k\) er et positivt tal så:
+\[f^{k}=\{\sum_{n1+n2+ \dotsm +nk=n}a_{n1}a_{n2}a_{n3} \dotsm a_{nk}\}_{0}^{\infty}\]
+For eksempel er koefficienten til \(x^{6}\) i \(f^{4}\) lig med summen produkterne for led hvor summen af potenserne er \(6\) såsom \(0006,0015,1113, \dotsm \) osv.\\
+Eksempel:
+\[f(x)=\frac{1}{1-x} \leftrightarrow \{1,1,1,1, \dotsm\}\]
+\[g(x)=\frac{1}{(1-x)^{2}} \leftrightarrow \{1,2,3,4, \dotsm \}\]
+Vi ønsker nu at finde sekvensen svarende til \(f(x) \cdot g(x)=\frac{1}{(1-x)^{3}} \) og anvender formlen:
+\[c_{0}=a_{0}\cdot b_{0}=1 \cdot 2 = 1\]
+\[c_{1}=a_{0} \cdot b_{1}+a_{1} \cdot b_{0}=1 \cdot 2+1 \cdot 1 =2+1=3\]
+\[c_{2}=a_{0} \cdot b_{2}+a_{1} \cdot b_{1}+a_{2} \cdot b_{0}=1 \cdot 3+1 \cdot 2+1 \cdot 1=3+2+1=6\]
+\[c_{3}=a_{0} \cdot b_{3}+a_{1} \cdot b_{2}+a_{2} \cdot b_{1}+a_{3} \cdot b_{0}=1 \cdot 4+1 \cdot 3+1 \cdot 2+1 \cdot 1=4+3+2+1=10\]
+Vi ser der er tale om trekantstallene eller anden søjle i Pascals trekant. Vi har derfor:
+\[f(x) \cdot g(x)=\frac{1}{(1-x)^{3}} \leftrightarrow \{1,3,6,10, \dotsm\}=\left\{\binom{2}{2},\binom{3}{2},\binom{4}{2}, \dotsm \binom{k+2}{2} \dotsm \right\}\]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Differentiere}
+\[f(x)=\sum_{n}a_{n}x^{n} \Rightarrow f'(x)=\sum_{n}na_{n}x^{n-1}\]
+\[f'(x)=0 \Rightarrow f(x)=a_{0}\]
+\[f'(x)=f(x) \Rightarrow f(x)=Ce^{x}\]
+Den sidste sætning ses ved at differentiere \(f(x)\) som \(f'(x)=\sum_{n}na_{n}x^{n-1}\) og ved at sammenligne led med samme potens får vi \(a_{n+1}(n+1)=a_{n}\) eller \(a_{n+1}=\frac{a_{n}}{n+1}\). Eksempler: \(a_{1}=\frac{a_{0}}{0+1}=\frac{a_{0}}{1}\),  \(a_{2}=\frac{a_{1}}{1+1}=\frac{a_{1}}{2}\) og: 
+\[a_{3}=\frac{a_{2}}{2+1}=\frac{a_{2}}{3}=\frac{a_{1}}{2 \cdot 3}=\frac{a_{0}}{1 \cdot 2 \cdot 3}=\frac{a_{0}}{3!}\]
+Generelt har vi:
+\[a_{n}=\frac{a_{0}}{n!}\]
+hvilket netop er taylorudviklingen af \(e^{x}\).
+Differentiering, hvis:
+\[f \leftrightarrow \{a_{n}\}_{0}^{\infty}=\sum_{n=0}^{\infty}a_{n}x^{n}=\{a_{0},a_{1},a_{2} \dotsm\}\]
+så gælder:
+\[f'=\frac{df}{dx}=\frac{d}{dx}(\sum_{n=0}^{\infty}a_{n}x^{n})=\sum_{n=0}^{\infty}n \cdot a_{n}x^{n-1}=\]
+\[\sum_{n=0}^{\infty}(n+1)a_{n+1}x^{n}=\{1 \cdot a_{1}, 2 \cdot a_{2}, 3 \cdot a_{3}, \dotsm \}\]
+Generelt gælder:
+\[f^{'k}=\sum_{n=0}^{\infty}\frac{(n+k)!}{n!}a_{n+k}\]
+Ved hver differentiering multipliceres hvert led i sekvensen med sit indeksnummer og hele sekvensen rykkes en gang mod venstre. Eksempel:
+\[f=\frac{1}{1-x} \leftrightarrow \{1,1,1,1,1 \dotsm\}\]
+\[\frac{d}{dx}f(x)=\frac{d}{dx}\frac{1}{1-x}=\frac{1}{(1-x)^{2}} \leftrightarrow \{1,2,3,4,5 \dotsm\}\]
+Bemærk, at første led efter differentiering, \(1\), stammer fra anden led i \(f(x)\), nemlig leddet \(1 \cdot x\). Så vi ser venstreskiftet.For at neutralisere venstreskiftet kan vi gange med \(x\) og derfor indfører vi den næste operator.\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Operatoren \(x\frac {d}{dx}\)}
+'Først differentiere så gange med x'.Hvis vi multiplicerer \(f'\) med \(x\) fås:
+\[xf'=x\sum_{n=0}^{\infty}na_{n}x^{n-1}=\sum_{n=0}^{\infty}na_{n}x^{n}\]
+Så vi har:
+\[f \leftrightarrow \{a_{n}\}_{0}^{\infty} \Rightarrow x\frac{df}{dx}=\{na_{n}\}_{0}^{\infty}\]
+Tilsvarende fås generelt ved \(k\) anvendelser af operatoren \(x\frac{d}{dx}\):
+\[f \leftrightarrow \{a_{n}\}_{0}^{\infty} \Rightarrow (x\frac{df}{dx})^{k}=\{n^{k}a_{n}\}_{0}^{\infty}\]
+Herved etableres generating funktion \(g\) med koefficienter \(n^{k}\) i forhold til den oprindelige funktion \(f\).
+Eksempel, hvor vi finder generatingfunktion for kvadrattallene:
+\[f=\frac{1}{1-x} \leftrightarrow \{1,1,1,1, \dotsm\}\]
+\[\frac{d}{dx}f(x)=\frac{1}{(1-x)^{2}} \leftrightarrow \{1,2,3,4 \dotsm\}\]
+\[g(x)=x \cdot \frac{d}{dx}f(x)=\frac{x}{(1-x)^{2}} \leftrightarrow \{0,1,2,3,4,5\}\]
+\[\frac{d}{dx}g(x)=\frac{d}{dx}\frac{x}{(1-x)^{2}}=\frac{1+x}{(1-x)^{3}} \leftrightarrow \{1,4,9,16 \dotsm\}\]
+\[h(x)=x \cdot \frac{d}{dx}g(x) =\frac{x(1+x)}{(1-x)^{3}} \leftrightarrow \{0,1,4,9,16, \dotsm\}\]
+Altså har vi:
+\[h(x)=\frac{x(1+x)}{(1-x)^{2}} \leftrightarrow \{0,1,4,9,16, \dotsm\}\]
+Hvis \(f \leftrightarrow \{a_{n}\}_{0}^{\infty}\) ønsker vi at finde:
+\[g \leftrightarrow \{(b_{0}+b_{1}x+b_{2}x^{2} \dotsm)a_{n}\}_{0}^{\infty}\]
+Og vi får:
+\[g \leftrightarrow \{b_{0}a_{n}\}_{0}^{\infty}+ \{b_{1}na_{n}\}_{0}^{\infty}+ \{b_{2}n^{2}a_{n}\}_{0}^{\infty} \dotsm=b_{0}+b_{1}x\frac{df}{dx}+b_{2}(x\frac{df}{df})^{2} \dotsm\]
+Hvor \((x\frac{df}{dx})^{2}\) betyder to gange anvendelse af operatoren 'Først differentiere så gange med x'.\\
+
+
+
+
+
