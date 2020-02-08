@@ -1,0 +1,129 @@
+%\documentclass{amsbook}
+%\documentclass[landscape,a4paper,12pt]{article}
+
+%% Based on a TeXnicCenter-Template by Gyorgy SZEIDL.
+
+%%New section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------------
+%
+\documentclass[fleqn]{amsbook} % Leftalignment af ligninger
+%\documentclass{amsbook}
+%
+%
+%----------------------------------------------------------
+% This is a sample document for the AMS LaTeX Article Class
+% Class options
+%        -- Point size:  8pt, 9pt, 10pt (default), 11pt, 12pt
+%        -- Paper size:  letterpaper(default), a4paper
+%        -- Orientation: portrait(default), landscape
+%        -- Print size:  oneside, twoside(default)
+%        -- Quality:     final(default), draft
+%        -- Title page:  notitlepage, titlepage(default)
+%        -- Start chapter on left:
+%                        openright(default), openany
+%        -- Columns:     onecolumn(default), twocolumn
+%        -- Omit extra math features:
+%                        nomath
+%        -- AMSfonts:    noamsfonts
+%        -- PSAMSFonts  (fewer AMSfonts sizes):
+%                        psamsfonts
+%        -- Equation numbering:
+%                        leqno(default), reqno (equation numbers are on the right side)
+%        -- Equation centering:
+%                        centertags(default), tbtags
+%        -- Displayed equations (centered is the default):
+%                        fleqn (equations start at the same distance from the right side)
+%        -- Electronic journal:
+%                        e-only
+%------------------------------------------------------------
+% For instance the command
+%          \documentclass[a4paper,12pt,reqno]{amsart}
+% ensures that the paper size is a4, fonts are typeset at the size 12p
+% and the equation numbers are on the right side
+%
+
+\usepackage{graphicx}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{array}
+\usepackage{mathtools}
+\usepackage[utf8]{inputenc}
+\usepackage[danish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{color}
+\usepackage{booktabs}
+\usepackage{subfig}
+\usepackage{hyperref} %hyperref skal være den sidste pakke
+
+%------------------------------------------------------------
+% Theorem like environments
+%
+
+\theoremstyle{definition}
+
+\newtheorem{example}{Eksempel}
+\newtheorem{claim}{Sætning}
+\newtheorem{definition}{Definition}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}{Acknowledgement}
+
+\newtheorem{algorithm}{Algoritme}
+
+\newtheorem{axiom}{Axiom}
+\newtheorem{case}{Case}
+\newtheorem{conclusion}{Conclusion}
+\newtheorem{condition}{Condition}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{corollary}{Corollary}
+\newtheorem{criterion}{Criterion}
+
+\newtheorem{exercise}{Exercise}
+\newtheorem{lemma}{Lemma}
+\newtheorem{notation}{Notation}
+\newtheorem{problem}{Problem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+\newtheorem{solution}{Solution}
+\newtheorem{summary}{Summary}
+\numberwithin{equation}{section}
+%--------------------------------------------------------
+
+
+\begin{document}
+
+\title{Finns bog}
+
+\author{Finn Andersen}
+\date{\today}
+\maketitle
+
+\newcommand {\nylinie}{\\[3mm]}
+\newcommand{\MinLinie}{\text{\phantom{Her er så den maksimale længe på en linie med ligning-det kan jeg love dig}}\\[-12pt]}
+\newcommand{\MinLinieKort}{\text{\phantom{Her er så en kort tekst}}\\[-12pt]}
+
+%Layout af Stirling nummer format i Inline
+\newcommand{\StirLine}[2] {\bigl\{ \negthinspace \begin{smallmatrix} #1\\#2 \end{smallmatrix} \negthinspace \bigr\}}
+
+%Layout af Stirling nummer format i Display
+\newcommand{\StirDisp}[2] {\begin{Bmatrix} #1\\#2 \end{Bmatrix}}
+
+\input{Potenssummer}
+\input{Bernoulli}
+\input{Pascal}
+\input{BasisTeknikker}
+\input{GeneratingFunctions}
+\input{Stirling}
+\input{hanoi}
+\input{josephus}
+
+\end{document}
+
+
+
+
+
+
