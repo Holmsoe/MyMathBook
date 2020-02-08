@@ -1,0 +1,92 @@
+\chapter{Hanois tårne}
+\section{Indledning}
+Dette er en gammel kendt opgave formuleret af den franske matematiker NN.
+Der er tale om et slags puslespil hvor man skal flytte nogle skiver mellem
+3 pinde. Spillet findes også som legetøj. Spillet består af n skiver af
+forskellig diameter. Disse er anbragt på en pind med største skive nederst
+og derefter mindre og mindre skiver opad. På spillepladen findes yderligere
+to pinde. Opgaven går herefter ud på at flytte alle skiverne fra en pind
+til en anden stadig med den største skive nederst under den forudsætning,
+at der flyttes en skive ad gangen og at der  i processen aldrig må placeres
+en større skive ovenpå en mindre.
+
+\section{Algoritme}
+Vi ønsker nu at finde en generel måde at gøre dette på samt beregne minimum
+antal flytninger der er nødvendige for at fuldføre opgaven.
+
+Skiverne nummeres således at den mindste som ligger øverst får nummer \(1
+\), den næstøverste nr. \(2\) og så videre op til nummer n, som er antallet
+af skiver og nummeret på den nederste skive.
+Den pind hvorpå skiverne ligger fra starten kalder vi \(A\) og de øvrige to
+pinde kaldes henholdsvis \(B\) og \(C\). Antallet af nødvendige flytninger
+kalder vi F(n).For at forstå processen prøver vi nu tilfældene \(n=1,2,3,4\).
+
+\noindent \textbf{Tilfælde 1,\(n=1\):} Skive \(1\) fra pind \(A\) til pind \(B\). Hermed er
+tårnet bestående af \(1\) skive flyttet og opgaven er fuldført. Så \(F(1)=1
+\).
+
+\noindent \textbf{Tilfælde 2,\(n=2\):} Skive \(1\) fra pind \(A\) til pind \(B\). Skive \(2\)
+fra pind \(A\) til pind \(C\). Skive \(1\) fra pind \(B\) til pind \(C
+\).Hermed er tårnet bestående af \(2\) skiver flyttet og opgaven er
+fuldført. Så \(F(2)=3\).
+
+\noindent \textbf{Tilfælde 3,\(n=3\):} Skive \(1\) fra pind \(A\) til pind \(B\). Skive \(2\)
+fra pind \(A\) til pind \(C\). Skive \(1\) fra pind \(B\) til pind \(C
+\).Skive \(3\) fra pind \(A\) til pind \(B\). Skive \(1\) fra pind \(C\)
+til pind \(A\). Skive \(2\) fra pind \(C\) til pind \(B\).Skive \(1\) fra
+pind \(A\) til pind \(B\).Hermed er tårnet bestående af \(3\) skiver
+flyttet og opgaven er fuldført. Så \(F(3)=7\).
+
+Bemærk i tilfælde \(3\), at man først flytter tårnet bestående af \(3-1=2\)
+skiver til en ny pind \(C\). Dette tager ligeså mange flytninger som
+tilfældet \(n=2\). Herefter flyttes sidste skive til pind \(B\). Til sidst
+flyttes så tårnet med \(3-1=2\) skiver igen fra pind \(C\) til pind \(B\)
+og opgaven er færdig.
+
+Vi kan altså stykke processen op i 3 delaktioner:
+\begin{itemize}
+\item Flyt tårnet med \(n-1\) skiver til en ny pind. Dette tager \(F(n-1)\)
+flytninger.
+\item Flyt sidste pind - skive nr \(n\) - til en ny pind. Dette tager 1
+flytning.
+\item Flyt tårnet med  \(n-1\) skiver til pinden med skive nr \(n\).Dette
+tager \(F(n-1)\) flytninger.
+\end{itemize}
+
+Hvis det tager \(F(n-1)\) flytninger for et tårn med \((n-1)\) skiver tager
+det derfor \(2F((n-1)+1\) flytninger for et tårn med n skiver.  For at få
+antallet af flytninger for et tårn med 1 skive ekstra skal man altså gange
+antallet af flytninger for det forrige tårn med 2 og lægge en til, da vi jo
+flytter tårnet med en skive mindre \(2\) gange og flytter den nederste
+skive en gang. Vi kan nu stille en tabel op over antallet af flytninger for
+de første værdier af \(n\).
+\begin{align*}
+&n \qquad &Flytninger&\ \\
+&1  &1&=1\\
+&2  &2 \times 1+1&=3\\
+&3 &4 \times 1 + 2\times 1 + 1&=7\\
+&4 &8 \times 1 + 4 \times 1+ 2 \times 1 +1&=15\\
+&5 &16 \times 1 +8 \times 1 + 4\times 1 + 2 \times 1 +1&=31\\
+\end{align*}
+Det ses altså, at det totale antal flytninger er:
+\begin{equation}
+F(n) = 1+2+4+8+\ldots + 2^{(n-1)} = \sum_{k=1}^{n} 2^{(n-1)} = \sum_{k=0}^
+{n-1}2^n
+\end{equation}
+Dette er en geometrisk række og der eksisterer en simpel løsning til denne
+sum:
+Vis sætter:
+\begin{alignat*}{2}
+&&S&=1+2+4+8+\ldots+2^{(n-1)}\\\\
+&&2S&=2+4+8+16+\ldots+2\times 2^{(n-1)}\\
+&&&=2+4+8+16+\ldots+2^n
+\end{alignat*}
+Den nederste ligning fremkommer ved af gange den øverste med 2. \(S\) er
+den sum vi ønsker at finde. Trækker vi nu den øverste ligning fra den
+nederste fås:
+\[2S-S=(-1)+(2-2)+(4-4)+(8-8)\ldots+(2^{(n-1)}-2^{(n-1)})+2^n\]
+Da alle led undtagen første og sidste går ud får vi:
+\[F(n)=S=2^n-1\]
+Dette er den søgte sum. For eksempel giver \(10\) skiver
+\(2^{10-1}=1024-1=1023\) flytninger.
+
