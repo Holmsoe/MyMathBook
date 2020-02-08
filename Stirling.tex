@@ -1,0 +1,83 @@
+\chapter{Stirling og Pascal}
+%%New section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Stirlingtal af anden art}
+På hvormange måder kan \(n\) elementer deles op i \(k\) klasser (eller kasser om man vil) og hvor ingen af kasserne er tomme?\\
+Eksempel: Tallene \([4]=\{1,2,3,4\}\) kan deles op i 2 kasser på følgende måder: \(
+\{12\} \{34\};\{13\} \{24\};\{14\} \{23\};\{1\} \{234\};\{2\} \{134\};\{3\} \{124\};\{4\} \{123\}
+\) altså på \(7\) forskellige måder. Vi betegner antallet af opdelinger med:.\( \StirLine{n}{k} \)
+Vi ønsker nu at finde en rekursionsformel for disse kombinationer. Vi deler de \( \StirLine{n}{k}\) opdelinger op i to bunker: første bunke indeholder alle kombinationer hvor elementet \(n\) optræder alene, anden bunke indeholder opdelinger hvor \(n\) ikke er alene. Første bunke må indeholde \( \StirLine{n-1}{k-1}\) kombinationer, da der er tale et færre elementer på en færre kasser. Anden bunke indeholder \(k\) kasser med \(2\) eller flere elementer. Forestiller vi os, at vi første placerer alle andre elementer i kasserne, er der derefter \(k\) muligheder for at placere elementet \(n\). Før placeringen af \(n\) er der \( \StirLine{n-1}{k}\) kombinationer. Ialt er der derfor \( k \StirLine{n-1}{k}\) kombinationer i bunke \(2\). Rekursionsformlen er derfor:
+\[\StirDisp{n}{k}=\StirDisp{n-1}{k-1}+k\StirDisp{n-1}{k}\]
+Vi kan nu fastsætte nogle værdier for \(\StirLine{n}{k}\):\\
+Hvis \(k>n\) må \(\StirLine{n}{k}=0\) for \(n<k\). Det er jo ikke muligt, at placere et element i hver kasse.\\
+Hvis \(k \leq0\) må \(\StirLine{n}{k}=0\) for \(k \leq0\), der er jo ingen kasser at fordele elementer i.\\
+Hvis \(k=1\) må \(\StirLine {n}{1}=1\), der er kun en måde at placere elementerne på-alle i samme kasse.\\
+Så \( \StirLine{1}{1}=1\). Hvis rekursionsformlen skal gælde må vi have: \( \StirLine{1}{1}=\StirLine{0}{0}+1 \cdot \StirLine{0}{1}=\StirLine{0}{0}+0=1\). Så per definition må gælde \(\StirLine{0}{0}=1\) for at rekusionsformlen skal holde.\\
+Det kan relativt let vises, at:
+\[\StirDisp{n}{2}=2^{n-1}-1\]
+Vi ønsker nu, at finde generating function og en formel for \(\StirLine{n}{k}\). Vi summerer rekursionsformlen med \(x^{n}\) og summerer over \(n\) får vi for \(n \geq 1\):
+\[\sum_{n}\StirLine{n}{k}x^{n}=\sum_{n}\StirLine{n-1}{k-1}x^{n}+k\StirLine{n-1}{k}x^{n}\]
+Vi sætter nu:
+\[\sum_{n}\StirLine{n}{k}x^{n}=S_{k}(x)\]
+Og får:
+\[S_{k}(x)=xS-{k-1}(x)+kxS_{k}(x)\]
+Dette giver:
+\[S_{k}=\frac{x}{1-kx}S_{k-1}(x)+kS_{k-1}(x) \text{ hvor } k \geq 1,S_{0}(x)=1\]
+Når vi starter med \(S_{0}(x)=1\) fås let:
+\[\sum_{n}\StirLine{n}{k}x^{n}=S_{k}(x)=\frac{x^{k}}{(1-x)(1-2x)(1-3x) \dotsm (1-kx)}, k \geq 0\] 
+For at finde en formel for \( \StirLine{n}{k}\) benytter vi faktoropløsningen:
+\[\frac{1}{(1-x)(1-2x)(1-3x) \dotsm (1-kx)}=\sum_{j=1}^{k}\frac{\alpha_{j}}{1-jx}\]
+Vi vælger et \(r\), hvor \(1 \leq r \leq k\) (f.eks. \(r=5\)) og ganger på begge sider med \((1-rx)\) og får:
+\[\frac{1}{(1-x)(1-2x) \dotsm (1-(r-1)x)(1-(r+1)x) \dotsm (1-kx)}=\]
+\[\alpha_{r}+(1-rx)( \frac{\alpha_{1}}{1-x}+\frac{\alpha_{2}}{1-2x}+\dotsm+\frac{\alpha_{r-1}}{1-(r-1)x}+\frac{\alpha_{r+1}}{1-(r+1)x}+\dotsm +\frac{\alpha_{k}}{1-kx})\]
+Vi sætter nu \(x=\frac{1}{r}\) hvorved andet led på højre side udgår:
+\[\alpha_{r}=\frac{1}{(1-\frac{1}{r})(1-\frac{2}{r}) \dotsm (1-\frac{r-1}{r})(1-\frac{r+1}{r}) \dotsm (1-\frac{k}{r})}\]
+Der er \(k-1\) led i nævner og vi forlænger med \(r^{r-1}\):
+\[\alpha_{r}=\frac{r^{k-1}}{(r-1)(r-2) \dotsm (r-(r-1))(r-(r+1)) \dotsm (r-k)}=\]
+\[\frac{r^{k-1}}{(r-1)(r-2) \dotsm 1 \cdot (-1)(-2)(-3) \dotsm (r-k)}\]
+Hvis der er et ullige antal led i \( (-1)(-2) \cdot (r-k)\) når \(r \leq k\) så er det samlede led negativt ellers positivt, så:
+\[\alpha_{r}=\frac{r^{k-1}}{(r-1)!(k-r)!}\cdot(-1)^{k-r} \text{ hvor, } 1 \leq r \leq k \]
+Hermed bliver:
+\[\sum \StirLine{n}{k}x^{n}=\sum_{r=1}^{k}\frac{r^{k-1}}{(r-1)!(k-r)!} \cdot \frac{x^{k}}{1-rx}\]
+%%New section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Pascal og Euler}
+Dette afsnit følger også op på kapitler om Pascal og Generating functions.
+Bemærk, at søjle \(0\) har generating funktion \(\frac{1}{1-x}\). Søjle \(1\) har generating funktion \(\frac{x}{(1-x)^{2}}\). Husk, at gange en generating funktion \(f\) med \(\frac{1}{1-x}\) er det samme som at beregne partielle summer af den sekvens som har generating funktion \(f\). \(x\) i tælleren er for at flytte tallene en tak nedad. Herefter bliver generating funktion for:
+\[\text{Søjle 2: } G=\frac{x^{2}}{(1-x)^{3}}\]
+\[\text{Søjle 3: } G=\frac{x^{3}}{(1-x)^{4}}\]
+\[\text{Søjle 4: } G=\frac{x^{4}}{(1-x)^{5}}\]
+\[\text{Søjle k: } G=\frac{x^{k}}{(1-x)^{k+1}}\]
+\subsection{Kombinatorisk bevis på Pascals 2nd sætning}
+På hvor mange måder kan \(n\) bolde fordeles i \(n\) kasser? Vi stiller de \(n\) bolde op på række. Problemet svarer til at placere \(k-1\) skillerum i denne række. Dette svarer igen til at udtage \(k-1\) skillerum af en række på \(n+(k-1)\) elementer (bolde og skillerum). Dette gøre på \(\binom{n+(k-1)}{k-1}\) måder. Eksempel: \(6\) bolde fordeles på \(3\) kasser på \(\binom{6+3-1}{3-1}=\binom{8}{2}=28\) måder. Hvad bliver løsningen, hvis vi kræver, at der mindst skal være \(1\) bold i hver kasse? Samme løsning som før. Blot har vi "brugt" \(k\) bolde først. Så der er \(n-k\) bolde i \(k\) kasser som bliver \(\binom{n+k-1-k}{k-1}=\binom{n-1}{k-1}\), hvilket ses at være binomialkoefficienterne. Så søjle \(0\) er antal måder at fordele \(n\) bolde i \(1\) kasse, da \(k-1=0\). Tilsvarende er søjle \(1\) antal måder at fordele \(n\) bolde i \(2\) kasser med mindst en i hver. Søjle \(2\) er antal måder at fordele \(n\) bolde i \(3\) kasser. Tredie søjle kaldes også trekantstal (triangular numbers). Vi er nu klar til et kombinatorisk bevis for Pascals anden identitet. \(n\) bolde fordeles i \(k\) kasser, når der mindst skal være en i hver. Først fordeles \(k\) bolde med \(1\) i hver kasse (hvis \(n<k\) er der \(0\) muligheder). De resterende \(n-k\) bolde skal nu fordeles i \(k\) kasser. Vi dekomponerer på følgende måde. Først undersøges muligheder hvor der er \(0\) bolde i kasse \(1\). Dette giver:
+\[0 \text{ bolde i }1: F(n-k,k-1) \text{ muligheder for resten}\]
+\[1 \text{ bold i }1: F(n-k-1,k-1) \text{ muligheder for resten}\]
+Osv. indtil \(F(n-k-1,k-1)=F(k-1,k-1)=1\). Vi har nu sammensat løsningen af en sum af løsninger for \(k-1\) kasser, hvilket jo netop er Hockey stick. Eksempel: \(10\) bolde i \(4\) kasser med mindst en bold i hver kasse. Vi skal fordele \(6\) bolde i \(4\) kasser uden begrænsning. \(0\) bolde i kasse \(1\) svarer til \(6\) bolde i \(3\) kasser. \(1\) bold i kasse \(1\) svarer til \(5\) bolde i \(2\) kasser, osv. Som vi viste, tager Pascals \(2.\) identitet udgangspunkt i dekomposition med fastholdt søjle på \((k-1)\). Hvad sker der hvis vi istedet dekomponerer med faldende søjleindeks?
+\[\binom{n}{k}=\binom{n-1}{k-1}+\binom{n-1}{k}=\binom{n-1}{k}+\binom{n-2}{k-1}+\binom{n-2}{k-2}=\]
+\[\binom{n-1}{k}+\binom{n-2}{k-1}+\binom{n-3}{k-2}+\binom{n-3}{k-1}=\]
+\[\binom{n-1}{k}+\binom{n-2}{k-1}+\binom{n-3}{k-2}+\binom{n-4}{k-3}+\binom{n-4}{k-4}\]
+osv. indtil \(k-j=0\). Dette giver:
+\[\binom{n}{k}=\sum_{j=0}^{k}\binom{n-j-1}{k-j}\]
+Starter vi istedet bagfra fås:
+\[\binom{n}{k}=\sum_{j=0}^{k}\binom{n+j-k-1}{j}\]
+Substituerer vi \(n_{1}=n-k-1 \Rightarrow n=n_{1}+k+1\) får vi:
+\[\binom{n+k+1}{k}=\sum_{j=0}^{k}\binom{n+j}{j }\]
+Som er en alternativ version af Pascals \(2.\) identitet. Her 'ligger' Hockey stick ned og går diagonalt til kanten.\\ 
+Eksempel: \(\binom{9}{3}=\binom{5}{0}+\binom{6}{1}+\binom{7}{2}+\binom{8}{3}=1+6+21+56=84\).
+%%New section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Pascal og generating funktioner}
+\[\sum_{n=0}^{\infty}x^{n} \rightarrow \{1,1,1,1, \dotsm \} \rightarrow \frac{1}{1-x}\]
+
+\[\sum_{n=0}^{\infty}nx^{n}=\sum_{n=0}^{\infty}x\frac{d(x^{n})}{dx}=x\frac{d}{dx}(\sum_{n=0}^{\infty}x^{n})=x \frac{d}{dx}\frac{1}{1-x}=\]
+\[x\frac{1}{(1-x)^{2}}=\frac{x}{(1-x)^{2}} \rightarrow \{0,1,2,3,4, \dotsm \}\]
+Alternativt anvendes \(xDf\) operatoren 'differentiere og gange med x' eller 'gange med \(n\) operatoren'. Effekten af at differentiere en generating funktion og derefter gange med \(x\) er at alle tal i den tilhørende sekvens ganges med \(n\). Eller:
+\[f \leftrightarrow \{a_{n}\}_{0}^{\infty} \Rightarrow xDf \leftrightarrow \{na_{n}\}_{0}^{\infty}\]
+Fra generating funktion
+
+
+
+
+
+
+
